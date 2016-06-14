@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-footer', [])
+angular.module('microprofileio-footer', [])
 
     .directive('eeioFooter', [function () {
         return {

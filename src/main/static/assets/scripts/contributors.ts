@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-contributors', [])
+angular.module('microprofileio-contributors', [])
 
     .factory('eeioContributorsService', [
         '$http',

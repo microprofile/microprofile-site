@@ -1,16 +1,16 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-main', [
+angular.module('microprofileio-main', [
     'ngRoute',
     'ngStorage',
-    'javaeeio-menu',
-    'javaeeio-header',
-    'javaeeio-footer',
-    'javaeeio-projects',
-    'javaeeio-contributors',
-    'javaeeio-guardians',
-    'javaeeio-googlegroups',
-    'javaeeio-twitter'
+    'microprofileio-menu',
+    'microprofileio-header',
+    'microprofileio-footer',
+    'microprofileio-projects',
+    'microprofileio-contributors',
+    'microprofileio-guardians',
+    'microprofileio-googlegroups',
+    'microprofileio-twitter'
 ])
 
     .config([
@@ -94,7 +94,7 @@ angular.module('javaeeio-main', [
     .controller('HomeController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
         $scope.resource = $route.current.params['resourceName'];
         if (!$scope.resource) {
-            //$scope.resource = 'javaee_guardians.adoc';
+            //$scope.resource = 'microprofile_guardians.adoc';
             $scope.resource = 'frontpage.adoc';
         }
         menu.setSelected('home');

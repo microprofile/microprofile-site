@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-googlegroups', [])
+angular.module('microprofileio-googlegroups', [])
 
     .factory('eeioGooglegroupsService', [
         '$http',

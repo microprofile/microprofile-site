@@ -17,7 +17,7 @@ class ServiceGithub {
     private Logger logger = Logger.getLogger(this.class.name)
 
     @Inject
-    @Config(value = 'javaeeio_config_root')
+    @Config(value = 'microprofileio_config_root')
     private String docRoot
 
     @Inject

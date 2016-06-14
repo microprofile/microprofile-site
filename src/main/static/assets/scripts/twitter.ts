@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-twitter', [])
+angular.module('microprofileio-twitter', [])
 
     .factory('eeioTwitterService', [
         '$http',

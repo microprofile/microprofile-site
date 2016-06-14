@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-header', [])
+angular.module('microprofileio-header', [])
 
     .directive('eeioHeader', ['$window', function ($window) {
         return {

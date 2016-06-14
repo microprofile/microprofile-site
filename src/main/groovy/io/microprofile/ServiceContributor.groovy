@@ -23,7 +23,7 @@ class ServiceContributor {
     private ServiceProject project
 
     @Inject
-    @Config(value = 'javaeeio_config_root')
+    @Config(value = 'microprofileio_config_root')
     private String docRoot
 
     DtoContributorInfo getContributor(String login) {

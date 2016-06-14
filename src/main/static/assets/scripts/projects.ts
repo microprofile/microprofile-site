@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-projects', [])
+angular.module('microprofileio-projects', [])
 
     .factory('eeioProjectsDocService', ['$location',
         function ($location) {

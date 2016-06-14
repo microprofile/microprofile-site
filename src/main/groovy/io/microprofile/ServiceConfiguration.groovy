@@ -26,18 +26,18 @@ class ServiceConfiguration implements ConfigurationObserver {
                 properties.setProperty(key, propVal)
             }
         }
-        setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/javaee-guardians/topics/atom.xml?num=50')
-        setIfEmpty('javaeeio_config_root', {
-            def result = System.getProperty('javaeeio_config_root')
+        setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/microprofile-guardians/topics/atom.xml?num=50')
+        setIfEmpty('microprofileio_config_root', {
+            def result = System.getProperty('microprofileio_config_root')
             if (!result) {
-                return 'jcpevangelists/javaee.io.config'
+                return 'jcpevangelists/microprofile.io.config'
             }
             return result
         })
-        setIfEmpty('github_atoken', System.getProperty('javaeeio_github_atoken'))
-        setIfEmpty('javaeeio_twitter_oauth_consumer_key', System.getProperty('javaeeio_twitter_oauth_consumer_key'))
-        setIfEmpty('javaeeio_twitter_oauth_consumer_secret', System.getProperty('javaeeio_twitter_oauth_consumer_secret'))
-        setIfEmpty('javaeeio_twitter_oauth_access_token', System.getProperty('javaeeio_twitter_oauth_access_token'))
-        setIfEmpty('javaeeio_twitter_oauth_access_token_secret', System.getProperty('javaeeio_twitter_oauth_access_token_secret'))
+        setIfEmpty('github_atoken', System.getProperty('microprofileio_github_atoken'))
+        setIfEmpty('microprofileio_twitter_oauth_consumer_key', System.getProperty('microprofileio_twitter_oauth_consumer_key'))
+        setIfEmpty('microprofileio_twitter_oauth_consumer_secret', System.getProperty('microprofileio_twitter_oauth_consumer_secret'))
+        setIfEmpty('microprofileio_twitter_oauth_access_token', System.getProperty('microprofileio_twitter_oauth_access_token'))
+        setIfEmpty('microprofileio_twitter_oauth_access_token_secret', System.getProperty('microprofileio_twitter_oauth_access_token_secret'))
     }
 }

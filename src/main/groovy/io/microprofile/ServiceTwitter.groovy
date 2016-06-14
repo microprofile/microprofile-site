@@ -18,19 +18,19 @@ class ServiceTwitter {
     private Twitter twitter
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_consumer_key')
+    @Config(value = 'microprofileio_twitter_oauth_consumer_key')
     private String oAuthConsumerKey
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_consumer_secret')
+    @Config(value = 'microprofileio_twitter_oauth_consumer_secret')
     private String oAuthConsumerSecret
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_access_token')
+    @Config(value = 'microprofileio_twitter_oauth_access_token')
     private String oAuthAccessToken
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_access_token_secret')
+    @Config(value = 'microprofileio_twitter_oauth_access_token_secret')
     private String oAuthAccessTokenSecret
 
     @PostConstruct
@@ -57,7 +57,7 @@ class ServiceTwitter {
 
     @Cached
     Collection<DtoTweet> getTweets() {
-        return this.twitter.getUserTimeline('javaee_guardian').collect {
+        return this.twitter.getUserTimeline('microprofile_guardian').collect {
             def tweet = it.retweetedStatus ?: it
             return new DtoTweet(
                     id: tweet.id,

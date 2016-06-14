@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('javaeeio-menu', [])
+angular.module('microprofileio-menu', [])
 
     .factory('eeioMenuService', [
         function () {

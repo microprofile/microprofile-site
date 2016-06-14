@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html ng-app="javaeeio-main">
-<head><title>javaee.io</title>
+<html ng-app="microprofileio-main">
+<head><title>microprofile.io</title>
     <script>
         // doc base
         (function () {
