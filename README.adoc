@@ -1,0 +1,229 @@
+= https://javaee.io/
+:toc:
+:toc-placement: preamble
+
+Made by individuals for the good of Java EE and our industry.
+
+== Live demo application
+
+Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/
+
+Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/api/cache/clear to clear up cache.
+
+Changes in this source code will automatically update the demo application.
+
+== How to build and run the application locally?
+
+You will need a jcpevangelists github access token. You can use this value as a environment value (*github_atoken*) or
+a system property (*io.github.token*). If both are set, *io.github.token* will be used.
+
+You will also need a Twitter OAuth Token.  Visit link:https://dev.twitter.com/oauth/overview/application-owner-access-tokens[Twitter Application Tokens] for it.
+Export the following environment variables based on the tokens from Twitter:
+
+```
+project_twitter_oauth_consumer_key
+project_twitter_oauth_consumer_secret
+project_twitter_oauth_access_token
+project_twitter_oauth_access_token_secret
+```
+
+For now, since we're not using Twitter integration, they just have to be not-blank.
+
+
+If you don't have a token, ask link:https://javaee-wg.slack.com/messages/@tveronezi[Thiago] for it.
+
+Once you have the token ready, simply run `mvn clean install tomee:run`. Your server will be available at
+http://localhost:8080/
+
+== Node.js and Gulp
+
+This application heavily depends on link:https://nodejs.org/[node.js] and link:http://gulpjs.com/[gulp] to build all the
+static resources. These tools will execute tons of actions not yet available in the java world; at least not as handy
+as available on node.js. The good news is that we don't need to worry about a thing. It will feel like any regular
+maven project. `mvn clean install tomee:run` will perform all the heavy lifting. It downloads the dependencies
+and executes node.js, gulp and the tomee server.
+
+== What about front-end development?
+
+Front-end developers don't need to restart servers. In fact, front-end developers don't like to waste a single second
+waiting for a JS change to be reflected on a web application. This is what make web development fun.
+
+Our application uses
+link:http://jade-lang.com/[Jade],
+link:http://sass-lang.com/[Sass],
+link:https://github.com/postcss/autoprefixer[Autoprefixer],
+link:https://github.com/sprity/sprity[Sprity],
+link:http://bower.io/[Bower],
+link:https://github.com/karimsa/gulp-jslint[JsLint],
+link:https://github.com/terinjokes/gulp-uglify[UglifyJs],
+link:https://github.com/floridoo/gulp-sourcemaps[SourceMaps]. Obviously, we have a lot of work to do before making a
+static change visible in the web site.
+
+In order to make it automatic, run `mvn frontend:gulp` in another terminal. It will trigger the default gulp task,
+which will watch for changes on *src/main/static/* and updates the running tomee instance accordingly as soon as a
+static change is detected.
+
+----
+tveronezi@ubatuba:javaee.io$ mvn frontend:gulp
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building JavaEE :: IO :: Website 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ javaee-io ---
+[INFO] Running 'gulp.js --no-color' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
+[INFO] [10:49:45] Using gulpfile ~/Documents/development/sources/javaee.io/src/main/static/gulpfile.js
+[INFO] [10:49:45] Starting 'sync group6:0'...
+[INFO] [10:49:45] Starting 'sync group5:0'...
+[INFO] [10:49:45] Starting 'clean'...
+[INFO] [10:49:45] Finished 'clean' after 38 ms
+[INFO] [10:49:45] Finished 'sync group5:0' after 39 ms
+[INFO] [10:49:45] Starting 'sync group5:1'...
+[INFO] [10:49:45] Starting 'bower'...
+[INFO] [10:49:45] Using cwd:  /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
+[INFO] [10:49:45] Using bower dir:  ./bower_components
+[INFO] [10:49:47] Finished 'bower' after 2.24 s
+[INFO] [10:49:47] Finished 'sync group5:1' after 2.24 s
+[INFO] [10:49:47] Starting 'sync group5:2'...
+[INFO] [10:49:47] Starting 'jade'...
+[INFO] [10:49:47] Finished 'jade' after 447 ms
+[INFO] [10:49:47] Finished 'sync group5:2' after 448 ms
+[INFO] [10:49:47] Starting 'sync group5:3'...
+[INFO] [10:49:47] Starting 'sync group2:0'...
+[INFO] [10:49:47] Starting 'copy-images'...
+[INFO] [10:49:47] Finished 'copy-images' after 44 ms
+[INFO] [10:49:47] Finished 'sync group2:0' after 44 ms
+[INFO] [10:49:47] Starting 'sync group2:1'...
+[INFO] [10:49:47] Starting 'sprites'...
+[INFO] [10:49:48] Finished 'sprites' after 227 ms
+[INFO] [10:49:48] Finished 'sync group2:1' after 229 ms
+[INFO] [10:49:48] Starting 'images'...
+[INFO] [10:49:48] Finished 'images' after 14 μs
+[INFO] [10:49:48] Finished 'sync group5:3' after 277 ms
+[INFO] [10:49:48] Starting 'sync group5:4'...
+[INFO] [10:49:48] Starting 'sync group0:0'...
+[INFO] [10:49:48] Starting 'sync group1:0'...
+[INFO] [10:49:48] Starting 'sass'...
+[INFO] [10:49:48] Finished 'sass' after 88 ms
+[INFO] [10:49:48] Finished 'sync group1:0' after 89 ms
+[INFO] [10:49:48] Starting 'sync group1:1'...
+[INFO] [10:49:48] Starting 'autoprefixer'...
+[INFO] [10:49:48] Finished 'autoprefixer' after 146 ms
+[INFO] [10:49:48] Finished 'sync group1:1' after 146 ms
+[INFO] [10:49:48] Starting 'sync group1:2'...
+[INFO] [10:49:48] Starting 'css-concat'...
+[INFO] [10:49:48] Finished 'css-concat' after 13 ms
+[INFO] [10:49:48] Finished 'sync group1:2' after 13 ms
+[INFO] [10:49:48] Starting 'css-build'...
+[INFO] [10:49:48] Finished 'css-build' after 3.52 μs
+[INFO] [10:49:48] Finished 'sync group0:0' after 249 ms
+[INFO] [10:49:48] Starting 'sync group0:1'...
+[INFO] [10:49:48] Starting 'css-third-party'...
+[INFO] [10:49:48] Finished 'css-third-party' after 23 ms
+[INFO] [10:49:48] Finished 'sync group0:1' after 23 ms
+[INFO] [10:49:48] Starting 'sync group0:2'...
+[INFO] [10:49:48] Starting 'css-third-party-resources'...
+[INFO] [10:49:48] Finished 'css-third-party-resources' after 12 ms
+[INFO] [10:49:48] Finished 'sync group0:2' after 16 ms
+[INFO] [10:49:48] Starting 'css'...
+[INFO] [10:49:48] Finished 'css' after 14 μs
+[INFO] [10:49:48] Finished 'sync group5:4' after 292 ms
+[INFO] [10:49:48] Starting 'sync group5:5'...
+[INFO] [10:49:48] Starting 'sync group3:0'...
+[INFO] [10:49:48] Starting 'sync group4:0'...
+[INFO] [10:49:48] Starting 'lint'...
+[INFO] [10:49:48]        assets/js/services-app.js
+[INFO] [10:49:48]        assets/js/app.js
+[INFO] [10:49:48]        assets/js/controllers-contributors.js
+[INFO] [10:49:48]        assets/js/controllers-project-details.js
+[INFO] [10:49:48]        assets/js/controllers-project-highlight.js
+[INFO] [10:49:48]        assets/js/controllers-projects-carousel.js
+[INFO] [10:49:48]        assets/js/controllers-projects.js
+[INFO] [10:49:48]        assets/js/controllers-twitter.js
+[INFO] [10:49:48] Finished 'lint' after 127 ms
+[INFO] [10:49:48] Finished 'sync group4:0' after 129 ms
+[INFO] [10:49:48] Starting 'sync group4:1'...
+[INFO] [10:49:48] Starting 'copy-js'...
+[INFO] [10:49:48] Finished 'copy-js' after 23 ms
+[INFO] [10:49:48] Finished 'sync group4:1' after 24 ms
+[INFO] [10:49:48] Starting 'sync group4:2'...
+[INFO] [10:49:48] Starting 'uglify'...
+[INFO] [10:49:48] Finished 'uglify' after 321 ms
+[INFO] [10:49:48] Finished 'sync group4:2' after 322 ms
+[INFO] [10:49:48] Starting 'js-build'...
+[INFO] [10:49:48] Finished 'js-build' after 6.04 μs
+[INFO] [10:49:48] Finished 'sync group3:0' after 481 ms
+[INFO] [10:49:48] Starting 'sync group3:1'...
+[INFO] [10:49:48] Starting 'js-third-party'...
+[INFO] [10:49:48] Finished 'js-third-party' after 8.4 ms
+[INFO] [10:49:48] Finished 'sync group3:1' after 9.05 ms
+[INFO] [10:49:48] Starting 'js'...
+[INFO] [10:49:48] Finished 'js' after 4.72 μs
+[INFO] [10:49:48] Finished 'sync group5:5' after 493 ms
+[INFO] [10:49:48] Starting 'build'...
+[INFO] [10:49:48] Finished 'build' after 6.61 μs
+[INFO] [10:49:48] Finished 'sync group6:0' after 3.79 s
+[INFO] [10:49:48] Starting 'sync group6:1'...
+[INFO] [10:49:48] Starting 'copy-to-target'...
+[INFO] [10:49:49] Finished 'copy-to-target' after 82 ms
+[INFO] [10:49:49] Finished 'sync group6:1' after 82 ms
+[INFO] [10:49:49] Starting 'default'...
+[INFO] [10:49:49] Finished 'default' after 43 ms
+----
+
+== Unit testing
+
+We have two types of tests: backend and frontend. The frontend testing
+is somewhat special because it uses link:http://karma-runner.github.io/0.13/index.html[karma]. It's transparent for
+the devepolers because both tests are triggered by the same `mvn clean install`.
+
+Sometimes we are interested on frontend testing only. We can do it by executing 'mvn frontend:karma'.
+
+----
+tveronezi@ubatuba:javaee.io$ mvn frontend:karma
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building JavaEE :: IO :: Website 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ javaee-io ---
+[INFO] Running 'karma start karma.conf.js --no-colors' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
+[INFO] 08 10 2015 10:07:33.166:WARN [karma]: No captured browser, open http://localhost:9876/
+[INFO] 08 10 2015 10:07:33.177:INFO [karma]: Karma v0.13.10 server started at http://localhost:9876/
+[INFO] 08 10 2015 10:07:33.183:INFO [launcher]: Starting browser PhantomJS
+[INFO] 08 10 2015 10:07:33.421:INFO [PhantomJS 1.9.8 (Linux 0.0.0)]: Connected on socket 69XcpjL1trQ7xnP6AAAA with id 41615709
+       PhantomJS 1.9.8 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.039 secs / 0.009 secs)
+----
+
+The default browser is PhantonJS. In order to debug with the help of a real browser, uncomment this line in
+link:https://github.com/jcpevangelists/javaee.io/blob/master/src/main/static/karma.conf.js[karma.conf.js]
+
+[source:javascript]
+----
+// start these browsers
+// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+browsers: [
+    // 'Chrome', // uncomment me for local unit testing [not in a headless server]
+    'PhantomJS'
+],
+----
+
+When you execute `mvn frontend:karma`, a browser window will popup.
+
+== How to publish content?
+
+The content of this application is based on another github project: link:https://github.com/jcpevangelists/javaee.io.config[].
+
+The files under link:https://github.com/jcpevangelists/javaee.io.config/tree/master/specs[] configure the projects
+listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/docs[].
+
+This file - link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/javaee_guardians.adoc[] - is the
+one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/[]. The other
+files go to the `page` route. For example, link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/page_a.adoc[]
+goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/page/page_a.adoc[].
+
+Updates on link:https://github.com/jcpevangelists/javaee.io.config/[] are automatically reflected on the demo site.
+
+

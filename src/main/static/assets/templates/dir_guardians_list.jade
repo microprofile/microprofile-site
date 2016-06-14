@@ -1,0 +1,5 @@
+div
+  div(ng-repeat="guardian in guardians")
+    img(ng-src="{{guardian.twitter && guardian.twitter.pic ? guardian.twitter.pic : 'https://ssl.webpack.de/lorempixel.com/72/72/?a=' + $index}}", title="{{guardian.name}}")
+    div
+      h1 {{guardian.name}}

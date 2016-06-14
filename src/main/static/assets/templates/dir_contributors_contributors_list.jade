@@ -1,0 +1,7 @@
+div
+  a(ng-repeat="contributor in contributors | orderBy:'contributions':true", ng-href="https://github.com/{{contributor.login}}/", target="_blank")
+    img(ng-src="{{contributor.avatar}}", title="{{contributor.name}}")
+    div
+      h1 {{contributor.name ? contributor.name : contributor.login}}
+      h2.company {{contributor.company ? contributor.company : '-'}}
+      h2 {{contributor.location ? contributor.location : '-'}}

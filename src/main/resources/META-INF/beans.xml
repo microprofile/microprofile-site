@@ -1,0 +1,5 @@
+<beans>
+  <interceptors>
+    <class>io.microprofile.CachedInterceptor</class>
+  </interceptors>
+</beans>

@@ -1,0 +1,19 @@
+div
+  .side-bar
+    .contributors(ng-show="project.detail.contributors && project.detail.contributors.length > 0")
+      h1 Cool people that helped make this happen
+      div
+        eeio-contributor-summary(ng-repeat="contributor in project.detail.contributors | orderBy:'contributions':true", login="contributor.login")
+    .resources(ng-show="project.detail.info.name || (project.detail.info.resources && project.detail.info.resources.length > 0)")
+      h1 External resources
+      div
+        p(ng-show="project.detail.info.name")
+          a(ng-href="https://github.com/{{project.detail.info.name}}", target="_blank") Source Code
+        p(ng-repeat="resource in project.detail.info.resources")
+          a(ng-href="{{resource.url}}", target="_blank") {{resource.title ? resource.title : resource.url}}
+    .related(ng-show="project.detail.info.related && project.detail.info.related.length > 0")
+      h1 Related projects
+      div
+        p(ng-repeat="related in project.detail.info.related")
+          eeio-project-doc-related(config-file="related")
+  .content(ng-show="project.doc", ng-bind-html="project.doc")

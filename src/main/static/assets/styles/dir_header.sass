@@ -1,0 +1,115 @@
+@import "variables"
+
+eeio-header
+  > div
+    width: 100%
+    display: flex
+    flex-direction: column
+    position: relative
+    overflow: hidden
+    > div
+      &.background
+        position: absolute
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        background: url(../images/samurai.jpg) no-repeat center center
+        background-size: cover
+        z-index: -1
+      &.title
+        min-height: 300px
+        flex-grow: 1
+        display: flex
+        flex-direction: column
+        justify-content: center
+        padding: 0 80px 40px 80px
+        @media (max-width: $app-mobile-width)
+          padding: 0 20px 20px 20px
+        *
+          color: $app-white
+          font-weight: 100
+      &.head
+        flex-shrink: 0
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 40px 40px 0 40px
+        > a
+          > img
+            width: 250px
+            height: auto
+        > eeio-menu > div > ul
+          margin: 0
+          @media (max-width: $app-mobile-width)
+            margin-top: 20px
+          padding: 0
+          list-style: none
+          > li
+            display: inline
+            margin-left: 10px
+            &:first-child
+              margin-left: 0
+            > a
+              text-transform: uppercase
+              font-size: $app-menu-font-size
+              color: $app-white
+
+  @mixin is-floating()
+    > div
+      z-index: 2000
+      position: fixed
+      top: 10px
+      right: 10px
+      background-color: #000000
+      opacity: 0.7
+      > ul
+        display: none
+        padding: 0 40px 40px 40px !important
+        > li
+          display: block !important
+          margin: 0 !important
+          padding-top: 10px
+          &:first-child
+            padding-top: 0
+      > div
+        display: block
+
+  eeio-menu
+    &.floating
+      @include is-floating
+    &.expanded
+      > div
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+
+        // left: 10px
+        > ul
+          display: block
+    @media (max-width: $app-mobile-width)
+      @include is-floating
+
+eeio-header.contributors
+  .background
+    background-image: url(../images/crowd.jpg)
+
+eeio-header.project
+  .background
+    background-image: url(../images/docs.jpg)
+
+eeio-header.forum
+  .background
+    background-image: url(../images/mail.jpg)
+
+eeio-header.docs
+  .background
+    background-image: url(../images/library.jpg)
+
+eeio-header.social
+  .background
+    background-image: url(../images/social.jpg)
+
+eeio-header.guardians
+  .background
+    background-image: url(../images/army.jpg)

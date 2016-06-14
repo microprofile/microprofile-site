@@ -1,0 +1,42 @@
+@import "variables"
+
+eeio-googlegroups-shortlist
+  > div
+    > h1
+      font-weight: 100
+      text-align: center
+    > div
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      > a[ng-repeat="msg in messages"]
+        background-color: $app-bg-white
+        display: block
+        max-width: 300px
+        margin: 20px
+        border: solid 2px #E6E6E6
+        padding: 10px 10px 40px 10px
+        position: relative
+        > h1, > h2, > h3, > p
+          margin: 0
+          font-weight: 100
+          overflow: hidden
+        > h1
+          font-size: 18px
+        > h2
+          font-size: 13px
+          font-weight: bold
+        > h3
+          font-size: 11px
+          margin-bottom: 10px
+        > p
+          font-size: 15px
+          &:last-child
+            text-align: right
+            position: absolute
+            bottom: 10px
+            right: 10px
+        &:hover
+          > p:last-child
+            color: $app-hover-color
+          border-color: $app-hover-color

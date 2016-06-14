@@ -1,0 +1,59 @@
+@import "variables"
+
+eeio-project-doc
+  $collapse-width: 900px
+  > div
+    $padding: $app-body-padding
+    display: flex
+    flex-direction: row-reverse
+    @media (max-width: $collapse-width)
+      flex-direction: column
+
+    > div.side-bar
+      width: 320px
+      @media (max-width: $collapse-width)
+        width: 100%
+      flex-shrink: 0
+      margin-left: $padding
+      @media (max-width: $collapse-width)
+        margin-left: 0
+      $margin: 2px
+      *
+        font-size: 15px
+        font-weight: 100
+      > div
+        margin: 0 0 $app-body-padding
+        *
+          margin: 0
+          padding: 0
+
+      > div.resources, > div.related
+        > div
+          background-color: $app-bg-white
+          padding: 10px
+          margin-top: 10px
+          > p
+            overflow: hidden
+            text-overflow: ellipsis
+            margin-bottom: 5px
+
+      > div.contributors
+        > div
+          @media (max-width: $collapse-width)
+            display: flex
+            flex-wrap: wrap
+        img
+          margin: $margin
+          @media (max-width: $collapse-width)
+            margin: $margin ($margin * 2) $margin 0
+        > h1
+          margin: 0 $margin 10px $margin
+
+    > div.content
+      background-color: $app-bg-white
+      padding: $padding
+      flex-grow: 1
+      overflow: auto
+      @import "dir_projects_project_doc_external"
+
+

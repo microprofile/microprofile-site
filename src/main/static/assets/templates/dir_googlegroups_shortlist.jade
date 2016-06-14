@@ -1,0 +1,9 @@
+div
+  h1 Google Groups Updates
+  div
+    a(ng-repeat="msg in messages", ng-href="{{msg.id}}", target="_blank")
+      h1 {{msg.title}}
+      h2 {{msg.author}}
+      h3 {{msg.updated | date : 'medium'}}
+      p {{msg.summary}}...
+      p Read full text

@@ -1,0 +1,75 @@
+@import "variables"
+
+eeio-projects-shortlist
+  $collapse-value: 800px
+  $margin: 50px
+  > div
+    > h1
+      font-weight: 100
+      text-align: center
+      margin-top: 0
+      font-size: 36px
+
+    > div
+      display: flex
+      margin-top: $margin
+      @media (max-width: $collapse-value)
+        flex-direction: column
+      > div
+        &.all-projects
+          flex-shrink: 0
+          max-width: 400px
+          padding: 0 0 40px 40px
+          @media (max-width: $collapse-value)
+            padding: 10px
+            margin-top: $margin
+          > h1
+            margin: 0
+            font-weight: 100
+            font-size: 28px
+          > ul
+            list-style: none
+            padding: 0
+        &.specs
+          flex-grow: 1
+          background-color: $app-bg-white
+          padding: 10px
+          display: flex
+          flex-wrap: wrap
+          justify-content: center
+          *
+            margin: 0
+            padding: 0
+            font-weight: 100
+          > a[ng-repeat="project in specs"]
+            display: flex
+            flex-direction: column
+            border: solid #d6d9dc 2px
+            width: 400px
+            margin: 20px
+            > div:first-child
+              flex-grow: 1
+              > h1
+                padding: 20px
+                background-color: #d6d9dc
+                color: white
+                font-size: 30px
+              > h2
+                padding: 20px
+                font-size: 20px
+            > div:last-child
+              flex-shrink: 0
+              display: flex
+              justify-content: flex-end
+              > span
+                padding: 10px
+                border: solid #d6d9dc 1px
+                margin: 20px
+                color: #c5c8cb
+                font-size: 12px
+            &:hover
+              border-color: $app-hover-color
+              > div:last-child
+                > span
+                  border-color: $app-hover-color
+                  color: $app-hover-color
