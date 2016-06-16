@@ -26,18 +26,14 @@ class ServiceConfiguration implements ConfigurationObserver {
                 properties.setProperty(key, propVal)
             }
         }
-        setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/microprofile-guardians/topics/atom.xml?num=50')
-        setIfEmpty('microprofileio_config_root', {
-            def result = System.getProperty('microprofileio_config_root')
+        setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/microprofile/msgs/atom.xml?num=50')
+        setIfEmpty('microprofile_config_root', {
+            def result = System.getProperty('microprofile_config_root')
             if (!result) {
-                return 'jcpevangelists/microprofile.io.config'
+                return 'microprofile/microprofile.io'
             }
             return result
         })
-        setIfEmpty('github_atoken', System.getProperty('microprofileio_github_atoken'))
-        setIfEmpty('microprofileio_twitter_oauth_consumer_key', System.getProperty('microprofileio_twitter_oauth_consumer_key'))
-        setIfEmpty('microprofileio_twitter_oauth_consumer_secret', System.getProperty('microprofileio_twitter_oauth_consumer_secret'))
-        setIfEmpty('microprofileio_twitter_oauth_access_token', System.getProperty('microprofileio_twitter_oauth_access_token'))
-        setIfEmpty('microprofileio_twitter_oauth_access_token_secret', System.getProperty('microprofileio_twitter_oauth_access_token_secret'))
+        setIfEmpty('github_atoken', System.getProperty('microprofile_github_atoken'))
     }
 }

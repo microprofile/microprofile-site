@@ -8,9 +8,7 @@ angular.module('microprofileio-main', [
     'microprofileio-footer',
     'microprofileio-projects',
     'microprofileio-contributors',
-    'microprofileio-guardians',
-    'microprofileio-googlegroups',
-    'microprofileio-twitter'
+    'microprofileio-googlegroups'
 ])
 
     .config([
@@ -45,22 +43,10 @@ angular.module('microprofileio-main', [
                         menu.setSelected('forum');
                     }]
                 })
-                .when('/social', {
-                    templateUrl: 'app/templates/page_social.html',
-                    controller: ['eeioMenuService', function (menu) {
-                        menu.setSelected('social');
-                    }]
-                })
                 .when('/contributors', {
                     templateUrl: 'app/templates/page_contributors.html',
                     controller: ['eeioMenuService', function (menu) {
                         menu.setSelected('contributors');
-                    }]
-                })
-                .when('/guardians', {
-                    templateUrl: 'app/templates/page_guardians.html',
-                    controller: ['eeioMenuService', function (menu) {
-                        menu.setSelected('guardians');
                     }]
                 })
                 .when('/project/:configFile/:resourceName*', {
@@ -94,7 +80,6 @@ angular.module('microprofileio-main', [
     .controller('HomeController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
         $scope.resource = $route.current.params['resourceName'];
         if (!$scope.resource) {
-            //$scope.resource = 'microprofile_guardians.adoc';
             $scope.resource = 'frontpage.adoc';
         }
         menu.setSelected('home');

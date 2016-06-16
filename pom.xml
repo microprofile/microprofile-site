@@ -4,44 +4,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.microprofile</groupId>
-  <artifactId>microprofile-io</artifactId>
+  <artifactId>microprofile</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>microprofile :: IO :: Website</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <tomee.version>7.0.0-M3</tomee.version>
-    <microprofile.api>7.0</microprofile.api>
+    <tomee.version>7.0.0</tomee.version>
+    <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
 
-    <microprofileio_github_atoken>${env.github_atoken}</microprofileio_github_atoken>
-    <microprofileio_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</microprofileio_twitter_oauth_consumer_key>
-    <microprofileio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</microprofileio_twitter_oauth_consumer_secret>
-    <microprofileio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</microprofileio_twitter_oauth_access_token>
-    <microprofileio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</microprofileio_twitter_oauth_access_token_secret>
+    <microprofile_github_atoken>${env.github_atoken}</microprofile_github_atoken>
   </properties>
 
-  <repositories>
-    <repository>
-      <id>twitter4j.org</id>
-      <name>twitter4j.org Repository</name>
-      <url>http://twitter4j.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
   <dependencies>
-    <dependency>
-      <groupId>org.twitter4j</groupId>
-      <artifactId>twitter4j-core</artifactId>
-      <version>4.0.4</version>
-    </dependency>
     <dependency>
       <groupId>org.tomitribe</groupId>
       <artifactId>sabot</artifactId>
@@ -49,8 +26,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.tomee</groupId>
-      <artifactId>microprofile-api</artifactId>
-      <version>${microprofile.api}</version>
+      <artifactId>javaee-api</artifactId>
+      <version>${javaee.api}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -108,14 +85,9 @@
         <artifactId>tomee-maven-plugin</artifactId>
         <version>${tomee.version}</version>
         <configuration>
-          <context>microprofile-io</context>
+          <context>microprofile</context>
           <systemVariables>
-            <microprofileio_github_atoken>${microprofileio_github_atoken}</microprofileio_github_atoken>
-            <microprofileio_twitter_oauth_consumer_key>${microprofileio_twitter_oauth_consumer_key}</microprofileio_twitter_oauth_consumer_key>
-            <microprofileio_twitter_oauth_consumer_secret>${microprofileio_twitter_oauth_consumer_secret}</microprofileio_twitter_oauth_consumer_secret>
-            <microprofileio_twitter_oauth_access_token>${microprofileio_twitter_oauth_access_token}</microprofileio_twitter_oauth_access_token>
-            <microprofileio_twitter_oauth_access_token_secret>${microprofileio_twitter_oauth_access_token_secret}</microprofileio_twitter_oauth_access_token_secret>
-            <!--<microprofileio_config_root>tveronezi/microprofile.io.config</microprofileio_config_root>-->
+            <microprofile_github_atoken>${microprofile_github_atoken}</microprofile_github_atoken>
           </systemVariables>
         </configuration>
       </plugin>
@@ -146,6 +118,11 @@
           <compilerId>groovy-eclipse-compiler</compilerId>
         </configuration>
         <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-shared-utils</artifactId>
+            <version>3.0.0</version>
+          </dependency>
           <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-eclipse-compiler</artifactId>
@@ -201,7 +178,8 @@
               <goal>gulp</goal>
             </goals>
             <configuration>
-              <arguments>build-with-tests</arguments>
+              <arguments>build</arguments>
+              <!--<arguments>build-with-tests</arguments>-->
             </configuration>
           </execution>
         </executions>

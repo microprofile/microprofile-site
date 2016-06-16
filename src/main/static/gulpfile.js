@@ -119,14 +119,14 @@ gulp.task('test', function (done) {
 
 gulp.task('copy-all', function () {
     return gulp.src(['../../../target/static-resources/**/*'])
-        .pipe(gulp.dest('../../../target/apache-tomee/webapps/microprofile-io/'));
+        .pipe(gulp.dest('../../../target/apache-tomee/webapps/microprofile/'));
 });
 
 gulp.task('clean', function (callback) {
     return del([
         '../../../target/static-resources/',
-        '../../../target/apache-tomee/webapps/microprofile-io/app/',
-        '../../../target/apache-tomee/webapps/microprofile-io/components/'
+        '../../../target/apache-tomee/webapps/microprofile/app/',
+        '../../../target/apache-tomee/webapps/microprofile/components/'
     ], {
         force: true
     }, callback);

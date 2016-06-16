@@ -17,7 +17,7 @@ class ServiceGithub {
     private Logger logger = Logger.getLogger(this.class.name)
 
     @Inject
-    @Config(value = 'microprofileio_config_root')
+    @Config(value = 'microprofile_config_root')
     private String docRoot
 
     @Inject
@@ -34,11 +34,11 @@ class ServiceGithub {
                 ]
         ], StandardCharsets.UTF_8.name())).collect { it.name }
         names.each {
-            result << getConfigurationFile(it, "specs/${it}")
+            result << getConfigurationFile(it as String, "specs/${it}")
         }
         return result
     }
-    
+
     @Cached
     DtoConfigFile getConfigurationFile(String configName, String path) {
         return new DtoConfigFile(
@@ -47,7 +47,7 @@ class ServiceGithub {
                         getRepoRaw(docRoot, path),
                         StandardCharsets.UTF_8.name()
                 )
-        )        
+        )
     }
 
     @Cached

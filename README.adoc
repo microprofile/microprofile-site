@@ -5,9 +5,9 @@
 
 == Live demo application
 
-Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile-io/
+Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/
 
-Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile-io/api/cache/clear to clear up cache.
+Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/api/cache/clear to clear up cache.
 
 Changes in this source code will automatically update the demo application.
 
@@ -66,10 +66,10 @@ tveronezi@ubatuba:microprofile.io$ mvn frontend:gulp
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building Microprofile :: IO :: Website 0.0.1-SNAPSHOT
+[INFO] Building microprofile :: IO :: Website 0.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ microprofile-io ---
+[INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ microprofile ---
 [INFO] Running 'gulp.js --no-color' in /home/tveronezi/Documents/development/sources/microprofile.io/src/main/static
 [INFO] [10:49:45] Using gulpfile ~/Documents/development/sources/microprofile.io/src/main/static/gulpfile.js
 [INFO] [10:49:45] Starting 'sync group6:0'...
@@ -183,10 +183,10 @@ tveronezi@ubatuba:microprofile.io$ mvn frontend:karma
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building Microprofile :: IO :: Website 0.0.1-SNAPSHOT
+[INFO] Building microprofile :: IO :: Website 0.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ microprofile-io ---
+[INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ microprofile ---
 [INFO] Running 'karma start karma.conf.js --no-colors' in /home/tveronezi/Documents/development/sources/microprofile.io/src/main/static
 [INFO] 08 10 2015 10:07:33.166:WARN [karma]: No captured browser, open http://localhost:9876/
 [INFO] 08 10 2015 10:07:33.177:INFO [karma]: Karma v0.13.10 server started at http://localhost:9876/
@@ -215,12 +215,12 @@ When you execute `mvn frontend:karma`, a browser window will popup.
 The content of this application is based on another github project: link:https://github.com/jcpevangelists/microprofile.io.config[].
 
 The files under link:https://github.com/jcpevangelists/microprofile.io.config/tree/master/specs[] configure the projects
-listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile-io/docs[].
+listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/docs[].
 
 This file - link:https://github.com/jcpevangelists/microprofile.io.config/blob/master/pages/microprofile_guardians.adoc[] - is the
-one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile-io/[]. The other
+one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/[]. The other
 files go to the `page` route. For example, link:https://github.com/jcpevangelists/microprofile.io.config/blob/master/pages/page_a.adoc[]
-goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile-io/page/page_a.adoc[].
+goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/page/page_a.adoc[].
 
 Updates on link:https://github.com/jcpevangelists/microprofile.io.config/[] are automatically reflected on the demo site.
 

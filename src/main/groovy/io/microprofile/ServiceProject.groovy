@@ -86,23 +86,23 @@ class ServiceProject {
     DtoPageHeader getApplicationPageHeader(String resourceName) {
         def name = resourceName + ".yaml"
         DtoConfigFile cfgFile
-        try { 
+        try {
             cfgFile = github.getConfigurationFile(name, "pages/${name}")
         } catch (FileNotFoundException e) {
             logger.log(Level.CONFIG, "Configuration yaml file '${name}' for page ${resourceName} not found, "
                     + "using defaults", e)
-            return new DtoPageHeader (
-                h1: "Microprofile.io",
-                h2: "Open, Collaborative forum for pushing forward on Micro Profile"
+            return new DtoPageHeader(
+                    h1: "microprofile.io",
+                    h2: "Open, Collaborative forum for pushing forward on Micro Profile"
             )
         }
         def conf = loadYaml(cfgFile)
         if (!conf) {
-            return
+            return null
         } else {
-            return new DtoPageHeader (
-                h1: conf.h1 as String,
-                h2: conf.h2 as String
+            return new DtoPageHeader(
+                    h1: conf.h1 as String,
+                    h2: conf.h2 as String
             )
         }
     }

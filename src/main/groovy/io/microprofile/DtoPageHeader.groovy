@@ -1,4 +1,3 @@
-
 package io.microprofile
 
 import groovy.transform.EqualsAndHashCode
