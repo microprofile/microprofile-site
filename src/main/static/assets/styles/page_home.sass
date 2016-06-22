@@ -3,6 +3,9 @@
 > eeio-header.home
   > div
     height: 80vh
+    @media screen and (max-height: 500px)
+      height: 100vh
+    margin-right: 200px
 
 > div.page-body
   &.home
@@ -36,13 +39,20 @@
           margin: 10px
           width: 100px
           height: 100px
-      &.text-image
+      &.image-text
         position: relative
         overflow: hidden
         background-color: #171819
         > div
           padding: 100px 200px
-          margin-right: 200px
+          margin-left: 200px
+          @media screen and (max-width: 1000px)
+            padding: 100px
+          @media screen and (max-width: 650px)
+            padding: 50px
+          @media screen and (max-width: 500px)
+            padding: 20px
+            margin-left: 0
           background-color: #e5e6e8
           > h2
             font-size: 24px
@@ -50,6 +60,39 @@
           > p
             font-size: 12px
         > img
+          @media screen and (max-width: 500px)
+            display: none
+          position: absolute
+          left: -50px
+          top: 50%
+          transform: translateY(-50%)
+        &.white
+          background-color: $app-bg-white
+          > div
+            background-color: $app-bg-white
+      &.text-image
+        position: relative
+        overflow: hidden
+        background-color: #171819
+        > div
+          padding: 100px 200px
+          margin-right: 200px
+          @media screen and (max-width: 1000px)
+            padding: 100px
+          @media screen and (max-width: 650px)
+            padding: 50px
+          @media screen and (max-width: 500px)
+            padding: 20px
+            margin-right: 0
+          background-color: #e5e6e8
+          > h2
+            font-size: 24px
+            margin-bottom: 20px
+          > p
+            font-size: 12px
+        > img
+          @media screen and (max-width: 500px)
+            display: none
           position: absolute
           right: -50px
           top: 50%
@@ -89,28 +132,6 @@
               margin-bottom: 10px
             > span
               font-size: 8px
-      &.image-text
-        position: relative
-        overflow: hidden
-        background-color: #171819
-        > div
-          padding: 100px 200px
-          margin-left: 200px
-          background-color: #e5e6e8
-          > h2
-            font-size: 24px
-            margin-bottom: 20px
-          > p
-            font-size: 12px
-        > img
-          position: absolute
-          left: -50px
-          top: 50%
-          transform: translateY(-50%)
-        &.white
-          background-color: $app-bg-white
-          > div
-            background-color: $app-bg-white
       &.survey
         display: flex
         flex-direction: column
@@ -128,6 +149,10 @@
           max-width: 280px
         > div
           max-width: 660px
+          @media screen and (max-width: 730px)
+            max-width: 420px
+          @media screen and (max-width: 430px)
+            max-width: 210px
           display: flex
           flex-direction: column
           > button
@@ -180,13 +205,16 @@
           font-size: 10px
           max-width: 280px
         > div
-          margin-top: 80px
+          margin-top: 20px
           display: flex
-          max-width: 500px
+          flex-wrap: wrap
+          justify-content: center
           .info-item
             display: flex
             flex-direction: column
             align-items: center
+            width: 170px
+            margin: 20px 0 0 20px
             > div
               background-color: #e5e6e8
               $size: 100px
@@ -201,7 +229,6 @@
             > h3
               font-size: 13px
               font-weight: 400
-              margin-bottom: 20px
             > p
               text-align: center
               font-size: 11px
@@ -211,4 +238,3 @@
                 background-color: #eac243
                 > i
                   color: $app-bg-white
-
