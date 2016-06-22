@@ -152,7 +152,8 @@
           @media screen and (max-width: 730px)
             max-width: 420px
           @media screen and (max-width: 430px)
-            max-width: 210px
+            max-width: 100%
+            padding: 20px
           display: flex
           flex-direction: column
           > button
@@ -171,6 +172,9 @@
             .question
               width: 200px
               margin: 0 0 10px 10px
+              @media screen and (max-width: 430px)
+                margin: 10px 0
+                width: 100%
               > h3
                 font-size: 10px
                 max-width: 280px
