@@ -2,9 +2,7 @@ div
   div(ng-click="toggleExpanded()")
     i.fa.fa-bars
   ul
-    li(ng-class="{'selected': selectedItem === 'home'}")
-      a(href=".") Home
     li(ng-class="{'selected': selectedItem === 'docs'}")
-      a(href="docs") Documents
+      a(href="projects") Projects
     li(ng-class="{'selected': selectedItem === 'contributors'}")
       a(href="contributors") Contributors

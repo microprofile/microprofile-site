@@ -10,10 +10,11 @@
     "DefinitelyTyped": "master",
     "normalize-css": "normalize.css#3.0.3",
     "font-awesome": "4.4.0",
-    "open-sans": "1.1.0",
     "ngstorage": "~0.3.10",
     "angular-cookies": "1.5.0",
-    "angular-resource": "1.5.0"
+    "angular-resource": "1.5.0",
+    "particles.js": "2.0.0",
+    "lato": "0.3.0"
   },
   "resolutions": {
     "angular": "1.5.0"

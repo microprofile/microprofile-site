@@ -1,12 +1,160 @@
 @import "variables"
 
+> eeio-header.home
+  > div
+    height: 80vh
+
 > div.page-body
   &.home
     background-color: $app-bg-white
-    padding: 40px 150px
-    @media (max-width: 1100px)
-      padding: 40px 100px
-    @media (max-width: 900px)
-      padding: 40px 80px
-    @media (max-width: 500px)
-      padding: 40px
+    > div.card
+      *
+        margin: 0
+        font-weight: 300
+        color: $app-black
+      &.about
+        background-color: $app-bg-white
+        padding: 50px 20px
+        display: flex
+        flex-direction: column
+        align-items: center
+        text-align: center
+        > h2
+          margin-bottom: 20px
+          font-size: 24px
+        > p
+          max-width: 500px
+          font-size: 12px
+
+      &.logos
+        display: flex
+        justify-content: center
+        flex-wrap: wrap
+        background-color: #eac243
+        > img
+          display: block
+          margin: 10px
+          width: 100px
+          height: 100px
+      &.text-image
+        position: relative
+        overflow: hidden
+        background-color: #171819
+        > div
+          padding: 100px 200px
+          margin-right: 200px
+          background-color: #e5e6e8
+          > h2
+            font-size: 24px
+            margin-bottom: 20px
+          > p
+            font-size: 12px
+        > img
+          position: absolute
+          right: -50px
+          top: 50%
+          transform: translateY(-50%)
+      &.email
+        background-color: #eac243
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        *
+          color: $app-bg-white
+        > div
+          max-width: 500px
+          padding: 50px 10px
+          > h3
+            font-size: 15px
+            font-weight: 200
+            margin-bottom: 10px
+          > button
+            background-color: transparent
+            border: solid 1px $app-bg-white
+            font-size: 10px
+            padding: 8px 16px
+            margin-top: 20px
+          > div
+            > input
+              background-color: transparent
+              border: 0
+              font-weight: 200
+              font-size: 30px
+              margin: 0 5px
+            > input::placeholder
+              color: $app-bg-white
+            > input ~ div
+              border: solid 1px $app-bg-white
+              margin-bottom: 10px
+            > span
+              font-size: 8px
+      &.image-text
+        position: relative
+        overflow: hidden
+        background-color: #171819
+        > div
+          padding: 100px 200px
+          margin-left: 200px
+          background-color: #e5e6e8
+          > h2
+            font-size: 24px
+            margin-bottom: 20px
+          > p
+            font-size: 12px
+        > img
+          position: absolute
+          left: -50px
+          top: 50%
+          transform: translateY(-50%)
+        &.white
+          background-color: $app-bg-white
+          > div
+            background-color: $app-bg-white
+      &.more-info
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 50px 0
+        > h2, > h3
+          text-align: center
+        > h2
+          font-size: 22px
+          margin-bottom: 10px
+        > h3
+          font-size: 10px
+          max-width: 280px
+        > div
+          margin-top: 80px
+          display: flex
+          max-width: 500px
+          .info-item
+            display: flex
+            flex-direction: column
+            align-items: center
+            > div
+              background-color: #e5e6e8
+              $size: 100px
+              width: $size
+              height: $size
+              border-radius: $size / 2
+              display: flex
+              flex-direction: column
+              justify-content: center
+              align-items: center
+              margin-bottom: 20px
+            > h3
+              font-size: 13px
+              font-weight: 400
+              margin-bottom: 20px
+            > p
+              text-align: center
+              font-size: 11px
+            &:hover
+              cursor: pointer
+              > div
+                background-color: #eac243
+                > i
+                  color: $app-bg-white
+

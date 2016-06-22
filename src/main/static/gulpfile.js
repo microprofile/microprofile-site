@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var del = require('del');
 var gulpsync = require('gulp-sync')(gulp);
-var jade = require('gulp-jade');
+var jade = require('gulp-pug');
 var sass = require('gulp-sass');
 var es = require('event-stream');
 var autoprefixer = require('gulp-autoprefixer');
@@ -21,17 +21,16 @@ gulp.task('images', function () {
 gulp.task('css-build', gulpsync.sync(['sass', 'autoprefixer', 'css-concat']));
 gulp.task('css-third-party', function () {
     return gulp.src([
-        './bower_components/open-sans/css/open-sans.min.css',
+        './bower_components/lato/css/lato.css',
         './bower_components/normalize-css/normalize.css',
         './bower_components/font-awesome/css/font-awesome.min.css'
     ]).pipe(concat('_.css')).pipe(gulp.dest('../../../target/static-resources/app/third-party/styles/'));
 });
 gulp.task('css-third-party-resources', function () {
-    var fonts = gulp.src([
-        './bower_components/open-sans/fonts/**/*',
-        './bower_components/font-awesome/fonts/*'
-    ]).pipe(gulp.dest('../../../target/static-resources/app/third-party/fonts'));
-    return es.concat(fonts);
+    return es.concat(
+        gulp.src(['./bower_components/font-awesome/fonts/*']).pipe(gulp.dest('../../../target/static-resources/app/third-party/fonts')),
+        gulp.src(['./bower_components/lato/font/**/*']).pipe(gulp.dest('../../../target/static-resources/app/third-party/font'))
+    );
 });
 gulp.task('sass', function () {
     return gulp.src('./assets/**/*.sass')
@@ -76,7 +75,11 @@ gulp.task('copy-templates', function () {
 gulp.task('js', gulpsync.sync(['lint-ts', 'compile-ts', 'copy-ts', 'js-third-party']));
 gulp.task('lint-ts', function () {
     return gulp.src('./assets/**/*.ts')
-        .pipe(tslint())
+        .pipe(tslint({
+            configuration: {
+                quotemark: 'single'
+            }
+        }))
         .pipe(tslint.report('prose'));
 });
 gulp.task('compile-ts', function () {
@@ -107,7 +110,8 @@ gulp.task('js-third-party', function () {
         './bower_components/ngstorage/ngStorage.min.js',
         './bower_components/angular-cookies/angular-cookies.min.js',
         './bower_components/angular-resource/angular-resource.min.js',
-        './node_modules/underscore.string/dist/underscore.string.min.js'
+        './node_modules/underscore.string/dist/underscore.string.min.js',
+        './bower_components/particles.js/particles.js'
     ]).pipe(concat('_.js')).pipe(gulp.dest('../../../target/static-resources/app/third-party/'));
 });
 

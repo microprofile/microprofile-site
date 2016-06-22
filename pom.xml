@@ -185,6 +185,7 @@
         </executions>
         <configuration>
           <workingDirectory>src/main/static</workingDirectory>
+          <installDirectory>target/node-stuff</installDirectory>
         </configuration>
       </plugin>
     </plugins>
