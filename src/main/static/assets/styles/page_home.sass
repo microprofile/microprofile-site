@@ -111,6 +111,60 @@
           background-color: $app-bg-white
           > div
             background-color: $app-bg-white
+      &.survey
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 50px 0
+        background-color: #e5e6e8
+        > h2, > h3
+          text-align: center
+        > h2
+          font-size: 22px
+          margin-bottom: 10px
+        > h3
+          font-size: 10px
+          max-width: 280px
+        > div
+          max-width: 660px
+          display: flex
+          flex-direction: column
+          > button
+            align-self: flex-end
+            font-size: 10px
+            padding: 10px 20px
+            background-color: #eac243
+            border: 0
+            color: $app-bg-white
+          > div
+            margin-top: 20px
+            margin-bottom: 20px
+            display: flex
+            flex-wrap: wrap
+            justify-content: flex-end
+            .question
+              width: 200px
+              margin: 0 0 10px 10px
+              > h3
+                font-size: 10px
+                max-width: 280px
+                text-align: center
+                font-weight: 600
+                margin-bottom: 20px
+              > label
+                font-size: 10px
+                display: block
+                background-color: $app-bg-white
+                margin: 5px
+                padding: 5px
+                border-radius: 10px
+                &:hover
+                  cursor: pointer
+                > span
+                  font-weight: 300
+                  margin-left: 5px
+
       &.more-info
         display: flex
         flex-direction: column
