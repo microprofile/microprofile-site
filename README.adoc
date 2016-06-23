@@ -5,9 +5,9 @@
 
 == Live demo application
 
-Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/
+Checkout the demo application here: http://ec2-54-209-191-237.compute-1.amazonaws.com/microprofile
 
-Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/api/cache/clear to clear up cache.
+Hit http://ec2-54-209-191-237.compute-1.amazonaws.com/microprofile/api/cache/clear to clear up cache.
 
 Changes in this source code will automatically update the demo application.
 
