@@ -92,8 +92,8 @@ class ServiceProject {
             logger.log(Level.CONFIG, "Configuration yaml file '${name}' for page ${resourceName} not found, "
                     + "using defaults", e)
             return new DtoPageHeader(
-                    h1: "microprofile.io",
-                    h2: "Open, Collaborative forum for pushing forward on Micro Profile"
+                    h1: "DESIGN BETTER. FASTER. TOGETHER.",
+                    h2: "The world's leading prototyping, collaboration & workflow platform"
             )
         }
         def conf = loadYaml(cfgFile)

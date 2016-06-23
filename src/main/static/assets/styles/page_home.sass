@@ -2,15 +2,40 @@
 
 > eeio-header.home
   > div
-    height: 80vh
+    height: 90vh
     @media screen and (max-height: 500px)
       height: 100vh
-    margin-right: 200px
+    eeio-application-page-header
+      > div
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        h1
+          font-size: 2.875em
+          font-weight: 400
+          margin: 0
+        h2
+          font-size: 1.5em
+          font-weight: 300
+          margin: 0
+          font-style: italic
+        h3
+          font-size: 1.5em
+
 
 > div.page-body
   &.home
     background-color: $app-bg-white
     > div.card
+      h2
+        margin: 70px 0 0.94286em 0
+        line-height: 48px
+        font-size: 2.1875em
+      p
+        font-size: 1em
+        line-height: 1.9em
+        margin: 0 0 70px 0
       *
         margin: 0
         font-weight: 300
@@ -22,81 +47,65 @@
         flex-direction: column
         align-items: center
         text-align: center
-        > h2
-          margin-bottom: 20px
-          font-size: 24px
-        > p
-          max-width: 500px
-          font-size: 12px
 
       &.logos
         display: flex
         justify-content: center
         flex-wrap: wrap
         background-color: #eac243
+        height: 10vh
         > img
           display: block
           margin: 10px
-          width: 100px
-          height: 100px
+          width: auto
+          height: 8vh
       &.image-text
-        position: relative
-        overflow: hidden
-        background-color: #171819
+        display: flex
+        justify-content: center
         > div
-          padding: 100px 200px
-          margin-left: 200px
-          @media screen and (max-width: 1000px)
-            padding: 100px
-          @media screen and (max-width: 650px)
-            padding: 50px
-          @media screen and (max-width: 500px)
-            padding: 20px
-            margin-left: 0
-          background-color: #e5e6e8
-          > h2
-            font-size: 24px
-            margin-bottom: 20px
-          > p
-            font-size: 12px
-        > img
-          @media screen and (max-width: 500px)
-            display: none
-          position: absolute
-          left: -50px
-          top: 50%
-          transform: translateY(-50%)
+          flex-grow: 1
+          &:last-of-type
+            background-color: #e5e6e8
+            display: flex
+            justify-content: flex-start
+            align-items: center
+            > div
+              padding: 0 80px
+              max-width: 585px
+          &:first-of-type
+            background-color: #171819
+            display: flex
+            justify-content: flex-end
+            > img
+              height: auto
+              width: 40vw
+            @media screen and (max-width: 976px)
+              display: none
         &.white
           background-color: $app-bg-white
           > div
             background-color: $app-bg-white
       &.text-image
-        position: relative
-        overflow: hidden
-        background-color: #171819
+        display: flex
+        justify-content: center
         > div
-          padding: 100px 200px
-          margin-right: 200px
-          @media screen and (max-width: 1000px)
-            padding: 100px
-          @media screen and (max-width: 650px)
-            padding: 50px
-          @media screen and (max-width: 500px)
-            padding: 20px
-            margin-right: 0
-          background-color: #e5e6e8
-          > h2
-            font-size: 24px
-            margin-bottom: 20px
-          > p
-            font-size: 12px
-        > img
-          @media screen and (max-width: 500px)
-            display: none
-          position: absolute
-          right: -50px
-          top: 50%
-          transform: translateY(-50%)
+          flex-grow: 1
+          &:first-of-type
+            background-color: #e5e6e8
+            display: flex
+            justify-content: flex-end
+            align-items: center
+            > div
+              padding: 0 80px
+              max-width: 585px
+
+          &:last-of-type
+            background-color: #171819
+            > img
+              width: 40vw
+              height: auto
+            @media screen and (max-width: 976px)
+              display: none
       &.email
         background-color: #eac243
         display: flex
@@ -142,57 +151,16 @@
         > h2, > h3
           text-align: center
         > h2
-          font-size: 22px
           margin-bottom: 10px
         > h3
-          font-size: 10px
-          max-width: 280px
+          max-width: 500px
         > div
-          max-width: 660px
-          @media screen and (max-width: 730px)
-            max-width: 420px
-          @media screen and (max-width: 430px)
-            max-width: 100%
-            padding: 20px
-          display: flex
-          flex-direction: column
-          > button
-            align-self: flex-end
-            font-size: 10px
-            padding: 10px 20px
-            background-color: #eac243
-            border: 0
-            color: $app-bg-white
-          > div
-            margin-top: 20px
-            margin-bottom: 20px
-            display: flex
-            flex-wrap: wrap
-            justify-content: flex-end
-            .question
-              width: 200px
-              margin: 0 0 10px 10px
-              @media screen and (max-width: 430px)
-                margin: 10px 0
-                width: 100%
-              > h3
-                font-size: 10px
-                max-width: 280px
-                text-align: center
-                font-weight: 600
-                margin-bottom: 20px
-              > label
-                font-size: 10px
-                display: block
-                background-color: $app-bg-white
-                margin: 5px
-                padding: 5px
-                border-radius: 10px
-                &:hover
-                  cursor: pointer
-                > span
-                  font-weight: 300
-                  margin-left: 5px
+          width: 100%
+          padding: 40px
+          > iframe
+            width: 100%
+            height: 400px
+
 
       &.more-info
         display: flex
@@ -202,12 +170,11 @@
         padding: 50px 0
         > h2, > h3
           text-align: center
+          margin: 0 20px
         > h2
-          font-size: 22px
           margin-bottom: 10px
         > h3
-          font-size: 10px
-          max-width: 280px
+          max-width: 500px
         > div
           margin-top: 20px
           display: flex
@@ -217,7 +184,7 @@
             display: flex
             flex-direction: column
             align-items: center
-            width: 170px
+            max-width: 300px
             margin: 20px 0 0 20px
             > div
               background-color: #e5e6e8
@@ -231,11 +198,11 @@
               align-items: center
               margin-bottom: 20px
             > h3
-              font-size: 13px
+              font-size: 1.2em
               font-weight: 400
             > p
               text-align: center
-              font-size: 11px
+              font-size: 1em
             &:hover
               cursor: pointer
               > div
