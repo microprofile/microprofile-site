@@ -167,6 +167,12 @@ angular.module('microprofileio-main', [
                         menu.setSelected('contributors');
                     }]
                 })
+                .when('/faq', {
+                    templateUrl: 'app/templates/page_faq.html',
+                    controller: ['eeioMenuService', function (menu) {
+                        menu.setSelected('faq');
+                    }]
+                })
                 .when('/project/:configFile/:resourceName*', {
                     templateUrl: 'app/templates/page_project.html',
                     controller: 'ProjectPageController'
