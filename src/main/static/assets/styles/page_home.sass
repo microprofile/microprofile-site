@@ -2,7 +2,7 @@
 
 > eeio-header.home
   > div
-    height: 70vh
+    height: 675px
     @media screen and (max-width: 500px)
       height: 100vh
     eeio-application-page-header
@@ -40,19 +40,11 @@
         margin: 0
         font-weight: 300
         color: $app-black
-      &.about
-        background-color: $app-bg-white
-        padding: 50px 20px
-        display: flex
-        flex-direction: column
-        align-items: center
-        text-align: center
-
       &.logos
         display: flex
         justify-content: center
         flex-wrap: wrap
-        background-color: #efc94c
+        background-color: $app-hover-color
         > img
           display: block
           margin: 5px 20px
@@ -73,35 +65,46 @@
             margin: 5px
           @media screen and (max-width: 500px)
             height: 35px
-
-      &.text
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        > div
-          padding: 40px
-          max-width: 800px
-          > h2
-            text-align: center
       &.text-image
         display: flex
         justify-content: center
+        $remove-image-width: 976px
+        h2, p
+          text-align: left
         > div
           flex-grow: 1
           &:first-of-type
             background-color: #e5e6e8
             display: flex
             justify-content: flex-end
+            @media screen and (max-width: $remove-image-width)
+              justify-content: center
             align-items: center
             > div
               padding: 0 80px
               max-width: 585px
-
           &:last-of-type
             background-color: #171819
+            display: flex
+            align-items: center
             > img
-              width: 40vw
-              height: auto
-            @media screen and (max-width: 976px)
+              width: auto
+              height: 60vh
+            @media screen and (max-width: $remove-image-width)
               display: none
+        &.flipped
+          flex-direction: row-reverse
+          > div
+            &:first-of-type // text
+              justify-content: flex-start
+              @media screen and (max-width: $remove-image-width)
+                justify-content: center
+            &:last-of-type // image
+              justify-content: flex-end
+              @media screen and (max-width: $remove-image-width)
+                justify-content: center
+        &.white
+          flex-direction: row-reverse
+          > div
+            &:first-of-type // text
+              background-color: $app-bg-white

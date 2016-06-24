@@ -70,9 +70,6 @@ angular.module('microprofileio-projects', [])
                 },
                 getAppPage: function (resource) {
                     return $http.get('api/application/page/' + resource);
-                },
-                getAppPageHeader: function (resource) {
-                    return $http.get('api/application/page-header/' + resource);
                 }
             };
         }
@@ -212,39 +209,7 @@ angular.module('microprofileio-projects', [])
             scope: {
                 resource: '='
             },
-            templateUrl: 'app/templates/dir_application_page_header.html',
-            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService', '$location',
-                function ($scope, $timeout, $sce, projectsService, docService, $location) {
-                    projectsService.getAppPageHeader($scope.resource).then(function (response) {
-                        $timeout(function () {
-                            $scope.$apply(function () {
-                                var dataObject = response.data;
-                                var newHtml;
-                                if (dataObject.h1 !== undefined) {
-                                    newHtml = docService.normalizeResources(
-                                        'page/',
-                                        'api/application/raw',
-                                        "<span>" + dataObject.h1 + "</span>"
-                                    );
-                                    $scope.h1 = $sce.trustAsHtml(newHtml);
-                                } else {
-                                    $scope.h1 = "";
-                                }
-                                if (dataObject.h2 !== undefined) {
-                                    newHtml = docService.normalizeResources(
-                                        'page/',
-                                        'api/application/raw',
-                                        "<span>" + dataObject.h2 + "</span>"
-                                    );
-                                    $scope.h2 = $sce.trustAsHtml(newHtml);
-                                } else {
-                                    $scope.h2 = "";
-                                }
-                            });
-                        });
-                    });
-                }
-            ]
+            templateUrl: 'app/templates/dir_application_page_header.html'
         };
     }])
 

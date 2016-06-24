@@ -30,11 +30,4 @@ class ApiPage {
         return Response.ok(data).build()
     }
 
-    @GET
-    @Path('/page-header/{projectResource : .+}')
-    @Produces(MediaType.APPLICATION_JSON)
-    DtoPageHeader getPageHeader(@PathParam("projectResource") String projectResource) {
-        return srv.getApplicationPageHeader(projectResource)
-    }
-
 }

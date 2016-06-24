@@ -83,30 +83,6 @@ class ServiceProject {
         return github.getAppPage(resourceName)
     }
 
-    DtoPageHeader getApplicationPageHeader(String resourceName) {
-        def name = resourceName + ".yaml"
-        DtoConfigFile cfgFile
-        try {
-            cfgFile = github.getConfigurationFile(name, "pages/${name}")
-        } catch (FileNotFoundException e) {
-            logger.log(Level.CONFIG, "Configuration yaml file '${name}' for page ${resourceName} not found, "
-                    + "using defaults", e)
-            return new DtoPageHeader(
-                    h1: "DESIGN BETTER. FASTER. TOGETHER.",
-                    h2: "The world's leading prototyping, collaboration & workflow platform"
-            )
-        }
-        def conf = loadYaml(cfgFile)
-        if (!conf) {
-            return null
-        } else {
-            return new DtoPageHeader(
-                    h1: conf.h1 as String,
-                    h2: conf.h2 as String
-            )
-        }
-    }
-
     String getProjectPage(String configFile, String resourceName) {
         def conf = loadYaml(github.getConfigurationFiles().find {
             it.name == configFile
