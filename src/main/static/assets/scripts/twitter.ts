@@ -35,8 +35,9 @@ angular.module('microprofileio-twitter', [])
                         return;
                     }
                     var index = scope.tweets.indexOf(scope.selected);
-                    var width = winEl.width();
-                    el.find('.tweets').css('transform', 'translateX(-' + (index * width) + 'px)')
+                    var tweetsEl = el.find('.tweets');
+                    var width = tweetsEl.width();
+                    tweetsEl.css('transform', 'translateX(-' + (index * width) + 'px)')
                 };
                 scope.$watch('selected', adjust);
                 winEl.bind('resize', adjust);

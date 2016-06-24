@@ -3,6 +3,9 @@
 div[eeio-card-twitter]
   > div
     overflow: hidden
+    display: flex
+    flex-direction: column
+    align-items: center
     > div.navigator
       display: flex
       justify-content: center
@@ -15,6 +18,7 @@ div[eeio-card-twitter]
         &.fa-circle
           color: #eac243
     > div.tweets
+      max-width: 70%
       transition: all 1s ease-in-out
       display: flex
       > div // loop tweets
