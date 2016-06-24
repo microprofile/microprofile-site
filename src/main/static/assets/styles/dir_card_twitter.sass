@@ -2,40 +2,58 @@
 
 div[eeio-card-twitter]
   > div
-    display: flex
-    > div // loop
-      width: 100%
-      flex-shrink: 0
-      padding: 80px 120px
-      > div.tweet-top-bar
-        display: flex
-        > div:first-of-type
-          border: solid #f3e0a5 1px
-          flex-grow: 1
-        > div:last-of-type
-          border: solid #f5f5f7 1px
-          flex-grow: 3
-      > div.tweet
-        padding: 50px 0
-        display: flex
-        align-items: center
-        > a
-          display: block
-          font-weight: 200
-          > p
-            font-size: 1.5em
-            font-style: italic
-          > div
-            display: flex
-            align-items: center
+    overflow: hidden
+    > div.navigator
+      display: flex
+      justify-content: center
+      align-items: center
+      margin: 0 0 80px 0
+      > i
+        margin: 0 3px
+        &:hover
+          cursor: pointer
+        &.fa-circle
+          color: #eac243
+    > div.tweets
+      transition: all 1s ease-in-out
+      display: flex
+      > div // loop tweets
+        position: relative
+        width: 100%
+        flex-shrink: 0
+        padding: 80px 120px 0 120px
+        @media (max-width: 500px)
+          padding: 80px 20px 0 20px
+        > div.tweet-top-bar
+          display: flex
+          > div:first-of-type
+            border: solid #f3e0a5 1px
+            flex-grow: 1
+          > div:last-of-type
+            border: solid #f5f5f7 1px
+            flex-grow: 3
+        > div.tweet
+          padding: 50px 0
+          display: flex
+          align-items: center
+          > a
+            display: block
+            font-weight: 200
             > p
-              font-size: .8em
-              font-weight: 300
+              font-size: 1.5em
+              font-style: italic
             > div
-              width: 80px
-              margin-right: 10px
-              border: solid #f3e0a5 1px
-        > i
-          color: #45a2ef
-          font-size: 70px
+              display: flex
+              align-items: center
+              > p
+                font-size: .8em
+                font-weight: 300
+              > div
+                width: 80px
+                margin-right: 10px
+                border: solid #f3e0a5 1px
+          > i
+            margin-left: 10px
+            color: #45a2ef
+            font-size: 70px
 

@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-twitter', [])
 
-    .directive('eeioCardTwitter', [function () {
+    .directive('eeioCardTwitter', ['$window', function ($window) {
         return {
             restrict: 'A',
             scope: {},
@@ -13,10 +13,34 @@ angular.module('microprofileio-twitter', [])
                         $scope.$apply(function () {
                             // author, authorName, date, id, image, message
                             $scope.tweets = data.data;
+                            $scope.selected = null;
+                            if ($scope.tweets && $scope.tweets.length) {
+                                $scope.selected = $scope.tweets[0];
+                            }
                         });
                     });
                 });
-            }]
+                $scope.setSelected = function (tweet) {
+                    $timeout(function () {
+                        $scope.$apply(function () {
+                            $scope.selected = tweet;
+                        });
+                    });
+                };
+            }],
+            link: function (scope, el) {
+                var winEl = angular.element($window);
+                var adjust = function () {
+                    if (!scope.selected) {
+                        return;
+                    }
+                    var index = scope.tweets.indexOf(scope.selected);
+                    var width = winEl.width();
+                    el.find('.tweets').css('transform', 'translateX(-' + (index * width) + 'px)')
+                };
+                scope.$watch('selected', adjust);
+                winEl.bind('resize', adjust);
+            }
         };
     }])
 

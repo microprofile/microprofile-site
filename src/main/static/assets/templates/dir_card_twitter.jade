@@ -1,12 +1,15 @@
 div
-  div(ng-repeat="tweet in tweets")
-    .tweet-top-bar
-      div
-      div
-    .tweet
-      a(ng-href="https://twitter.com/{{tweet.author}}/status/{{tweet.id}}", target="_blank")
-        p {{tweet.message}}
+  .tweets
+    div(ng-repeat="tweet in tweets")
+      .tweet-top-bar
         div
+        div
+      .tweet
+        a(ng-href="https://twitter.com/{{tweet.author}}/status/{{tweet.id}}", target="_blank")
+          p {{tweet.message}}
           div
-          p {{tweet.authorName}}
-      i.fa.fa-twitter
+            div
+            p {{tweet.authorName}}
+        i.fa.fa-twitter
+  .navigator
+    i.fa(ng-repeat="tweet in tweets", ng-class="{ 'fa-circle': tweet === selected, 'fa-circle-thin': tweet !== selected }", ng-click="setSelected(tweet);")
