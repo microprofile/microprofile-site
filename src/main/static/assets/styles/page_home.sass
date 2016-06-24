@@ -83,10 +83,14 @@
               padding: 80px
               @media screen and (max-width: $remove-image-width)
                 padding: 0 80px
+              @media (max-width: 700px)
+                padding: 0 40px
               max-width: 585px
               @media screen and (max-width: 1200px)
                 max-width: inherit
                 width: 600px
+              @media screen and (max-width: $remove-image-width)
+                width: 100%
           &:last-of-type
             display: flex
             align-items: center
