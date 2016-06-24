@@ -2,8 +2,8 @@
 
 > eeio-header.home
   > div
-    height: 90vh
-    @media screen and (max-height: 500px)
+    height: 70vh
+    @media screen and (max-width: 500px)
       height: 100vh
     eeio-application-page-header
       > div
@@ -52,39 +52,22 @@
         display: flex
         justify-content: center
         flex-wrap: wrap
-        background-color: #eac243
-        height: 10vh
+        background-color: #efc94c
         > img
           display: block
           margin: 10px
           width: auto
-          height: 8vh
-      &.image-text
+          height: 120px
+      &.text
         display: flex
+        flex-direction: column
         justify-content: center
+        align-items: center
         > div
-          flex-grow: 1
-          &:last-of-type
-            background-color: #e5e6e8
-            display: flex
-            justify-content: flex-start
-            align-items: center
-            > div
-              padding: 0 80px
-              max-width: 585px
-          &:first-of-type
-            background-color: #171819
-            display: flex
-            justify-content: flex-end
-            > img
-              height: auto
-              width: 40vw
-            @media screen and (max-width: 976px)
-              display: none
-        &.white
-          background-color: $app-bg-white
-          > div
-            background-color: $app-bg-white
+          padding: 40px
+          max-width: 800px
+          > h2
+            text-align: center
       &.text-image
         display: flex
         justify-content: center
@@ -106,85 +89,3 @@
               height: auto
             @media screen and (max-width: 976px)
               display: none
-      &.email
-        background-color: #eac243
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        *
-          color: $app-bg-white
-        > div
-          max-width: 500px
-          padding: 50px 10px
-          > h3
-            font-size: 15px
-            font-weight: 200
-            margin-bottom: 10px
-          > button
-            background-color: transparent
-            border: solid 1px $app-bg-white
-            font-size: 10px
-            padding: 8px 16px
-            margin-top: 20px
-          > div
-            > input
-              background-color: transparent
-              border: 0
-              font-weight: 200
-              font-size: 30px
-              margin: 0 5px
-            > input::placeholder
-              color: $app-bg-white
-            > input ~ div
-              border: solid 1px $app-bg-white
-              margin-bottom: 10px
-            > span
-              font-size: 8px
-      &.more-info
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        padding: 50px 0
-        > h2, > h3
-          text-align: center
-          margin: 0 20px
-        > h2
-          margin-bottom: 10px
-        > h3
-          max-width: 500px
-        > div
-          margin-top: 20px
-          display: flex
-          flex-wrap: wrap
-          justify-content: center
-          .info-item
-            display: flex
-            flex-direction: column
-            align-items: center
-            max-width: 300px
-            margin: 20px 0 0 20px
-            > div
-              background-color: #e5e6e8
-              $size: 100px
-              width: $size
-              height: $size
-              border-radius: $size / 2
-              display: flex
-              flex-direction: column
-              justify-content: center
-              align-items: center
-              margin-bottom: 20px
-            > h3
-              font-size: 1.2em
-              font-weight: 400
-            > p
-              text-align: center
-              font-size: 1em
-            &:hover
-              cursor: pointer
-              > div
-                background-color: #eac243
-                > i
-                  color: $app-bg-white
