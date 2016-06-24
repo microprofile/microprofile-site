@@ -1,0 +1,12 @@
+div
+  div(ng-repeat="tweet in tweets")
+    .tweet-top-bar
+      div
+      div
+    .tweet
+      a(ng-href="https://twitter.com/{{tweet.author}}/status/{{tweet.id}}", target="_blank")
+        p {{tweet.message}}
+        div
+          div
+          p {{tweet.authorName}}
+      i.fa.fa-twitter

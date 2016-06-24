@@ -16,9 +16,18 @@
     <groovy.version>2.4.6</groovy.version>
 
     <microprofile_github_atoken>${env.github_atoken}</microprofile_github_atoken>
+    <microprofile_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</microprofile_twitter_oauth_consumer_key>
+    <microprofile_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</microprofile_twitter_oauth_consumer_secret>
+    <microprofile_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</microprofile_twitter_oauth_access_token>
+    <microprofile_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</microprofile_twitter_oauth_access_token_secret>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.twitter4j</groupId>
+      <artifactId>twitter4j-core</artifactId>
+      <version>4.0.4</version>
+    </dependency>
     <dependency>
       <groupId>org.tomitribe</groupId>
       <artifactId>sabot</artifactId>
@@ -88,6 +97,10 @@
           <context>microprofile</context>
           <systemVariables>
             <microprofile_github_atoken>${microprofile_github_atoken}</microprofile_github_atoken>
+            <microprofile_twitter_oauth_consumer_key>${microprofile_twitter_oauth_consumer_key}</microprofile_twitter_oauth_consumer_key>
+            <microprofile_twitter_oauth_consumer_secret>${microprofile_twitter_oauth_consumer_secret}</microprofile_twitter_oauth_consumer_secret>
+            <microprofile_twitter_oauth_access_token>${microprofile_twitter_oauth_access_token}</microprofile_twitter_oauth_access_token>
+            <microprofile_twitter_oauth_access_token_secret>${microprofile_twitter_oauth_access_token_secret}</microprofile_twitter_oauth_access_token_secret>
           </systemVariables>
         </configuration>
       </plugin>

@@ -35,5 +35,9 @@ class ServiceConfiguration implements ConfigurationObserver {
             return result
         })
         setIfEmpty('github_atoken', System.getProperty('microprofile_github_atoken'))
+        setIfEmpty('microprofile_twitter_oauth_consumer_key', System.getProperty('microprofile_twitter_oauth_consumer_key'))
+        setIfEmpty('microprofile_twitter_oauth_consumer_secret', System.getProperty('microprofile_twitter_oauth_consumer_secret'))
+        setIfEmpty('microprofile_twitter_oauth_access_token', System.getProperty('microprofile_twitter_oauth_access_token'))
+        setIfEmpty('microprofile_twitter_oauth_access_token_secret', System.getProperty('microprofile_twitter_oauth_access_token_secret'))
     }
 }

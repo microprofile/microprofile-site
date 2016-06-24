@@ -8,7 +8,8 @@ angular.module('microprofileio-main', [
     'microprofileio-footer',
     'microprofileio-projects',
     'microprofileio-contributors',
-    'microprofileio-googlegroups'
+    'microprofileio-googlegroups',
+    'microprofileio-twitter'
 ])
 
     .config([
