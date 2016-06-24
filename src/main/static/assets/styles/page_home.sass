@@ -23,7 +23,6 @@
         h3
           font-size: 1.5em
 
-
 > div.page-body
   &.home
     background-color: $app-bg-white
@@ -68,43 +67,48 @@
       &.text-image
         display: flex
         justify-content: center
-        $remove-image-width: 976px
+        $remove-image-width: 900px
         h2, p
           text-align: left
         > div
           flex-grow: 1
+          background-color: #e5e6e8
           &:first-of-type
-            background-color: #e5e6e8
             display: flex
             justify-content: flex-end
             @media screen and (max-width: $remove-image-width)
               justify-content: center
             align-items: center
             > div
-              padding: 80px 80px
+              padding: 80px
+              @media screen and (max-width: $remove-image-width)
+                padding: 0 80px
               max-width: 585px
+              @media screen and (max-width: 1200px)
+                max-width: inherit
+                width: 600px
           &:last-of-type
-            background-color: #171819
             display: flex
             align-items: center
             > img
               width: auto
               height: 70vh
+              @media screen and (max-width: 1200px)
+                width: 100%
+                height: auto
             @media screen and (max-width: $remove-image-width)
               display: none
         &.flipped
           flex-direction: row-reverse
           > div
             &:first-of-type // text
-              justify-content: flex-start
-              @media screen and (max-width: $remove-image-width)
-                justify-content: center
+             justify-content: flex-start
+             @media screen and (max-width: $remove-image-width)
+               justify-content: center
             &:last-of-type // image
-              justify-content: flex-end
-              @media screen and (max-width: $remove-image-width)
-                justify-content: center
+             justify-content: flex-end
+             @media screen and (max-width: $remove-image-width)
+               justify-content: center
         &.white
-          flex-direction: row-reverse
           > div
-            &:first-of-type // text
-              background-color: $app-bg-white
+            background-color: $app-bg-white
