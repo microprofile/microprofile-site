@@ -11,7 +11,8 @@ angular.module('microprofileio-main', [
     'microprofileio-googlegroups',
     'microprofileio-twitter',
     'microprofileio-survey',
-    'microprofileio-action'
+    'microprofileio-action',
+    'microprofileio-faq'
 ])
 
     .config([

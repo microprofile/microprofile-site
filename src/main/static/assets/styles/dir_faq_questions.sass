@@ -1,0 +1,29 @@
+@import "variables"
+
+div[eeio-faq-questions]
+  > div
+    $div-width: 920px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    > div
+      width: $div-width
+      display: flex
+      flex-wrap: wrap
+      margin-bottom: 70px
+      @media (max-width: $div-width)
+        width: 100%
+        justify-content: center
+      > div.question
+        width: 400px
+        margin: 15px 30px
+        h2, p
+          font-weight: 300
+        h2
+          margin: 70px 0 0.94286em 0
+          font-size: 1.5em
+        p
+          font-size: 1em
+          line-height: 1.7em
+          margin: 0

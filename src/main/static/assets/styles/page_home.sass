@@ -68,6 +68,7 @@
         position: relative
         $remove-image-width: 900px
         height: 700px
+        overflow: hidden
         @media screen and (max-width: $remove-image-width)
           height: auto
           position: static
@@ -103,7 +104,6 @@
             bottom: 0
             left: 50%
             right: auto
-            overflow: hidden
             @media screen and (max-width: $remove-image-width)
               display: none
         &.flipped

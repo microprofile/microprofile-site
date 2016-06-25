@@ -20,9 +20,9 @@ import java.util.logging.Logger
 class CachedHolder {
     private Logger logger = Logger.getLogger(this.class.name)
 
-    private ConcurrentMap<Object, ConcurrentHashMap<String, Object>> caches
-    private ConcurrentMap<Long, Object> idInstance
-    private ConcurrentMap<Object, Long> instanceId
+    private ConcurrentMap<Object, Map<String, Object>> caches
+    private Map<Long, Object> idInstance
+    private Map<Object, Long> instanceId
 
     private AtomicLong instanceCounter = new AtomicLong(0)
 
@@ -32,12 +32,12 @@ class CachedHolder {
     @PostConstruct
     void init() {
         this.caches = new ConcurrentHashMap<>()
-        this.idInstance = new ConcurrentHashMap<>()
-        this.instanceId = new ConcurrentHashMap<>()
+        this.idInstance = new HashMap<>()
+        this.instanceId = new HashMap<>()
     }
 
     void createCache(Object beanInstance) {
-        this.caches.put(beanInstance, new ConcurrentHashMap<>())
+        this.caches.put(beanInstance, Collections.synchronizedMap(new HashMap<>()))
         Long id = instanceCounter.incrementAndGet()
         idInstance.put(id, beanInstance)
         instanceId.put(beanInstance, id)
