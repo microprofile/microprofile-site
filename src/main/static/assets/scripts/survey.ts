@@ -10,14 +10,6 @@ angular.module('microprofileio-survey', [])
         };
     }])
 
-    .directive('eeioCardSurveyAspects', [function () {
-        return {
-            restrict: 'A',
-            scope: {},
-            templateUrl: 'app/templates/dir_card_survey_aspects.html'
-        };
-    }])
-
     .run(function () {
         // placeholder
     });
