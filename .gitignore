@@ -24,6 +24,9 @@ hs_err_pid*
 .classpath
 .settings/
 
+# tomee plugin
+.distribution
+
 # Maven files #
 data/
 target/

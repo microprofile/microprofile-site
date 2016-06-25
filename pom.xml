@@ -98,7 +98,7 @@
             <artifactId>tomee-maven-plugin</artifactId>
             <version>${tomee.version}</version>
             <configuration>
-               <context>microprofile</context>
+               <context>ROOT</context>
                <systemVariables>
                   <microprofile_github_atoken>${microprofile_github_atoken}</microprofile_github_atoken>
                   <microprofile_twitter_oauth_consumer_key>${microprofile_twitter_oauth_consumer_key}</microprofile_twitter_oauth_consumer_key>
@@ -118,6 +118,9 @@
                <entryPoint>["java", "-jar", "/${project.artifactId}-${project.version}-exec.jar"]</entryPoint>
                <serverId>microprofile-ecr</serverId>
                <registryUrl>${docker-registry-url}</registryUrl>
+               <exposes>
+                  <expose>8080</expose>
+               </exposes>
                <imageTags>
                   <imageTag>${project.version}</imageTag>
                   <imageTag>microprofile-docker-image</imageTag>
