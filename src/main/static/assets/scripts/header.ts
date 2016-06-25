@@ -17,11 +17,16 @@ angular.module('microprofileio-header', [])
                 }
                 var page = angular.element($window);
                 var background = el.find('.background');
+                var title = el.find('.title > div');
                 var header = el.find('.head');
-                page.scroll(function () {
+                var adjustHeader = function() {
                     var step = page.scrollTop();
                     background.css({
                         'transform': 'translateY(' + (step / 3) + 'px)'
+                    });
+                    title.css({
+                        'transform': 'translateY(' + (step / 2.3) + 'px)',
+                        'opacity': (title.offset().top - $(window).scrollTop()) / 100
                     });
                     // header out
                     var menu = header.find('eeio-menu');
@@ -35,7 +40,9 @@ angular.module('microprofileio-header', [])
                         menu.removeClass('floating');
                         menu.removeClass('expanded');
                     }
-                });
+                };
+                page.scroll(adjustHeader);
+                adjustHeader();
             }
         };
     }])

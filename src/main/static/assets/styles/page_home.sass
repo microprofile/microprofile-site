@@ -65,18 +65,28 @@
           @media screen and (max-width: 500px)
             height: 35px
       &.text-image
-        display: flex
-        justify-content: center
+        position: relative
         $remove-image-width: 900px
+        height: 700px
+        @media screen and (max-width: $remove-image-width)
+          height: auto
+          position: static
         h2, p
           text-align: left
         > div
-          flex-grow: 1
           background-color: #e5e6e8
           &:first-of-type
+            position: absolute
+            @media screen and (max-width: $remove-image-width)
+              position: static
+            top: 0
+            bottom: 0
+            left: auto
+            right: 50%
             display: flex
             justify-content: flex-end
             @media screen and (max-width: $remove-image-width)
+              right: 0
               justify-content: center
             align-items: center
             > div
@@ -85,34 +95,28 @@
                 padding: 0 80px
               @media (max-width: 700px)
                 padding: 0 40px
-              max-width: 585px
-              @media screen and (max-width: 1200px)
-                max-width: inherit
-                width: 600px
-              @media screen and (max-width: $remove-image-width)
-                width: 100%
           &:last-of-type
-            display: flex
-            align-items: center
-            > img
-              width: auto
-              height: 70vh
-              @media screen and (max-width: 1200px)
-                width: 100%
-                height: auto
+            position: absolute
+            @media screen and (max-width: $remove-image-width)
+              position: static
+            top: 0
+            bottom: 0
+            left: 50%
+            right: auto
+            overflow: hidden
             @media screen and (max-width: $remove-image-width)
               display: none
         &.flipped
-          flex-direction: row-reverse
           > div
             &:first-of-type // text
-             justify-content: flex-start
-             @media screen and (max-width: $remove-image-width)
-               justify-content: center
+              left: 50%
+              right: auto
+              @media screen and (max-width: $remove-image-width)
+                left: 0
+                right: 0
             &:last-of-type // image
-             justify-content: flex-end
-             @media screen and (max-width: $remove-image-width)
-               justify-content: center
+              left: auto
+              right: 50%
         &.white
           > div
             background-color: $app-bg-white
