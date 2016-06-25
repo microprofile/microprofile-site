@@ -1,16 +1,15 @@
 @import "variables"
 
-div[eeio-card-survey], div[eeio-card-survey-aspects]
-  $wrap-width: 1000px
+div[eeio-card-survey]
+  $container-height-first: 1150px
+  $container-height: 2000px
   > div
     display: flex
-    @media (max-width: $wrap-width)
-      display: block
+    @media (max-width: 970px)
+      flex-direction: column
     > iframe
-      width: 50%
-      height: 2050px
-      @media (max-width: $wrap-width)
-        width: 100%
+      flex-grow: 1
+      height: $container-height
+      @media (max-width: 970px)
         &:first-of-type
-          height: 1200px
-
+          height: $container-height-first
