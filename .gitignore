@@ -1,9 +1,45 @@
+*.class
+*.html
+*.pdf
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# IDEA #
 *.iml
 .idea
+*~
+
+# eclipse specific git ignore
+.project
+.metadata
+.classpath
+.settings/
+
+# tomee plugin
+.distribution
+
+# Maven files #
+data/
 target/
-src/main/static/node_modules/
-src/main/static/node/
-src/main/static/bower_components/
-src/main/webapp/app
-npm-debug.log
-node_tmp
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+src/main/static
+
+# Misc #
+*.log
+*.bat
+
+# JRebel config files #
+rebel.xml
+/build/
