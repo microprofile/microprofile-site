@@ -34,7 +34,8 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
 release.properties
-src/main/static
+src/main/static/node_modules/
+src/main/static/bower_components/
 
 # Misc #
 *.log
