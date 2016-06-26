@@ -10,7 +10,12 @@ eeio-menu
         > a.join-us
           display: inline-block
           padding: 10px 20px
-          border: solid $app-white 1px
+          border: solid $app-hover-color 1px
+          color: $app-hover-color !important
+          &:hover
+            background-color: $app-hover-color
+            font-weight: 400 !important
+            color: $app-bg-white !important
     > div
       display: none
       padding: 10px

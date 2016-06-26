@@ -13,8 +13,10 @@
         align-items: center
         h1
           font-size: 2.875em
-          font-weight: 400
-          margin: 0
+          font-weight: 300
+          margin: 0 0 30px 0
+          letter-spacing: 10px
+          font-variant-ligatures: no-common-ligatures
         h2
           font-size: 1.5em
           font-weight: 300
@@ -46,7 +48,7 @@
         background-color: $app-hover-color
         > img
           display: block
-          margin: 5px 20px
+          margin: 20px 20px
           width: auto
           height: 70px
           @media screen and (max-width: 1000px)
@@ -72,6 +74,15 @@
         @media screen and (max-width: $remove-image-width)
           height: auto
           position: static
+        div.image
+          height: 100%
+          width: 1000px
+          background-size: contain
+          background: no-repeat left center
+          &.manifesto
+            background-image: url(https://placehold.it/800x800)
+          &.evolution
+            background-image: url(../images/evolution.jpg)
         h2, p
           text-align: left
         > div
@@ -107,6 +118,8 @@
             @media screen and (max-width: $remove-image-width)
               display: none
         &.flipped
+          div.image
+            background-position: right center
           > div
             &:first-of-type // text
               left: 50%

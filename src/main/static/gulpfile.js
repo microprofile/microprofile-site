@@ -110,8 +110,7 @@ gulp.task('js-third-party', function () {
         './bower_components/ngstorage/ngStorage.min.js',
         './bower_components/angular-cookies/angular-cookies.min.js',
         './bower_components/angular-resource/angular-resource.min.js',
-        './node_modules/underscore.string/dist/underscore.string.min.js',
-        './bower_components/particles.js/particles.js'
+        './node_modules/underscore.string/dist/underscore.string.min.js'
     ]).pipe(concat('_.js')).pipe(gulp.dest('../../../target/static-resources/app/third-party/'));
 });
 
