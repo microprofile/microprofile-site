@@ -76,13 +76,10 @@
           position: static
         div.image
           height: 100%
-          width: 1000px
-          background-size: contain
-          background: no-repeat left center
-          &.manifesto
-            background-image: url(https://placehold.it/800x800)
-          &.evolution
-            background-image: url(../images/evolution.jpg)
+          width: 100%
+          > img
+            height: 100%
+            width: auto
         h2, p
           text-align: left
         > div
@@ -119,7 +116,7 @@
               display: none
         &.flipped
           div.image
-            background-position: right center
+            //background-position: right center
           > div
             &:first-of-type // text
               left: 50%
