@@ -123,14 +123,14 @@ gulp.task('test', function (done) {
 
 gulp.task('copy-all', function () {
     return gulp.src(['../../../target/static-resources/**/*'])
-        .pipe(gulp.dest('../../../target/apache-tomee/webapps/microprofile/'));
+        .pipe(gulp.dest('../../../target/apache-tomee/webapps/ROOT/'));
 });
 
 gulp.task('clean', function (callback) {
     return del([
         '../../../target/static-resources/',
-        '../../../target/apache-tomee/webapps/microprofile/app/',
-        '../../../target/apache-tomee/webapps/microprofile/components/'
+        '../../../target/apache-tomee/webapps/ROOT/app/',
+        '../../../target/apache-tomee/webapps/ROOT/components/'
     ], {
         force: true
     }, callback);
