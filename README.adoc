@@ -264,7 +264,7 @@ If non-static asset:
 === Build Docker Image
 
 ```
-$ mvn clean package tomee:exec
+$ mvn clean package tomee:exec docker:build
 $ cd target/docker
 $ aws ecr get-login --region us-east-1
 $ # execute the output of the above commadn
