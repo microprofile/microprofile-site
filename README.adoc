@@ -265,7 +265,7 @@ If non-static asset:
 
 ```
 $ mvn clean package tomee:exec docker:build
-$ docker run microprofile-docker-image 
+$ docker run -p 8080:8080 microprofile-docker-image 
 $ # Make sure you have a successful startup before continuing
 $ cd target/docker
 $ aws ecr get-login --region us-east-1 | bash
