@@ -113,17 +113,16 @@
             <artifactId>docker-maven-plugin</artifactId>
             <version>0.4.10</version>
             <configuration>
-               <imageName>${docker-registry-url}/microprofile-docker-image</imageName>
+               <imageName>microprofile-docker-image</imageName>
                <baseImage>java</baseImage>
                <entryPoint>["java", "-jar", "/${project.artifactId}-${project.version}-exec.jar"]</entryPoint>
-               <serverId>microprofile-ecr</serverId>
-               <registryUrl>${docker-registry-url}</registryUrl>
                <exposes>
                   <expose>8080</expose>
                </exposes>
                <imageTags>
-                  <imageTag>${project.version}</imageTag>
+                  <imageTag>latest</imageTag>
                   <imageTag>microprofile-docker-image</imageTag>
+                  <imageTag>${project.version}</imageTag>
                </imageTags>
                <resources>
                   <resource>

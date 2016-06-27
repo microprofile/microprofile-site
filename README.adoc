@@ -259,5 +259,25 @@ If non-static asset:
                        |-> [Active Instances Subnet0] -> [Docker Instance]
                        |-> [Active Instances Subnet1] -> [Docker Instance]
 
+== Deployment
 
+=== Build Docker Image
+
+```
+$ mvn clean package tomee:exec
+$ cd target/docker
+$ aws ecr get-login --region us-east-1
+$ # execute the output of the above commadn
+$ docker build -t microprofile-ecr .
+$ docker tag microprofile-ecr:latest 588134240945.dkr.ecr.us-east-1.amazonaws.com/microprofile-ecr:latest
+$ docker push 588134240945.dkr.ecr.us-east-1.amazonaws.com/microprofile-ecr:latest
+```
+
+=== Run docker image
+
+* Login to N. California AWS
+* Navigate to ECS
+* Click on the microprofile-ecs-cluster
+* For a rolling redeploy, stop the tasks one at a time (keep track of which once you stopped)
+* For an fast redeploy, hit the stop all button
 
