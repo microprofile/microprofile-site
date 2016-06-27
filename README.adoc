@@ -266,8 +266,7 @@ If non-static asset:
 ```
 $ mvn clean package tomee:exec docker:build
 $ cd target/docker
-$ aws ecr get-login --region us-east-1
-$ # execute the output of the above commadn
+$ aws ecr get-login --region us-east-1 | bash
 $ docker build -t microprofile-ecr .
 $ docker tag microprofile-ecr:latest 588134240945.dkr.ecr.us-east-1.amazonaws.com/microprofile-ecr:latest
 $ docker push 588134240945.dkr.ecr.us-east-1.amazonaws.com/microprofile-ecr:latest
