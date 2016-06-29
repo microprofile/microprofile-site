@@ -23,7 +23,6 @@
       <microprofile_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</microprofile_twitter_oauth_access_token>
       <microprofile_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</microprofile_twitter_oauth_access_token_secret>
 
-      <docker-registry-url>https://588134240945.dkr.ecr.us-east-1.amazonaws.com</docker-registry-url>
    </properties>
 
    <dependencies>
@@ -109,29 +108,25 @@
             </configuration>
          </plugin>
          <plugin>
-            <groupId>com.spotify</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <version>0.4.10</version>
-            <configuration>
-               <imageName>microprofile-docker-image</imageName>
-               <baseImage>java</baseImage>
-               <entryPoint>["java", "-jar", "/${project.artifactId}-${project.version}-exec.jar"]</entryPoint>
-               <exposes>
-                  <expose>8080</expose>
-               </exposes>
-               <imageTags>
-                  <imageTag>latest</imageTag>
-                  <imageTag>microprofile-docker-image</imageTag>
-                  <imageTag>${project.version}</imageTag>
-               </imageTags>
-               <resources>
-                  <resource>
-                     <targetPath>/</targetPath>
-                     <directory>${project.build.directory}</directory>
-                     <include>${project.artifactId}-${project.version}-exec.jar</include>
-                  </resource>
-               </resources>
-            </configuration>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>copy-resources</id>
+                  <phase>validate</phase>
+                  <goals>
+                     <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                     <outputDirectory>${basedir}/target</outputDirectory>
+                     <resources>
+                        <resource>
+                           <directory>src/main/config</directory>
+                           <filtering>true</filtering>
+                        </resource>
+                     </resources>
+                  </configuration>
+               </execution>
+            </executions>
          </plugin>
          <plugin>
             <groupId>org.codehaus.mojo</groupId>

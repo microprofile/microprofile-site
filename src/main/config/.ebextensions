@@ -1,0 +1,9 @@
+option_settings:
+  aws:elb:listener:80:
+    InstancePort:8080
+    InstanceProtocol:HTTP
+  aws:elb:loadbalancer:
+    CrossZone:true
+  aws:autoscaling:updatepolicy:rollingupdate:
+  	RollingUpdateEnabled:true
+  	RollingUpdateType:Health
