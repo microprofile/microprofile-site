@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="microprofileio-main">
 <head><title>microprofile.io</title>
-    <script>
+    <script data-cfasync="false">
         // doc base
         (function () {
             var contextPath = '<%=request.getContextPath()%>';
@@ -54,8 +54,8 @@
 <div ng-view class="app-body">
     <div class="app-loading"></div>
 </div>
-<script type="text/javascript" src="app/third-party/_.js"></script>
-<script type="text/javascript" src="app/scripts/_.js"></script>
-<script type="text/javascript" src="app/scripts/_templates.js"></script>
+<script data-cfasync="false" type="text/javascript" src="app/third-party/_.js"></script>
+<script data-cfasync="false" type="text/javascript" src="app/scripts/_.js"></script>
+<script data-cfasync="false" type="text/javascript" src="app/scripts/_templates.js"></script>
 </body>
 </html>
