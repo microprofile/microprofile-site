@@ -1,2 +1,0 @@
-deploy:
-  artifact: ${project.artifactId}-${project.version}-exec.jar

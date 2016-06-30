@@ -108,7 +108,9 @@
             </configuration>
          </plugin>
          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-resources-plugin</artifactId>
+            <version>3.0.0</version>
             <executions>
                <execution>
                   <id>copy-resources</id>
@@ -117,16 +119,28 @@
                      <goal>copy-resources</goal>
                   </goals>
                   <configuration>
-                     <outputDirectory>${basedir}/target</outputDirectory>
+                     <outputDirectory>${basedir}/.elasticbeanstalk</outputDirectory>
+                     <overwrite>true</overwrite>
                      <resources>
                         <resource>
-                           <directory>src/main/config</directory>
+                           <directory>src/main/config/elasticbeanstalk</directory>
                            <filtering>true</filtering>
                         </resource>
                      </resources>
                   </configuration>
                </execution>
             </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+               <version>2.6</version>
+               <appendAssemblyId>true</appendAssemblyId>
+               <descriptors>
+                  <descriptor>src/main/assembly/ebs-zip.xml</descriptor>
+               </descriptors>
+            </configuration>
          </plugin>
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
