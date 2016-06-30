@@ -37,6 +37,5 @@
     "tslint": "3.11.0",
     "typescript": "1.8.10",
     "underscore.string": "3.3.4"
-  },
-  "engine": "node >= 5.5.0"
+  }
 }
