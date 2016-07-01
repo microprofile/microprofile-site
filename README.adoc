@@ -276,3 +276,13 @@ This directory is filtered and copied to `/.ebextensions` in the root of the ass
 This directory is filtered and copied to `/.elasticbeanstalk` in the root of the assembled ZIP archive. It is not part of the JAR. These files configure the deployment process to Elastic Beanstalk.
 
 `src/main/config/ziproot`
+
+This directory is filtered and copied to `/` in the root of the assembled ZIP archive. 
+
+* `Procfile` tells the AWS Agent what command to run to launch your deployment. It launches the next script:
+* `kill-before-run.sh` ensures that all existing Java processes have been terminated before launching the new Java archive.
+
+
+
+
+
