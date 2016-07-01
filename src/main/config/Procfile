@@ -1,1 +1,0 @@
-web: java -jar ${project.artifactId}-${project.version}-exec.jar
