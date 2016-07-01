@@ -269,7 +269,9 @@ This is a simple HAProxy installation that redirects `www.microprofile.io` to `m
 
 `src/main/config/ebextensions`
 
-This directory is filtered and copied to `/.ebextensions` in the root of the assembled ZIP file. It is not part of the JAR. These files configure the Elastic Beanstalk cluster.
+This directory is filtered and copied to `/.ebextensions` in the root of the assembled ZIP archive. It is not part of the JAR. These files configure the Elastic Beanstalk cluster.
 
 `src/main/config/elasticbeanstalk`
+
+This directory is filtered and copied to `/.elasticbeanstalk` in the root of the assembled ZIP archive. It is not part of the JAR. These files configure the deployment process to Elastic Beanstalk.
 
