@@ -228,7 +228,7 @@ Updates on link:https://github.com/jcpevangelists/microprofile.io.config/[] are 
 == Production Architecture
 
 === Summary
-Clouldflare sits in front of our website as a CDN and proxy. By setting our NS records to point at Cloudflare, Clouldflare automagically handles content distribution around the world by scraping our website. If Cloudflare cannot handle the request, it will hand the request off to the Amazon ELB. The Amazon ELB points at one permanent non-autoscaled EC2 instance running the Amazon Docker Agent. The autoscaling group maintains a minimum of 2 instances on two different subnets in two availability zones. If the autoscaling group notices the servers are too busy, it'll add two instances. When a new instance is launched, the Amazon Agent on the instance notifies the ECS Cluster that it's available to take a task. The ECS Cluster will then deploy the docker image to the instance, and notify the ELB to start sending traffic to the new instance. The ELB will start sending traffic to the new instance once the instance begins passing health checks.
+Clouldflare sits in front of our website as a CDN and proxy. By setting our NS records to point at Cloudflare, Clouldflare automagically handles content distribution around the world by scraping our website. If Cloudflare cannot handle the request, it will hand the request off to the Amazon ELB. The Amazon ELB points at EC2 instances created by an autoscaling group. The isntances are running the Amazon Beanstalk Agent. The autoscaling group maintains a minimum of 1 instance. If the autoscaling group notices the servers are too busy, it'll add instances. When a new instance is launched, the Amazon Beanstalk Agent on the instance notifies the Beanstalk Cluster that it's available to take a task. The Beanstalk Cluster will then deploy the new zip file to the instance, and notify the ELB to start sending traffic to the new instance. The ELB will start sending traffic to the new instance once the instance begins passing health checks.
 
 === Cloudflare CDN
 
@@ -249,31 +249,27 @@ If non-static asset:
 
 ==== Amazon Architecture
 ```
-[Elastic Load Balancer] |-> [Non Dynamic instance] -> [Docker Instance]
-                        |-> [Active Instances Subnet0] -> [Docker Instance]
+[Elastic Load Balancer] |-> [Active Instances Subnet0] -> [Docker Instance]
                         |-> [Active Instances Subnet1] -> [Docker Instance]
 ```
 
 == Deployment
 
-=== Build Docker Image
+The deploy process creates a zip file which has the executable jar, and bundles several AWS config files.
 
-```
-$ mvn clean package tomee:exec docker:build
-$ docker run -p 8080:8080 microprofile-docker-image 
-$ # Make sure you have a successful startup before continuing
-$ cd target/docker
-$ aws ecr get-login --region us-east-1 | bash
-$ docker build -t microprofile-ecr .
-$ docker tag microprofile-ecr:latest 588134240945.dkr.ecr.us-east-1.amazonaws.com/microprofile-ecr:latest
-$ docker push 588134240945.dkr.ecr.us-east-1.amazonaws.com/microprofile-ecr:latest
-```
+=== Build and deploy manually
 
-=== Run docker image
+`mvn clean package tomee:exec assembly:assembly && eb deploy`
 
-* Login to N. California AWS
-* Navigate to ECS
-* Click on the microprofile-ecs-cluster
-* For a rolling redeploy, stop the tasks one at a time (keep track of which once you stopped)
-* For an fast redeploy, hit the stop all button
+=== Config file descriptions
+
+`src/main/config/haproxy.cfg`
+
+This is a simple HAProxy installation that redirects `www.microprofile.io` to `microprofile.io` This is running on an independenct instnace in AWS.
+
+`src/main/config/ebextensions`
+
+This directory is filtered and copied to `/.ebextensions` in the root of the assembled ZIP file. It is not part of the JAR. These files configure the Elastic Beanstalk cluster.
+
+`src/main/config/elasticbeanstalk`
 
