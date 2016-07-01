@@ -249,8 +249,8 @@ If non-static asset:
 
 ==== Amazon Architecture
 ```
-[Elastic Load Balancer] |-> [Active Instances Subnet0] -> [Docker Instance]
-                        |-> [Active Instances Subnet1] -> [Docker Instance]
+[Elastic Load Balancer] |-> [Active Instances Subnet0] -> [JVM Instance]
+                        |-> [Active Instances Subnet1] -> [JVM Instance]
 ```
 
 == Deployment
