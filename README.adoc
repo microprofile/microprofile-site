@@ -228,36 +228,31 @@ Updates on link:https://github.com/jcpevangelists/microprofile.io.config/[] are 
 == Production Architecture
 
 === Summary
-Clouldflare sits in front of our website as a CDN and proxy. By setting our NS records to point at Cloudflare, 
-Clouldflare automagically handles content distribution around the world by scraping our website. If Cloudflare
-cannot handle the request, it will hand the request off to the Amazon ELB. The Amazon ELB points at one
-permanent non-autoscaled EC2 instance running the Amazon Docker Agent. The autoscaling group maintains a 
-minimum of 2 instances on two different subnets in two availability zones. If the autoscaling group notices
-the servers are too busy, it'll add two instances. When a new instance is launched, the Amazon Agent on the 
-instance notifies the ECS Cluster that it's available to take a task. The ECS Cluster will then deploy the
-docker image to the instance, and notify the ELB to start sending traffic to the new instance. The ELB will
-start sending traffic to the new instance once the instance begins passing health checks.
+Clouldflare sits in front of our website as a CDN and proxy. By setting our NS records to point at Cloudflare, Clouldflare automagically handles content distribution around the world by scraping our website. If Cloudflare cannot handle the request, it will hand the request off to the Amazon ELB. The Amazon ELB points at one permanent non-autoscaled EC2 instance running the Amazon Docker Agent. The autoscaling group maintains a minimum of 2 instances on two different subnets in two availability zones. If the autoscaling group notices the servers are too busy, it'll add two instances. When a new instance is launched, the Amazon Agent on the instance notifies the ECS Cluster that it's available to take a task. The ECS Cluster will then deploy the docker image to the instance, and notify the ELB to start sending traffic to the new instance. The ELB will start sending traffic to the new instance once the instance begins passing health checks.
 
 === Cloudflare CDN
 
 ==== DNS
-* [User Agent] -DNS Query-> [Cloudflare NS]
-* [User Agent] <-DNS Response to closest Cloudflare server- [Cloudflare NS]
-
+```
+[User Agent] -DNS Query-> [Cloudflare NS]
+[User Agent] <-DNS Response to closest Cloudflare server- [Cloudflare NS]
+```
 
 ==== HTTP
-* [User Agent] -HTTP Request-> [Cloudflare HTTP Servers]
+```
+[User Agent] -HTTP Request-> [Cloudflare HTTP Servers]
 If static asset:
-* [User Agent] <-HTTP Response- [Cloudflare Cache server]
+[User Agent] <-HTTP Response- [Cloudflare Cache server]
 If non-static asset:
-* [User Agent] <-HTTP Response- [Cloudflare Proxy server] <-HTTP Response- [Amazon Elastic Load Balancer]
-
+[User Agent] <-HTTP Response- [Cloudflare Proxy server] <-HTTP Response- [Amazon Elastic Load Balancer]
+```
 
 ==== Amazon Architecture
-
-[Elastic Load Balancer]|-> [Non Dynamic instance] -> [Docker Instance]
-                       |-> [Active Instances Subnet0] -> [Docker Instance]
-                       |-> [Active Instances Subnet1] -> [Docker Instance]
+```
+[Elastic Load Balancer] |-> [Non Dynamic instance] -> [Docker Instance]
+                        |-> [Active Instances Subnet0] -> [Docker Instance]
+                        |-> [Active Instances Subnet1] -> [Docker Instance]
+```
 
 == Deployment
 
