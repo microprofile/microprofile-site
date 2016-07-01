@@ -280,9 +280,4 @@ This directory is filtered and copied to `.elasticbeanstalk` in the root the mav
 This directory is filtered and copied to `/` in the root of the assembled ZIP archive. 
 
 * `Procfile` tells the AWS Agent what command to run to launch your deployment. It launches the next script:
-* `kill-before-run.sh` ensures that all existing Java processes have been terminated before launching the new Java archive.
-
-
-
-
-
+* `kill-before-run.sh` ensures that all existing Java processes have been terminated before launching the new Java archive. This is sort of a hack, if someone has a better way to do this, it'd be much appreciated.
