@@ -10,10 +10,10 @@
    </formats>
    <fileSets>
       <fileSet>
-         <directory>${project.basedir}/src/main/config</directory>
+         <directory>${project.basedir}/src/main/config/ziproot</directory>
          <outputDirectory>/</outputDirectory>
          <includes>
-            <include>Procfile</include>
+            <include>*</include>
          </includes>
          <filtered>true</filtered>
       </fileSet>
