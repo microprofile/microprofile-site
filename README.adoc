@@ -275,3 +275,4 @@ This directory is filtered and copied to `/.ebextensions` in the root of the ass
 
 This directory is filtered and copied to `/.elasticbeanstalk` in the root of the assembled ZIP archive. It is not part of the JAR. These files configure the deployment process to Elastic Beanstalk.
 
+`src/main/config/ziproot`
