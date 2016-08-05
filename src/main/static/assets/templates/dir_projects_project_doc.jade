@@ -3,7 +3,7 @@ div
     .contributors(ng-show="project.detail.contributors && project.detail.contributors.length > 0")
       h1 Cool people that helped make this happen
       div
-        eeio-contributor-summary(ng-repeat="contributor in project.detail.contributors | orderBy:'contributions':true", login="contributor.login")
+        microprofileio-contributor-summary(ng-repeat="contributor in project.detail.contributors | orderBy:'contributions':true", login="contributor.login")
     .resources(ng-show="project.detail.info.name || (project.detail.info.resources && project.detail.info.resources.length > 0)")
       h1 External resources
       div
@@ -15,5 +15,5 @@ div
       h1 Related projects
       div
         p(ng-repeat="related in project.detail.info.related")
-          eeio-project-doc-related(config-file="related")
+          microprofileio-project-doc-related(config-file="related")
   .content(ng-show="project.doc", ng-bind-html="project.doc")
