@@ -1,11 +1,11 @@
 {
-  "name": "tomitribe-io-website-compiler",
+  "name": "microprofile-io-website-compiler",
   "version": "0.0.1",
-  "description": "The tomitribe.io website resources compiler",
-  "author": "Tomitribe <contact@tomitribe.com>",
+  "description": "The microprofile.io website resources compiler",
+  "author": "Microprofile Community <https://groups.google.com/forum/#!forum/microprofile>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomitribe/tomitribe.io.git"
+    "url": "https://github.com/microprofile/gitpress.git"
   },
   "license": "Apache-2.0",
   "dependencies": {
