@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-survey', [])
 
-    .directive('eeioCardSurvey', [function () {
+    .directive('microprofileioCardSurvey', [function () {
         return {
             restrict: 'A',
             scope: {},

@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-header', [])
 
-    .directive('eeioHeader', ['$window', function ($window) {
+    .directive('microprofileioHeader', ['$window', function ($window) {
         return {
             restrict: 'E',
             transclude: true,

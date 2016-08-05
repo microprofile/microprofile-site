@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-projects', [])
 
-    .factory('eeioProjectsDocService', ['$location',
+    .factory('microprofileioProjectsDocService', ['$location',
         function ($location) {
             return {
                 normalizeResources: function (pRoot, sRoot, originalHtml) {
@@ -40,7 +40,7 @@ angular.module('microprofileio-projects', [])
         }
     ])
 
-    .factory('eeioProjectsService', [
+    .factory('microprofileioProjectsService', [
         '$http',
         '$q',
         function ($http, $q) {
@@ -75,12 +75,12 @@ angular.module('microprofileio-projects', [])
         }
     ])
 
-    .directive('eeioProjectsShortlist', [function () {
+    .directive('microprofileioProjectsShortlist', [function () {
         return {
             restrict: 'E',
             scope: {},
             templateUrl: 'app/templates/dir_projects_projects_shortlist.html',
-            controller: ['$scope', '$timeout', 'eeioProjectsService', function ($scope, $timeout, projectsService) {
+            controller: ['$scope', '$timeout', 'microprofileioProjectsService', function ($scope, $timeout, projectsService) {
                 projectsService.getSpecs().then(function (response) {
                     $timeout(function () {
                         $scope.$apply(function () {
@@ -99,14 +99,14 @@ angular.module('microprofileio-projects', [])
         };
     }])
 
-    .directive('eeioProjectNameDescription', [function () {
+    .directive('microprofileioProjectNameDescription', [function () {
         return {
             restrict: 'E',
             scope: {
                 configFile: '='
             },
             templateUrl: 'app/templates/dir_projects_project_name_description.html',
-            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService',
+            controller: ['$scope', '$timeout', '$sce', 'microprofileioProjectsService',
                 function ($scope, $timeout, $sce, projectsService) {
                     $scope.project = {};
                     projectsService.getProject($scope.configFile).then(function (response) {
@@ -121,7 +121,7 @@ angular.module('microprofileio-projects', [])
         };
     }])
 
-    .directive('eeioProjectDoc', [function () {
+    .directive('microprofileioProjectDoc', [function () {
         return {
             restrict: 'E',
             scope: {
@@ -129,7 +129,7 @@ angular.module('microprofileio-projects', [])
                 resource: '='
             },
             templateUrl: 'app/templates/dir_projects_project_doc.html',
-            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService',
+            controller: ['$scope', '$timeout', '$sce', 'microprofileioProjectsService', 'microprofileioProjectsDocService',
                 function ($scope, $timeout, $sce, projectsService, docService) {
                     $scope.project = {};
                     projectsService.getProject($scope.configFile).then(function (response) {
@@ -155,14 +155,14 @@ angular.module('microprofileio-projects', [])
         };
     }])
 
-    .directive('eeioProjectDocRelated', [function () {
+    .directive('microprofileioProjectDocRelated', [function () {
         return {
             restrict: 'E',
             scope: {
                 configFile: '='
             },
             templateUrl: 'app/templates/dir_projects_project_doc_related.html',
-            controller: ['$scope', '$timeout', 'eeioProjectsService',
+            controller: ['$scope', '$timeout', 'microprofileioProjectsService',
                 function ($scope, $timeout, projectsService) {
                     $scope.related = {};
                     projectsService.getProject($scope.configFile).then(function (response) {
@@ -177,14 +177,14 @@ angular.module('microprofileio-projects', [])
         };
     }])
 
-    .directive('eeioApplicationPage', [function () {
+    .directive('microprofileioApplicationPage', [function () {
         return {
             restrict: 'E',
             scope: {
                 resource: '='
             },
             templateUrl: 'app/templates/dir_application_page.html',
-            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService', '$location',
+            controller: ['$scope', '$timeout', '$sce', 'microprofileioProjectsService', 'microprofileioProjectsDocService', '$location',
                 function ($scope, $timeout, $sce, projectsService, docService, $location) {
                     projectsService.getAppPage($scope.resource).then(function (response) {
                         $timeout(function () {
@@ -203,7 +203,7 @@ angular.module('microprofileio-projects', [])
         };
     }])
 
-    .directive('eeioApplicationPageHeader', [function () {
+    .directive('microprofileioApplicationPageHeader', [function () {
         return {
             restrict: 'E',
             scope: {
