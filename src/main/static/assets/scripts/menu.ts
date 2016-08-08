@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-menu', [])
 
-    .factory('eeioMenuService', [
+    .factory('microprofileioMenuService', [
         function () {
             var selectedMenu = null;
             return {
@@ -16,12 +16,12 @@ angular.module('microprofileio-menu', [])
         }
     ])
 
-    .directive('eeioMenu', [function () {
+    .directive('microprofileioMenu', [function () {
         return {
             restrict: 'E',
             scope: {},
             templateUrl: 'app/templates/dir_menu.html',
-            controller: ['$element', '$scope', '$timeout', 'eeioMenuService', function ($element, $scope, $timeout, srv) {
+            controller: ['$element', '$scope', '$timeout', 'microprofileioMenuService', function ($element, $scope, $timeout, srv) {
                 $scope.setSelected = function (value) {
                     $timeout(function () {
                         $scope.$apply(function () {

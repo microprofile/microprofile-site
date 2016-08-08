@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-contributors', [])
 
-    .factory('eeioContributorsService', [
+    .factory('microprofileioContributorsService', [
         '$http',
         function ($http) {
             return {
@@ -16,14 +16,14 @@ angular.module('microprofileio-contributors', [])
         }
     ])
 
-    .directive('eeioContributorSummary', [function () {
+    .directive('microprofileioContributorSummary', [function () {
         return {
             restrict: 'E',
             scope: {
                 login: '='
             },
             templateUrl: 'app/templates/dir_contributors_contributor_summary.html',
-            controller: ['$scope', '$timeout', 'eeioContributorsService', function ($scope, $timeout, contributorsService) {
+            controller: ['$scope', '$timeout', 'microprofileioContributorsService', function ($scope, $timeout, contributorsService) {
                 contributorsService.getContributor($scope.login).then(function (response) {
                     $timeout(function () {
                         $scope.$apply(function () {
@@ -35,14 +35,14 @@ angular.module('microprofileio-contributors', [])
         };
     }])
 
-    .directive('eeioContributorsList', [function () {
+    .directive('microprofileioContributorsList', [function () {
         return {
             restrict: 'E',
             scope: {
                 login: '='
             },
             templateUrl: 'app/templates/dir_contributors_contributors_list.html',
-            controller: ['$scope', '$timeout', 'eeioContributorsService', function ($scope, $timeout, contributorsService) {
+            controller: ['$scope', '$timeout', 'microprofileioContributorsService', function ($scope, $timeout, contributorsService) {
                 contributorsService.getContributors().then(function (response) {
                     $timeout(function () {
                         $scope.$apply(function () {

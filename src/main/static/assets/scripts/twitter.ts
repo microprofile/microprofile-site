@@ -2,13 +2,13 @@
 
 angular.module('microprofileio-twitter', [])
 
-    .directive('eeioCardTwitter', ['$window', function ($window) {
+    .directive('microprofileioCardTwitter', ['$window', function ($window) {
         return {
             restrict: 'A',
             scope: {},
             templateUrl: 'app/templates/dir_card_twitter.html',
-            controller: ['$scope', '$timeout', 'eeioTwitterService', function ($scope, $timeout, eeioTwitterService) {
-                eeioTwitterService.getTweets(function (data) {
+            controller: ['$scope', '$timeout', 'microprofileioTwitterService', function ($scope, $timeout, microprofileioTwitterService) {
+                microprofileioTwitterService.getTweets(function (data) {
                     $timeout(function () {
                         $scope.$apply(function () {
                             // author, authorName, date, id, image, message
@@ -45,7 +45,7 @@ angular.module('microprofileio-twitter', [])
         };
     }])
 
-    .factory('eeioTwitterService', ['$http', function ($http) {
+    .factory('microprofileioTwitterService', ['$http', function ($http) {
         return {
             getTweets: function (success) {
                 $http.get('api/twitter').then(success);

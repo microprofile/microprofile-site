@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-footer', [])
 
-    .directive('eeioFooter', [function () {
+    .directive('microprofileioFooter', [function () {
         return {
             restrict: 'E',
             scope: {

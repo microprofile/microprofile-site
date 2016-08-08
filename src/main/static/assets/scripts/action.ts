@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-action', [])
 
-    .directive('eeioCardAction', [function () {
+    .directive('microprofileioCardAction', [function () {
         return {
             restrict: 'A',
             scope: {},

@@ -78,9 +78,10 @@ gulp.task('lint-ts', function () {
         .pipe(tslint({
             configuration: {
                 quotemark: 'single'
-            }
+            },
+            formatter: "prose"
         }))
-        .pipe(tslint.report('prose'));
+        .pipe(tslint.report())
 });
 gulp.task('compile-ts', function () {
     return gulp.src('./assets/**/*.ts')

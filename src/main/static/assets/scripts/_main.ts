@@ -38,25 +38,25 @@ angular.module('microprofileio-main', [
                 })
                 .when('/projects', {
                     templateUrl: 'app/templates/page_documents.html',
-                    controller: ['eeioMenuService', function (menu) {
+                    controller: ['microprofileioMenuService', function (menu) {
                         menu.setSelected('docs');
                     }]
                 })
                 .when('/forum', {
                     templateUrl: 'app/templates/page_forum.html',
-                    controller: ['eeioMenuService', function (menu) {
+                    controller: ['microprofileioMenuService', function (menu) {
                         menu.setSelected('forum');
                     }]
                 })
                 .when('/contributors', {
                     templateUrl: 'app/templates/page_contributors.html',
-                    controller: ['eeioMenuService', function (menu) {
+                    controller: ['microprofileioMenuService', function (menu) {
                         menu.setSelected('contributors');
                     }]
                 })
                 .when('/faq', {
                     templateUrl: 'app/templates/page_faq.html',
-                    controller: ['eeioMenuService', function (menu) {
+                    controller: ['microprofileioMenuService', function (menu) {
                         menu.setSelected('faq');
                     }]
                 })
@@ -69,7 +69,7 @@ angular.module('microprofileio-main', [
                     controller: 'ProjectPageController'
                 })
                 .otherwise({
-                    controller: ['$scope', '$location', 'eeioMenuService', function ($scope, $location, menu) {
+                    controller: ['$scope', '$location', 'microprofileioMenuService', function ($scope, $location, menu) {
                         $scope.path = $location.path();
                         menu.setSelected(null);
                     }],
@@ -78,13 +78,13 @@ angular.module('microprofileio-main', [
         }
     ])
 
-    .controller('ProjectPageController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
+    .controller('ProjectPageController', ['$route', '$scope', 'microprofileioMenuService', function ($route, $scope, menu) {
         $scope.configFile = $route.current.params['configFile'];
         $scope.resource = $route.current.params['resourceName'];
         menu.setSelected('docs');
     }])
 
-    .controller('HomeController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
+    .controller('HomeController', ['$route', '$scope', 'microprofileioMenuService', function ($route, $scope, menu) {
         $scope.resource = $route.current.params['resourceName'];
         if (!$scope.resource) {
             $scope.resource = 'frontpage.adoc';

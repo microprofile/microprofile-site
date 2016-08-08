@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-header', [])
 
-    .directive('eeioHeader', ['$window', function ($window) {
+    .directive('microprofileioHeader', ['$window', function ($window) {
         return {
             restrict: 'E',
             transclude: true,
@@ -29,7 +29,7 @@ angular.module('microprofileio-header', [])
                         'opacity': (title.offset().top - $(window).scrollTop()) / 100
                     });
                     // header out
-                    var menu = header.find('eeio-menu');
+                    var menu = header.find('microprofileio-menu');
                     if (el.outerHeight() < step) {
                         if (!header.hasClass('floating')) {
                             header.addClass('floating');

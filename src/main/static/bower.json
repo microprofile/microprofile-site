@@ -4,18 +4,18 @@
   "dependencies": {
     "jquery": "2.1.4",
     "underscore": "1.8.3",
-    "angular": "1.5.0",
-    "angular-route": "1.5.0",
-    "angular-mocks": "1.5.0",
+    "angular": "1.5.8",
+    "angular-route": "1.5.8",
+    "angular-mocks": "1.5.8",
     "DefinitelyTyped": "master",
-    "normalize-css": "normalize.css#3.0.3",
-    "font-awesome": "4.4.0",
-    "ngstorage": "~0.3.10",
-    "angular-cookies": "1.5.0",
-    "angular-resource": "1.5.0",
+    "normalize-css": "normalize.css#4.2.0",
+    "font-awesome": "4.6.3",
+    "ngstorage": "~0.3.11",
+    "angular-cookies": "1.5.8",
+    "angular-resource": "1.5.8",
     "lato": "0.3.0"
   },
   "resolutions": {
-    "angular": "1.5.0"
+    "angular": "1.5.8"
   }
 }

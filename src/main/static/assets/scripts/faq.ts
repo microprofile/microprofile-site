@@ -2,7 +2,7 @@
 
 angular.module('microprofileio-faq', [])
 
-    .directive('eeioFaqQuestions', [function () {
+    .directive('microprofileioFaqQuestions', [function () {
         return {
             restrict: 'A',
             scope: {},
