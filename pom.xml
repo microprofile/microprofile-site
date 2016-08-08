@@ -260,6 +260,7 @@
                      <goal>read-project-properties</goal>
                   </goals>
                   <configuration>
+                     <quiet>true</quiet>
                      <files>
                         <!-- Optional helper file to store your Github and Twitter tokens
                              This file is Git Ignored and should never be checked in -->
