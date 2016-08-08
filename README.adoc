@@ -195,8 +195,10 @@ tveronezi@ubatuba:microprofile.io$ mvn frontend:karma
        PhantomJS 1.9.8 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.039 secs / 0.009 secs)
 ----
 
-The default browser is PhantonJS. In order to debug with the help of a real browser, uncomment this line in
-link:https://github.com/jcpevangelists/microprofile.io/blob/master/src/main/static/karma.conf.js[karma.conf.js]
+TODO: Link below is incorrect
+
+The default browser is PhantomJS. In order to debug with the help of a real browser, uncomment this line in
+link:https://github.com/microprofile/microprofile.io/blob/master/src/main/static/karma.conf.js[karma.conf.js]
 
 [source:javascript]
 ----
@@ -210,20 +212,19 @@ browsers: [
 
 When you execute `mvn frontend:karma`, a browser window will popup.
 
-== How to publish content?
+== TODO OUT OF DATE - How to publish content?
 
-The content of this application is based on another github project: link:https://github.com/jcpevangelists/microprofile.io.config[].
+Some of the content of this application is based on another Github project: link:https://github.com/microprofile/microprofile.io.config[].
 
-The files under link:https://github.com/jcpevangelists/microprofile.io.config/tree/master/specs[] configure the projects
+The files under link:https://github.com/microprofile/microprofile.io.config/tree/master/specs[] configure the projects
 listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/docs[].
 
-This file - link:https://github.com/jcpevangelists/microprofile.io.config/blob/master/pages/microprofile_guardians.adoc[] - is the
+This file - link:https://github.com/microprofile/microprofile.io.config/blob/master/pages/microprofile.adoc[] - is the
 one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/[]. The other
 files go to the `page` route. For example, link:https://github.com/jcpevangelists/microprofile.io.config/blob/master/pages/page_a.adoc[]
 goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/page/page_a.adoc[].
 
-Updates on link:https://github.com/jcpevangelists/microprofile.io.config/[] are automatically reflected on the demo site.
-
+Updates on link:https://github.com/microprofile/microprofile.io.config/[] are automatically reflected on the demo site.
 
 == Production Architecture
 
