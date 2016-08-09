@@ -13,7 +13,7 @@ Changes in this source code will automatically update the demo application.
 
 == How to build and run the application locally?
 
-You will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). You can use this value as a environment value (*github_atoken*) or
+You will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). You can use this value as a environment value (*microprofile_github_atoken*) or
 a system property (*io.github.token*). If both are set, *io.github.token* will be used.
 
 You will also need a Twitter OAuth Token.  Visit link:https://dev.twitter.com/oauth/overview/application-owner-access-tokens[Twitter Application Tokens] for it.

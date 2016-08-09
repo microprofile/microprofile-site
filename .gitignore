@@ -52,6 +52,3 @@ rebel.xml
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-
-# Helper properties file to manage private tokens
-src/main/config/microprofile_tokens.properties
