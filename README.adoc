@@ -13,25 +13,12 @@ Changes in this source code will automatically update the demo application.
 
 == How to build and run the application locally?
 
-You will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). You can use this value as a environment value (*github_atoken*) or
-a system property (*io.github.token*). If both are set, *io.github.token* will be used.
-
-You will also need a Twitter OAuth Token.  Visit link:https://dev.twitter.com/oauth/overview/application-owner-access-tokens[Twitter Application Tokens] for it.
-Export the following environment variables based on the tokens from Twitter:
-
-```
-project_twitter_oauth_consumer_key
-project_twitter_oauth_consumer_secret
-project_twitter_oauth_access_token
-project_twitter_oauth_access_token_secret
-```
-
-For now, since we're not using Twitter integration, they just have to be not-blank.
-
-If you don't have a token, ask TODO for it.
-
-Once you have the token ready, simply run `mvn clean install tomee:run`. Your server will be available at
+Simply run `mvn clean install tomee:run`. Your server will be available at
 http://localhost:8080/
+
+If you want to the GitHub integration to work, you will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). Set the `microprofile_github_atoken` value in `src/main/resources/base.properties`
+
+Currently you can ignore the twitter integration tokens, they are not feature complete (and should probably be in a seperate code branch).
 
 == Node.js and Gulp
 

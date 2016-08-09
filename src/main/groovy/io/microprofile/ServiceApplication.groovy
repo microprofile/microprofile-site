@@ -11,7 +11,7 @@ import javax.inject.Inject
 @Lock(LockType.READ)
 class ServiceApplication {
     @Inject
-    @Config(value = 'github_atoken')
+    @Config(value = 'microprofile_github_atoken')
     private String githubAuthToken
 
     String getGithubAuthToken() {

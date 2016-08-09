@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans>
-  <interceptors>
-    <class>io.microprofile.CachedInterceptor</class>
-  </interceptors>
+   <interceptors>
+      <class>io.microprofile.CachedInterceptor</class>
+   </interceptors>
 </beans>
