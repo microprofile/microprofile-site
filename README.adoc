@@ -247,6 +247,9 @@ The deploy process creates a zip file which has the executable jar, and bundles 
 
 === Build and deploy manually
 
+**Note** 
+Before running this command, one should make sure `microprofile_github_atoken` in `src/main/resources/base.properties` is set to a production value, or should override it using one of the ways afforded by the Sabot project.
+
 `mvn clean package tomee:exec assembly:assembly && eb deploy`
 
 === Config file descriptions
