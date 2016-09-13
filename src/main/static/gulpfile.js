@@ -101,7 +101,10 @@ gulp.task('copy-ts', function () {
     return gulp.src('./assets/**/*.ts')
         .pipe(gulp.dest('../../../target/static-resources/app/'));
 });
-
+gulp.task('presentations', function () {
+    return gulp.src('./assets/**/*.pdf')
+        .pipe(gulp.dest('../../../target/static-resources/app/'));
+});
 gulp.task('js-third-party', function () {
     return gulp.src([
         './bower_components/underscore/underscore-min.js',
@@ -136,7 +139,7 @@ gulp.task('clean', function (callback) {
     }, callback);
 });
 
-gulp.task('build', gulpsync.sync(['clean', 'html', 'js', 'css', 'copy-all']));
+gulp.task('build', gulpsync.sync(['clean', 'html', 'js', 'css', 'presentations', 'copy-all']));
 gulp.task('build-with-tests', gulpsync.sync(['build', 'test']));
 
 gulp.task('default', gulpsync.sync(['build']), function () {

@@ -12,7 +12,8 @@ angular.module('microprofileio-main', [
     'microprofileio-twitter',
     'microprofileio-survey',
     'microprofileio-action',
-    'microprofileio-faq'
+    'microprofileio-faq',
+    'microprofileio-presentations'
 ])
 
     .config([
@@ -58,6 +59,12 @@ angular.module('microprofileio-main', [
                     templateUrl: 'app/templates/page_faq.html',
                     controller: ['microprofileioMenuService', function (menu) {
                         menu.setSelected('faq');
+                    }]
+                })
+                .when('/presentations', {
+                    templateUrl: 'app/templates/page_presentations.html',
+                    controller: ['microprofileioMenuService', function (menu) {
+                        menu.setSelected('presentations');
                     }]
                 })
                 .when('/project/:configFile/:resourceName*', {
