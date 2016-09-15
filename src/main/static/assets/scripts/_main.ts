@@ -13,6 +13,7 @@ angular.module('microprofileio-main', [
     'microprofileio-survey',
     'microprofileio-action',
     'microprofileio-faq',
+    'microprofileio-blog',
     'microprofileio-presentations'
 ])
 
@@ -59,6 +60,12 @@ angular.module('microprofileio-main', [
                     templateUrl: 'app/templates/page_faq.html',
                     controller: ['microprofileioMenuService', function (menu) {
                         menu.setSelected('faq');
+                    }]
+                })
+                .when('/blog/:resourceName*', {
+                    templateUrl: 'app/templates/page_blog.html',
+                    controller: ['microprofileioMenuService', '$scope', '$route', (menu, $scope, $route) => {
+                        $scope.resource = $route.current.params['resourceName'];
                     }]
                 })
                 .when('/presentations', {
