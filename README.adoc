@@ -16,9 +16,11 @@ Changes in this source code will automatically update the demo application.
 Simply run `mvn clean install tomee:run`. Your server will be available at
 http://localhost:8080/
 
-If you want to the GitHub integration to work, you will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). Set the `microprofile_github_atoken` value in `src/main/resources/base.properties`
+If you want to the GitHub integration to work, you will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). Set the `microprofile_github_atoken` value in `src/main/resources/base.properties`.  When you generate that token Github will present you with a list of 20+ possible permissions.  The only required permission is `read:org`.
 
 Currently you can ignore the twitter integration tokens, they are not feature complete (and should probably be in a seperate code branch).
+
+If you are making changes to the https://github.com/microprofile/microprofile.io[microprofile.io] configuration repo, you can test that by having your local copy point to your forked version where the changes live.  Simply edit `src/main/resources/base.properties` and change the default `microprofile_config_root=microprofile/microprofile.io` to the individual's repo who filed the `microprofile.io` pull request.  For example `microprofile_config_root=ivannov/microprofile.io` is how you would point to https://github.com/ivannov/microprofile.io
 
 == Node.js and Gulp
 
