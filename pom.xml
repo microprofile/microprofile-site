@@ -18,8 +18,8 @@
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <tomee.version>7.0.2</tomee.version>
-      <javaee.api>7.0</javaee.api>
-      <groovy.version>2.4.7</groovy.version>
+      <javaee.api>7.0-1</javaee.api>
+      <groovy.version>2.4.8</groovy.version>
       <jdk.version>1.8</jdk.version>
    </properties>
 
@@ -27,7 +27,7 @@
       <dependency>
          <groupId>org.twitter4j</groupId>
          <artifactId>twitter4j-core</artifactId>
-         <version>4.0.4</version>
+         <version>4.0.6</version>
       </dependency>
       <dependency>
          <groupId>org.tomitribe</groupId>
@@ -58,7 +58,7 @@
       <dependency>
          <groupId>org.spockframework</groupId>
          <artifactId>spock-core</artifactId>
-         <version>1.0-groovy-2.4</version>
+         <version>1.1-groovy-2.4-rc-3</version>
          <scope>test</scope>
       </dependency>
       <dependency> <!-- enables mocking of classes (in addition to interfaces) -->
@@ -70,7 +70,7 @@
       <dependency> <!-- enables mocking of classes without default constructor (together with CGLIB) -->
          <groupId>org.objenesis</groupId>
          <artifactId>objenesis</artifactId>
-         <version>2.4</version>
+         <version>2.5.1</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
