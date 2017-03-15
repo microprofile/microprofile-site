@@ -158,10 +158,13 @@ The deploy process creates a zip file which has the executable jar, and bundles 
 
 === Build and deploy manually
 
-**Note** 
+**Note**
 Before running this command, one should make sure `microprofile_github_atoken` in `src/main/resources/base.properties` is set to a production value, or should override it using one of the ways afforded by the Sabot project.
 
-`mvn clean package tomee:exec assembly:assembly && eb deploy`
+`mvn clean package tomee:exec assembly:single && eb deploy microprofile-io-env`
+
+**Note**
+If the contributors page is broken, it's likely because you did not set the `microprofile_github_atoken`.
 
 === Config file descriptions
 
@@ -179,7 +182,7 @@ This directory is filtered and copied to `.elasticbeanstalk` in the root the mav
 
 `src/main/config/ziproot`
 
-This directory is filtered and copied to `/` in the root of the assembled ZIP archive. 
+This directory is filtered and copied to `/` in the root of the assembled ZIP archive.
 
 * `Procfile` tells the AWS Agent what command to run to launch your deployment. It launches the next script:
 * `kill-before-run.sh` ensures that all existing Java processes have been terminated before launching the new Java archive. This is sort of a hack, if someone has a better way to do this, it'd be much appreciated.
