@@ -7,6 +7,6 @@ global:
   application_name: microprofile.io-application
   default_ec2_keyname: microprofile-key-pair
   default_platform: Java 8
-  default_region: us-west-1
+  default_region: us-west-2
   profile: null
   sc: git
