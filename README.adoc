@@ -156,6 +156,16 @@ If non-static asset:
 
 The deploy process creates a zip file which has the executable jar, and bundles several AWS config files.
 
+=== Setup
+
+You should install the amazon command line tools using your package manager. Setup your `.aws` directory and credentials file: http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
+
+You can test your credentials by issuing this command, the output should list the environment:
+```
+jonathanfisher@odin ~/dev/microprofile-site $ eb list
+* microprofile-io-env
+```
+
 === Build and deploy manually
 
 **Note**
