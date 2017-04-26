@@ -156,14 +156,32 @@ If non-static asset:
 
 The deploy process creates a zip file which has the executable jar, and bundles several AWS config files.
 
+== Prerequisites
+
+* Request an AWS Access Key ID and Secret Access Key for the Microprofile account.
+* Request the GitHub token.
+
 === Setup
 
 You should install the http://docs.aws.amazon.com/cli/latest/userguide/installing.html[amazon command line tools] using your package manager. Setup your `.aws` directory and credentials file: http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
 
-You can test your credentials by issuing this command, the output should list the environment:
+Clone the source for this project to your local drive and cd to that directory.
+
+Run the command:
+
 ```
-jonathanfisher@odin ~/dev/microprofile-site $ eb list
-* microprofile-io-env
+$ mvn clean package
+```
+Note: this takes a while to run and may appear to hang, but it is actually working.
+
+Test your credentials by issuing this command:
+```
+$ eb list
+```
+
+If everything worked correctly, you should see:
+```
+microprofile-io-env
 ```
 
 === Build and deploy manually
