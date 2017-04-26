@@ -158,7 +158,7 @@ The deploy process creates a zip file which has the executable jar, and bundles 
 
 === Setup
 
-You should install the amazon command line tools using your package manager. Setup your `.aws` directory and credentials file: http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
+You should install the http://docs.aws.amazon.com/cli/latest/userguide/installing.html[amazon command line tools] using your package manager. Setup your `.aws` directory and credentials file: http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
 
 You can test your credentials by issuing this command, the output should list the environment:
 ```
