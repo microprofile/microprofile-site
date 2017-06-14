@@ -7,6 +7,7 @@ angular.module('microprofileio-projects', [])
             return {
                 normalizeResources: function (pRoot, sRoot, originalHtml) {
                     var content = angular.element(originalHtml);
+                    content.find('a.anchor').remove();
                     content.find('[href]').each(function (index, el) {
                         var ael = angular.element(el);
                         var currentHref = ael.attr('href');
@@ -45,9 +46,6 @@ angular.module('microprofileio-projects', [])
         '$q',
         function ($http, $q) {
             return {
-                getSpecs: function () {
-                    return $http.get('api/specs');
-                },
                 getProjects: function () {
                     return $http.get('api/project');
                 },
@@ -81,13 +79,6 @@ angular.module('microprofileio-projects', [])
             scope: {},
             templateUrl: 'app/templates/dir_projects_projects_shortlist.html',
             controller: ['$scope', '$timeout', 'microprofileioProjectsService', function ($scope, $timeout, projectsService) {
-                projectsService.getSpecs().then(function (response) {
-                    $timeout(function () {
-                        $scope.$apply(function () {
-                            $scope.specs = response.data;
-                        });
-                    });
-                });
                 projectsService.getProjects().then(function (response) {
                     $timeout(function () {
                         $scope.$apply(function () {

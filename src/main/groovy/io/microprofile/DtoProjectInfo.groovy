@@ -6,7 +6,6 @@ import groovy.transform.ToString
 @EqualsAndHashCode
 @ToString(includePackage = false, includeNames = true, includeFields = true, excludes = ['metaClass'])
 class DtoProjectInfo {
-    String configFile
     String name
     String friendlyName
     String description
@@ -23,13 +22,13 @@ class DtoProjectInfo {
             return false
         }
         DtoProjectInfo that = (DtoProjectInfo) o
-        if (configFile != that.configFile) {
+        if (name != that.name) {
             return false
         }
         return true
     }
 
     int hashCode() {
-        return configFile.hashCode()
+        return name.hashCode()
     }
 }

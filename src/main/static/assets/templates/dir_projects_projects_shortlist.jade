@@ -10,5 +10,5 @@ div
     .all-projects(ng-show="projects.length > 0")
       h1 All documents
       ul
-        li(ng-repeat="project in projects", ng-href="project/{{project.configFile}}")
-          a(ng-href="project/{{project.configFile}}") {{project.friendlyName ? project.friendlyName : project.name}}
+        li(ng-repeat="project in projects")
+          a(ng-href="project/{{project.name}}") {{project.friendlyName ? project.friendlyName : project.name}}

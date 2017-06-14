@@ -22,34 +22,28 @@ class ApiProject {
     }
 
     @GET
-    @Path('/{configFile}')
-    DtoProjectDetail get(@PathParam("configFile") String configFile) {
-        return srv.getDetails(configFile)
+    @Path('/{projectName : .+}')
+    DtoProjectDetail get(@PathParam("projectName") String projectName) {
+        return srv.getDetails(projectName)
     }
 
     @GET
-    @Path('/page/{configFile}/{projectResource : .+}')
-    DtoProjectPage getPage(@PathParam("configFile") String configFile,
-                           @PathParam("projectResource") String projectResource) {
+    @Path('/page/{resourcePath : .+}')
+    DtoProjectPage getPage(@PathParam("resourcePath") String resourcePath) {
+        def projectName = resourcePath.split('/').take(2).join('/')
+        def projectResource = resourcePath.split('/').drop(2).join('/') ?: null
         return new DtoProjectPage(
-                content: srv.getProjectPage(configFile, projectResource)
+                content: srv.getProjectPage(projectName, projectResource)
         )
     }
 
     @GET
-    @Path('/page/{configFile}/')
-    DtoProjectPage getPage(@PathParam("configFile") String configFile) {
-        return new DtoProjectPage(
-                content: srv.getProjectPage(configFile, null)
-        )
-    }
-
-    @GET
-    @Path('/raw/{configFile}/{projectResource : .+}')
+    @Path('/raw/{resourcePath : .+}')
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    Response getFile(@PathParam("configFile") String configFile,
-                     @PathParam("projectResource") String projectResource) {
-        byte[] data = srv.getRaw(configFile, projectResource)
+    Response getFile(@PathParam("resourcePath") String resourcePath) {
+        def projectName = resourcePath.split('/').take(2).join('/')
+        def projectResource = resourcePath.split('/').drop(2).join('/') ?: null
+        byte[] data = srv.getRaw(projectName, projectResource)
         return Response.ok(data).build()
     }
 
