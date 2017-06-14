@@ -1,41 +1,37 @@
 @import "variables"
 
+@import "variables"
+
 microprofileio-footer
+  p, a
+    color: #ffffff
+    font-weight: 100
   > div
-    width: 100%
-    > div
-      &:first-child
-        display: flex
-        justify-content: space-between
-        align-items: center
-        padding: 10px 40px
-        @media (max-width: $app-mobile-width)
-          padding: 10px
-          flex-direction: column
-        background-color: $app-footer-bg-color
-        > a
-          > img
-            width: 130px
-            height: auto
-        > microprofileio-menu > div > ul
-          list-style: none
-          margin: 0
-          padding: 0
-          @media (max-width: $app-mobile-width)
-            margin-top: 20px
-          > li
-            display: inline
-            margin-left: 30px
-            *
-              font-size: 10px !important
-            &:first-child
-              margin-left: 0
-            > a
-              text-transform: uppercase
-              font-size: $app-menu-font-size
-              color: $app-white
-              @media (max-width: $app-mobile-width)
-                font-size: $app-menu-font-size-mobile
-      &:last-child
-        background-color: #000000
-        height: 20px
+    background-color: $app-footer-bg-color
+  .footer-body
+    display: flex
+    align-items: center
+    > a > img
+      width: auto
+      height: 30px
+  .links
+    flex-grow: 1
+    display: flex
+    justify-content: flex-end
+    flex-wrap: wrap
+    a
+      text-align: right
+      margin: 0 0 30px 30px
+      font-size: 15px
+  .footer-body
+    padding: 40px 40px 0 40px
+    > a
+      margin-bottom: 30px
+  .footer-observation
+    padding: 15px 40px
+    background-color: #000000
+    p
+      margin: 0
+      text-align: center
+      font-size: 12px
+      font-style: italic

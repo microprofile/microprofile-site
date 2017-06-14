@@ -81,10 +81,17 @@ class ServiceProject {
         if (!computedResourceName) {
             computedResourceName = conf?.home as String
         }
+        def defaultValue = false
         if (!computedResourceName) {
+            defaultValue = true
             computedResourceName = 'README.adoc'
         }
-        return github.getRepoPage(projectName, computedResourceName)
+        def result = github.getRepoPage(projectName, computedResourceName)
+        if(!result && defaultValue) {
+            // try again with markdown
+            result = github.getRepoPage(projectName, 'README.md')
+        }
+        return result
     }
 
     byte[] getApplicationRaw(String resourceName) {

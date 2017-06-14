@@ -73,6 +73,18 @@ angular.module('microprofileio-main', [
         }
     ])
 
+    .filter('microprofileioTruncateText', () => {
+        return (input, maxLength) => {
+            let value = input || '';
+            let overflow = false;
+            if(value.length > maxLength) {
+               value = value.substr(0, maxLength);
+                overflow = true
+            }
+            return value + (overflow ? '...' : '');
+        };
+    })
+
     .controller('ProjectPageController', ['$route', '$scope', 'microprofileioMenuService', function ($route, $scope, menu) {
         let resourcePath = $route.current.params['resourcePath'];
         $scope.configFile = resourcePath.split('/').slice(0, 2).join('/');
