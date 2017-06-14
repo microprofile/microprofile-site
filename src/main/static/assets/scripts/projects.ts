@@ -264,6 +264,31 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
         };
     }])
 
+    .directive('microprofileioShareProject', ['$window', function ($window) {
+        return {
+            restrict: 'A',
+            scope: {
+                project: "=",
+                media: "@"
+            },
+            link: function ($scope, $element) {
+                $element.bind('click', function () {
+                    var url;
+                    if ('twitter' === $scope.media) {
+                        url = 'https://twitter.com/intent/tweet?text=Check out '
+                            + window.location.origin + '/projects/' + $scope.project.info.name;
+                    } else if ('facebook' === $scope.media) {
+                        url = 'http://www.facebook.com/sharer/sharer.php?u='
+                            + window.location.origin + '/projects/' + $scope.project.info.name;
+                    }
+                    if (url) {
+                        $window.open(url, 'name', 'width=600,height=400');
+                    }
+                });
+            }
+        };
+    }])
+
     .run(function () {
         // placeholder
     });
