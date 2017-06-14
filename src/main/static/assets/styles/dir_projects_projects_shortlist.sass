@@ -1,75 +1,65 @@
 @import "variables"
 
 microprofileio-projects-shortlist
-  $collapse-value: 800px
-  $margin: 50px
+  $stroke: lighten(#d3d3d3, 10%)
   > div
-    > h1
-      font-weight: 100
-      text-align: center
-      margin-top: 0
-      font-size: 36px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    > div
+      max-width: 1100px
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+  div[microprofileio-project-card]
+    background-color: #ffffff
+    margin: 30px
+    width: 450px
+    height: 150px
+    border: solid $stroke 1px
+    &:hover
+      border-color: $app-hover-color
+    > div
+      height: 100%
+      display: flex
+      flex-direction: column
+      > div, > a
+        padding: 10px 20px
+        &:first-child
+          flex-grow: 1
+    a.project-card-body
+      display: block
+      h3
+        margin: 0
+        color: $app-hover-color
+        font-weight: 300
+        font-size: 22px
+      p
+        font-size: 11px
+        font-weight: 300
+        color: $app-black
+    div.project-card-footer
+      display: flex
+      justify-content: space-between
+      align-items: center
+      border-top: solid $stroke 1px
+      > div:last-child
+        i:last-child
+          margin: 0 0 0 15px
 
+  div[microprofileio-project-card-contributors]
     > div
       display: flex
-      margin-top: $margin
-      @media (max-width: $collapse-value)
-        flex-direction: column
-      > div
-        &.all-projects
-          flex-shrink: 0
-          max-width: 400px
-          padding: 0 0 40px 40px
-          @media (max-width: $collapse-value)
-            padding: 10px
-            margin-top: $margin
-          > h1
-            margin: 0
-            font-weight: 100
-            font-size: 28px
-          > ul
-            list-style: none
-            padding: 0
-        &.specs
-          flex-grow: 1
-          background-color: $app-bg-white
-          padding: 10px
-          display: flex
-          flex-wrap: wrap
-          justify-content: center
-          *
-            margin: 0
-            padding: 0
-            font-weight: 100
-          > a[ng-repeat="project in specs"]
-            display: flex
-            flex-direction: column
-            border: solid #d6d9dc 2px
-            width: 400px
-            margin: 20px
-            > div:first-child
-              flex-grow: 1
-              > h1
-                padding: 20px
-                background-color: #d6d9dc
-                color: white
-                font-size: 30px
-              > h2
-                padding: 20px
-                font-size: 20px
-            > div:last-child
-              flex-shrink: 0
-              display: flex
-              justify-content: flex-end
-              > span
-                padding: 10px
-                border: solid #d6d9dc 1px
-                margin: 20px
-                color: #c5c8cb
-                font-size: 12px
-            &:hover
-              border-color: $app-hover-color
-              > div:last-child
-                > span
-                  border-color: $app-hover-color
-                  color: $app-hover-color
+      align-items: center
+    img
+      height: 35px
+      width: auto
+      border-radius: 30px
+      border: solid $stroke 1px
+      margin: 0 5px 0 0
+      &:last-child
+        margin: 0 10px 0 0
+
+  i
+    color: $stroke

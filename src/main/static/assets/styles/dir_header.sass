@@ -24,8 +24,6 @@ microprofileio-header
         flex-direction: column
         justify-content: center
         padding: 0 80px 40px 80px
-        @media (max-width: $app-mobile-width)
-          padding: 0 20px 20px 20px
         *
           color: $app-white
           font-weight: 100
@@ -96,33 +94,3 @@ microprofileio-header
           display: block
     @media (max-width: $app-mobile-width)
       @include is-floating
-
-/* Reusing docs.jpg for now, seemed suitable */
-microprofileio-header.presentations
-  .background
-    background-image: url(../images/docs.jpg)
-
-microprofileio-header.faq
-  .background
-    background-image: url(../images/FAQ.jpg)
-
-microprofileio-header.contributors
-  .background
-    background-image: url(../images/contributors.jpg)
-
-microprofileio-header.project
-  .background
-    background-image: url(../images/docs.jpg)
-
-microprofileio-header.forum
-  .background
-    background-image: url(../images/mail.jpg)
-
-microprofileio-header.docs
-  .background
-    background-image: url(../images/library.jpg)
-
-microprofileio-header.social
-  .background
-    background-image: url(../images/social.jpg)
-

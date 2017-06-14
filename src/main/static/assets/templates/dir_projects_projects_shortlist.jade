@@ -1,14 +1,4 @@
 div
   div
-    .specs(ng-show="specs.length > 0")
-      a(ng-repeat="project in specs", ng-href="project/{{project.configFile}}")
-        div
-          h1 {{project.friendlyName ? project.friendlyName : project.name}}
-          h2 {{project.description}}
-        div
-          span Check it out
-    .all-projects(ng-show="projects.length > 0")
-      h1 All documents
-      ul
-        li(ng-repeat="project in projects")
-          a(ng-href="project/{{project.name}}") {{project.friendlyName ? project.friendlyName : project.name}}
+    div(ng-repeat="project in projects")
+      div(microprofileio-project-card, data-project-name="project")

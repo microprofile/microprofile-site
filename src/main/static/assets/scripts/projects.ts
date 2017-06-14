@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('microprofileio-projects', [])
+angular.module('microprofileio-projects', ['microprofileio-contributors'])
 
     .factory('microprofileioProjectsDocService', ['$location',
         function ($location) {
@@ -83,6 +83,66 @@ angular.module('microprofileio-projects', [])
                     $timeout(function () {
                         $scope.$apply(function () {
                             $scope.projects = response.data;
+                        });
+                    });
+                });
+            }]
+        };
+    }])
+
+    .directive('microprofileioProjectCardContributors', [function () {
+        return {
+            restrict: 'A',
+            scope: {
+                project: '='
+            },
+            templateUrl: 'app/templates/dir_projects_project_card_contributors.html',
+            controller: ['$scope', '$timeout', function ($scope, $timeout) {
+                $scope.$watch('project', () => {
+                    if($scope.project && $scope.project.contributors) {
+                        $timeout(() => {
+                            $scope.$apply(() => {
+                                $scope.hasMore = $scope.project.contributors.length > 6;
+                                $scope.contributors = $scope.project.contributors.slice(0, 6);
+                            });
+                        });
+                    }
+                });
+            }]
+        };
+    }])
+
+    .directive('microprofileioProjectCardContributor', [function () {
+        return {
+            restrict: 'A',
+            scope: {
+                contributor: '='
+            },
+            templateUrl: 'app/templates/dir_projects_project_card_contributor.html',
+            controller: ['$scope', '$timeout', 'microprofileioContributorsService', function ($scope, $timeout, contributorService) {
+                contributorService.getContributor($scope.contributor.login).then(function (response) {
+                    $timeout(function () {
+                        $scope.$apply(function () {
+                            $scope.contributor = response.data;
+                        });
+                    });
+                });
+            }]
+        };
+    }])
+
+    .directive('microprofileioProjectCard', [function () {
+        return {
+            restrict: 'A',
+            scope: {
+                projectName: '='
+            },
+            templateUrl: 'app/templates/dir_projects_project_card.html',
+            controller: ['$scope', '$timeout', 'microprofileioProjectsService', function ($scope, $timeout, projectsService) {
+                projectsService.getProject($scope.projectName).then(function (response) {
+                    $timeout(function () {
+                        $scope.$apply(function () {
+                            $scope.project = response.data;
                         });
                     });
                 });
