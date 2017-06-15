@@ -22,7 +22,7 @@ import java.util.logging.Logger
 class CachedHolder {
     private Logger logger = Logger.getLogger(this.class.name)
 
-    private static final long TIMEOUT = TimeUnit.MINUTES.toMillis(1)
+    private static final long TIMEOUT = TimeUnit.MINUTES.toMillis(10)
 
     private ConcurrentMap<Object, Map<EntryKey, Object>> caches
     private Map<Long, Object> idInstance
