@@ -104,7 +104,7 @@ class ServiceProject {
 
     Collection<DtoContributor> getAllContributors() {
         Map<String, DtoContributor> contributors = [:]
-        github.getPublishedProjects().each { project ->
+        def computeProject = { String project ->
             def details = getDetails(project)
             details.contributors.each { projContributor ->
                 DtoContributor contributor = contributors.get(projContributor.login)
@@ -118,6 +118,8 @@ class ServiceProject {
                 contributor.contributions += projContributor.contributions
             }
         }
+        github.getPublishedProjects().each computeProject
+        computeProject('microprofile/microprofile-contributor-list')
         return contributors.values() as List<DtoContributor>
     }
 
