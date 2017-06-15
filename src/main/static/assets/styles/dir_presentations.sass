@@ -3,28 +3,45 @@
 /* This started out as a clone of the FAQ Questions SASS */
 div[microprofileio-presentations]
   > div
-    $div-width: 920px
     display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    > div
-      width: $div-width
+    @media (max-width: 1400px)
+      flex-direction: column
+    .text, .pic
+      height: 700px
+      @media (max-width: 1400px)
+        height: auto
+    .text
+      flex-grow: 1
       display: flex
-      flex-wrap: wrap
-      margin-bottom: 70px
-      @media (max-width: $div-width)
-        width: 100%
-        justify-content: center
-      > div.question
-        width: 400px
-        margin: 15px 30px
-        h2, p
-          font-weight: 300
-        h2
-          margin: 70px 0 0.94286em 0
-          font-size: 1.5em
-        p
-          font-size: 1em
-          line-height: 1.7em
-          margin: 0
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      > div
+        padding: 80px
+      h2
+        margin: 70px 0 0.94286em 0
+        line-height: 48px
+        font-size: 2.1875em
+      p
+        font-size: 1em
+        line-height: 1.9em
+        margin: 0 0 70px 0
+        i
+          vertical-align: super
+          font-size: .5em
+      a
+        margin: 0 5px
+        color: $app-hover-color
+      *
+        margin: 0
+        font-weight: 300
+        color: $app-black
+    .pic
+      flex-shrink: 0
+      img
+        height: 100%
+        width: auto
+        @media (max-width: 1400px)
+          height: auto
+          width: 100%
+          max-width: 875px

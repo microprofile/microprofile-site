@@ -2,76 +2,68 @@ package io.microprofile
 
 import org.yaml.snakeyaml.Yaml
 
-import javax.enterprise.context.ApplicationScoped
+import javax.ejb.Lock
+import javax.ejb.LockType
+import javax.ejb.Singleton
 import javax.inject.Inject
-import java.util.logging.Level
-import java.util.logging.Logger
+import java.nio.charset.StandardCharsets
 
-@ApplicationScoped
+@Singleton
+@Lock(LockType.READ)
 class ServiceProject {
-    private Logger logger = Logger.getLogger(this.class.name)
 
     @Inject
     private ServiceGithub github
 
-    private def loadYaml(DtoConfigFile configFile) {
+    private def loadYaml(String projectName) {
         try {
-            return new Yaml().load(configFile.content)
-        } catch (e) {
-            logger.log(Level.WARNING, "Invalid yaml file: '${configFile.name}'", e)
+            return new Yaml().load(new String(
+                    github.getRepoRaw(projectName, 'site.yaml'), StandardCharsets.UTF_8.name()
+            ))
+        } catch (FileNotFoundException ignore) {
+            //
         }
         return null
     }
 
-    private DtoProjectInfo getDtoProjectInfo(String configFile) {
-        DtoProjectInfo info = getAvailableProjects().find { it.configFile == configFile }
-        if (!info) {
-            throw new ExceptionApplication("Project not found: '${configFile}'")
-        }
-        return info
-    }
-
-    Collection<DtoProjectInfo> getAvailableProjects() {
-        Set<DtoProjectInfo> result = []
-        github.getConfigurationFiles().each {
-            def conf = loadYaml(it)
-            if (!conf) {
-                return
-            }
-            result << new DtoProjectInfo(
-                    configFile: it.name,
-                    name: conf.name as String,
-                    friendlyName: conf.friendly_name as String,
-                    description: conf.name ? github.getRepoDescription(conf.name as String) : '',
-                    home: conf.home as String,
-                    resources: conf.resources?.collect { resource ->
-                        def dto = new DtoProjectResource()
-                        if (String.class.isInstance(resource)) {
-                            dto.url = resource
-                        } else {
-                            dto.url = resource.url
-                            dto.title = resource.title
-                        }
-                        return dto
-                    },
-                    spec: conf.spec != null ? conf.spec : false,
-                    related: conf.related
+    private DtoProjectInfo getDtoProjectInfo(String projectName) {
+        def conf = loadYaml(projectName)
+        if (!conf) {
+            return new DtoProjectInfo(
+                    name: projectName,
+                    description: github.getRepoDescription(projectName) ?: ''
             )
         }
-        return result
+        return new DtoProjectInfo(
+                name: projectName,
+                friendlyName: conf.friendly_name as String,
+                description: github.getRepoDescription(projectName) ?: '',
+                home: conf.home as String,
+                resources: conf.resources?.collect { resource ->
+                    def dto = new DtoProjectResource()
+                    if (String.class.isInstance(resource)) {
+                        dto.url = resource
+                    } else {
+                        dto.url = resource.url
+                        dto.title = resource.title
+                    }
+                    return dto
+                },
+                related: conf.related
+        )
     }
 
-    DtoProjectDetail getDetails(String configFile) {
-        DtoProjectInfo info = getDtoProjectInfo(configFile)
-        def conf = loadYaml(github.getConfigurationFiles().find {
-            it.name == configFile
-        })
-        Set<DtoProjectContributor> contributors = github.getRepoContributors(conf.name as String)
+    @Cached
+    Collection<String> getAvailableProjects() {
+        return github.getPublishedProjects()
+    }
+
+    @Cached
+    DtoProjectDetail getDetails(String projectName) {
+        DtoProjectInfo info = getDtoProjectInfo(projectName)
+        Set<DtoProjectContributor> contributors = github.getRepoContributors(projectName)
         info.related.each { relatedIt ->
-            def relatedConf = loadYaml(github.getConfigurationFiles().find {
-                it.name == relatedIt
-            })
-            contributors.addAll(github.getRepoContributors(relatedConf.name))
+            contributors.addAll(github.getRepoContributors(relatedIt))
         }
         return new DtoProjectDetail(
                 info: info,
@@ -83,34 +75,37 @@ class ServiceProject {
         return github.getAppPage(resourceName)
     }
 
-    String getProjectPage(String configFile, String resourceName) {
-        def conf = loadYaml(github.getConfigurationFiles().find {
-            it.name == configFile
-        })
+    String getProjectPage(String projectName, String resourceName) {
+        def conf = loadYaml(projectName)
         def computedResourceName = resourceName
         if (!computedResourceName) {
-            computedResourceName = conf.home as String
+            computedResourceName = conf?.home as String
         }
+        def defaultValue = false
         if (!computedResourceName) {
+            defaultValue = true
             computedResourceName = 'README.adoc'
         }
-        return github.getRepoPage(conf.name as String, computedResourceName)
+        def result = github.getRepoPage(projectName, computedResourceName)
+        if(!result && defaultValue) {
+            // try again with markdown
+            result = github.getRepoPage(projectName, 'README.md')
+        }
+        return result
     }
-
 
     byte[] getApplicationRaw(String resourceName) {
         return github.getAppRaw(resourceName)
     }
 
-    byte[] getRaw(String configFile, String resourceName) {
-        DtoProjectInfo info = getDtoProjectInfo(configFile)
-        return github.getRepoRaw(info.name, resourceName)
+    byte[] getRaw(String projectName, String resourceName) {
+        return github.getRepoRaw(projectName, resourceName)
     }
 
     Collection<DtoContributor> getAllContributors() {
         Map<String, DtoContributor> contributors = [:]
-        getAvailableProjects().each { project ->
-            def details = getDetails(project.configFile)
+        def computeProject = { String project ->
+            def details = getDetails(project)
             details.contributors.each { projContributor ->
                 DtoContributor contributor = contributors.get(projContributor.login)
                 if (!contributor) {
@@ -119,10 +114,12 @@ class ServiceProject {
                     )
                     contributors.put(projContributor.login, contributor)
                 }
-                contributor.projects << project.name
+                contributor.projects << project
                 contributor.contributions += projContributor.contributions
             }
         }
+        github.getPublishedProjects().each computeProject
+        computeProject('microprofile/microprofile-contributor-list')
         return contributors.values() as List<DtoContributor>
     }
 

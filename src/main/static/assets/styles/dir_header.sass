@@ -24,17 +24,19 @@ microprofileio-header
         flex-direction: column
         justify-content: center
         padding: 0 80px 40px 80px
-        @media (max-width: $app-mobile-width)
-          padding: 0 20px 20px 20px
         *
           color: $app-white
           font-weight: 100
-        microprofileio-application-page-header
-          h1, h2
-            text-align: center
-            max-width: 700px
-          h1
-            margin-bottom: 20px
+        > div
+          display: flex
+          flex-direction: column
+          justify-content: center
+          align-items: center
+        h1, h2
+          text-align: center
+          max-width: 700px
+        h1
+          margin-bottom: 20px
       &.head
         flex-shrink: 0
         display: flex
@@ -97,32 +99,16 @@ microprofileio-header
     @media (max-width: $app-mobile-width)
       @include is-floating
 
-/* Reusing docs.jpg for now, seemed suitable */
-microprofileio-header.presentations
-  .background
-    background-image: url(../images/docs.jpg)
-
-microprofileio-header.faq
-  .background
-    background-image: url(../images/FAQ.jpg)
-
-microprofileio-header.contributors
-  .background
-    background-image: url(../images/contributors.jpg)
-
-microprofileio-header.project
-  .background
-    background-image: url(../images/docs.jpg)
-
-microprofileio-header.forum
-  .background
-    background-image: url(../images/mail.jpg)
-
-microprofileio-header.docs
-  .background
-    background-image: url(../images/library.jpg)
-
-microprofileio-header.social
-  .background
-    background-image: url(../images/social.jpg)
-
+microprofileio-header
+  &.docs
+    .background
+      background-size: cover
+      background: url(../images/project-all.jpg) no-repeat center bottom
+  &.project
+    .background
+      background-size: cover
+      background: url(../images/project-detail.jpg) no-repeat center bottom
+  &.presentations
+    .background
+      background-size: cover
+      background: url(../images/presentation.jpg) no-repeat center bottom

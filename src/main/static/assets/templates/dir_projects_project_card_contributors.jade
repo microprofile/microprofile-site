@@ -1,0 +1,4 @@
+div
+  div(ng-repeat="contributor in contributors", microprofileio-project-card-contributor, data-contributor="contributor")
+  .has-more(ng-show="hasMore")
+    i.fa.fa-plus
