@@ -8,12 +8,9 @@ angular.module('microprofileio-main', [
     'microprofileio-footer',
     'microprofileio-projects',
     'microprofileio-contributors',
-    'microprofileio-googlegroups',
-    'microprofileio-twitter',
     'microprofileio-survey',
     'microprofileio-action',
     'microprofileio-faq',
-    'microprofileio-blog',
     'microprofileio-presentations'
 ])
 
@@ -44,12 +41,6 @@ angular.module('microprofileio-main', [
                         menu.setSelected('docs');
                     }]
                 })
-                .when('/forum', {
-                    templateUrl: 'app/templates/page_forum.html',
-                    controller: ['microprofileioMenuService', function (menu) {
-                        menu.setSelected('forum');
-                    }]
-                })
                 .when('/contributors', {
                     templateUrl: 'app/templates/page_contributors.html',
                     controller: ['microprofileioMenuService', function (menu) {
@@ -62,23 +53,13 @@ angular.module('microprofileio-main', [
                         menu.setSelected('faq');
                     }]
                 })
-                .when('/blog/:resourceName*', {
-                    templateUrl: 'app/templates/page_blog.html',
-                    controller: ['microprofileioMenuService', '$scope', '$route', (menu, $scope, $route) => {
-                        $scope.resource = $route.current.params['resourceName'];
-                    }]
-                })
                 .when('/presentations', {
                     templateUrl: 'app/templates/page_presentations.html',
                     controller: ['microprofileioMenuService', function (menu) {
                         menu.setSelected('presentations');
                     }]
                 })
-                .when('/project/:configFile/:resourceName*', {
-                    templateUrl: 'app/templates/page_project.html',
-                    controller: 'ProjectPageController'
-                })
-                .when('/project/:configFile', {
+                .when('/project/:resourcePath*', {
                     templateUrl: 'app/templates/page_project.html',
                     controller: 'ProjectPageController'
                 })
@@ -92,9 +73,22 @@ angular.module('microprofileio-main', [
         }
     ])
 
+    .filter('microprofileioTruncateText', () => {
+        return (input, maxLength) => {
+            let value = input || '';
+            let overflow = false;
+            if(value.length > maxLength) {
+               value = value.substr(0, maxLength);
+                overflow = true
+            }
+            return value + (overflow ? '...' : '');
+        };
+    })
+
     .controller('ProjectPageController', ['$route', '$scope', 'microprofileioMenuService', function ($route, $scope, menu) {
-        $scope.configFile = $route.current.params['configFile'];
-        $scope.resource = $route.current.params['resourceName'];
+        let resourcePath = $route.current.params['resourcePath'];
+        $scope.configFile = resourcePath.split('/').slice(0, 2).join('/');
+        $scope.resource = resourcePath.split('/').slice(2).join('/');
         menu.setSelected('docs');
     }])
 

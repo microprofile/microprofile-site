@@ -26,7 +26,6 @@ class ServiceConfiguration implements ConfigurationObserver {
                 properties.setProperty(key, propVal)
             }
         }
-        setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/microprofile/msgs/atom.xml?num=50')
         setIfEmpty('microprofile_config_root', {
             def result = System.getProperty('microprofile_config_root')
             if (!result) {
@@ -35,9 +34,5 @@ class ServiceConfiguration implements ConfigurationObserver {
             return result
         })
         setIfEmpty('microprofile_github_atoken', System.getProperty('microprofile_github_atoken'))
-        setIfEmpty('microprofile_twitter_oauth_consumer_key', System.getProperty('microprofile_twitter_oauth_consumer_key'))
-        setIfEmpty('microprofile_twitter_oauth_consumer_secret', System.getProperty('microprofile_twitter_oauth_consumer_secret'))
-        setIfEmpty('microprofile_twitter_oauth_access_token', System.getProperty('microprofile_twitter_oauth_access_token'))
-        setIfEmpty('microprofile_twitter_oauth_access_token_secret', System.getProperty('microprofile_twitter_oauth_access_token_secret'))
     }
 }

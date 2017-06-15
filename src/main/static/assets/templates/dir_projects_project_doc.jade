@@ -1,9 +1,5 @@
 div
   .side-bar
-    .contributors(ng-show="project.detail.contributors && project.detail.contributors.length > 0")
-      h1 Cool people that helped make this happen
-      div
-        microprofileio-contributor-summary(ng-repeat="contributor in project.detail.contributors | orderBy:'contributions':true", login="contributor.login")
     .resources(ng-show="project.detail.info.name || (project.detail.info.resources && project.detail.info.resources.length > 0)")
       h1 External resources
       div
@@ -16,4 +12,8 @@ div
       div
         p(ng-repeat="related in project.detail.info.related")
           microprofileio-project-doc-related(config-file="related")
+    .contributors(ng-show="project.detail.contributors && project.detail.contributors.length > 0")
+      h1 Cool people that helped make this happen
+      div
+        microprofileio-contributor-summary(ng-repeat="contributor in project.detail.contributors | orderBy:'contributions':true", login="contributor.login")
   .content(ng-show="project.doc", ng-bind-html="project.doc")

@@ -54,3 +54,6 @@ rebel.xml
 
 # Mac OS X
 **/*.DS_Store
+
+# it holds sensitive data. It should not go to github.
+src/main/resources/base.properties

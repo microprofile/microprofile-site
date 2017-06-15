@@ -2,6 +2,7 @@ package io.microprofile
 
 import groovy.json.JsonSlurper
 import org.tomitribe.sabot.Config
+import org.yaml.snakeyaml.Yaml
 
 import javax.ejb.Lock
 import javax.ejb.LockType
@@ -24,30 +25,10 @@ class ServiceGithub {
     private ServiceApplication application
 
     @Cached
-    Collection<DtoConfigFile> getConfigurationFiles() {
-        String specsUrl = new URI("https://api.github.com/repos/${docRoot}/").resolve('contents/specs').toString()
-        List<DtoConfigFile> result = []
-        def names = new JsonSlurper().parseText(specsUrl.toURL().getText([
-                requestProperties: [
-                        'Accept'       : 'application/vnd.github.v3+json',
-                        'Authorization': "token ${application.githubAuthToken}"
-                ]
-        ], StandardCharsets.UTF_8.name())).collect { it.name }
-        names.each {
-            result << getConfigurationFile(it as String, "specs/${it}")
-        }
-        return result
-    }
-
-    @Cached
-    DtoConfigFile getConfigurationFile(String configName, String path) {
-        return new DtoConfigFile(
-                name: configName,
-                content: new String(
-                        getRepoRaw(docRoot, path),
-                        StandardCharsets.UTF_8.name()
-                )
-        )
+    List<String> getPublishedProjects() {
+        return new Yaml().load(new String(
+                getRepoRaw(docRoot, 'site.yaml'), StandardCharsets.UTF_8.name()
+        )).projects
     }
 
     @Cached
