@@ -1,6 +1,6 @@
 div
   a.project-card-body(ng-href="project/{{project.info.name}}")
-    h3 {{project.info.friendlyName ? project.info.friendlyName : project.info.name}}
+    h3 {{name}}
     p {{project.info.description | microprofileioTruncateText:130}}
   .project-card-footer
     div(microprofileio-project-card-contributors, data-project="project")

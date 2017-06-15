@@ -24,6 +24,21 @@ class ServiceGithub {
     @Inject
     private ServiceApplication application
 
+    private def removeBranch = { String projectName ->
+        return projectName.split(':').with {
+            return it[0]
+        }
+    }
+
+    private def getBranch = { String projectName ->
+        return projectName.split(':').with {
+            if(it.length > 1) {
+                return it[1]
+            }
+            return 'master'
+        }
+    }
+
     @Cached
     List<String> getPublishedProjects() {
         return new Yaml().load(new String(
@@ -37,7 +52,7 @@ class ServiceGithub {
             return null
         }
         def json = new JsonSlurper().parseText(
-                "https://api.github.com/repos/${projectName}".toURL().getText([
+                "https://api.github.com/repos/${removeBranch projectName}".toURL().getText([
                         requestProperties: [
                                 'Accept'       : 'application/vnd.github.v3+json',
                                 'Authorization': "token ${application.githubAuthToken}"
@@ -53,7 +68,7 @@ class ServiceGithub {
             return []
         }
         def json = new JsonSlurper().parseText(
-                "https://api.github.com/repos/${projectName}/contributors".toURL().getText([
+                "https://api.github.com/repos/${removeBranch projectName}/contributors".toURL().getText([
                         requestProperties: [
                                 'Accept'       : 'application/vnd.github.v3+json',
                                 'Authorization': "token ${application.githubAuthToken}"
@@ -76,7 +91,7 @@ class ServiceGithub {
     @Cached
     String getRepoPage(String projectName, String resourceName) {
         try {
-            return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
+            return "https://api.github.com/repos/${removeBranch projectName}/contents/${resourceName}?ref=${getBranch projectName}".toURL().getText([
                     requestProperties: [
                             'Accept'       : 'application/vnd.github.v3.html',
                             'Authorization': "token ${application.githubAuthToken}"
@@ -90,7 +105,8 @@ class ServiceGithub {
 
     @Cached
     byte[] getRepoRaw(String projectName, String resourceName) {
-        return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getBytes([
+        def resourcePath = resourceName.split(':')
+        return "https://api.github.com/repos/${removeBranch projectName}/contents/${resourcePath[0]}?ref=${getBranch projectName}".toURL().getBytes([
                 requestProperties: [
                         'Accept'       : 'application/vnd.github.v3.raw',
                         'Authorization': "token ${application.githubAuthToken}"
