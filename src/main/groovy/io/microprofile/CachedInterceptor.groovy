@@ -40,7 +40,7 @@ class CachedInterceptor {
             result = ctx.proceed()
             holder.set(ctx.target, ctx.method, ctx.parameters, result)
         }
-        return result;
+        return result
     }
 
 }

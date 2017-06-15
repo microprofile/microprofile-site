@@ -7,7 +7,9 @@ import javax.ejb.LockType
 import javax.ejb.Singleton
 import javax.ejb.Timeout
 import javax.ejb.Timer
+import javax.ejb.TimerConfig
 import javax.ejb.TimerService
+import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
@@ -20,7 +22,9 @@ import java.util.logging.Logger
 class CachedHolder {
     private Logger logger = Logger.getLogger(this.class.name)
 
-    private ConcurrentMap<Object, Map<String, Object>> caches
+    private static final long TIMEOUT = TimeUnit.MINUTES.toMillis(1)
+
+    private ConcurrentMap<Object, Map<EntryKey, Object>> caches
     private Map<Long, Object> idInstance
     private Map<Object, Long> instanceId
 
@@ -52,7 +56,7 @@ class CachedHolder {
 
     Object get(Object beanInstance, Method method, Object[] arguments) {
         def methodCache = this.caches.get(beanInstance)
-        String key = "${method.name}(${arguments?.join(', ')})"
+        def key = new EntryKey(method: method, arguments: arguments)
         if (methodCache.containsKey(key)) {
             return methodCache.get(key)
         }
@@ -61,13 +65,13 @@ class CachedHolder {
 
     void set(Object beanInstance, Method method, Object[] arguments, Object value) {
         def methodCache = this.caches.get(beanInstance)
-        String key = "${method.name}(${arguments?.join(', ')})"
+        def key = new EntryKey(method: method, arguments: arguments)
         if (!methodCache.put(key, value)) {
             logger.info("New cache entry for ${beanInstance}#${method.name}(${arguments?.join(', ')})")
-            timerService.createTimer(TimeUnit.MINUTES.toMillis(60), new TimerPayload(
+            timerService.createSingleActionTimer(TIMEOUT, new TimerConfig(new TimerPayload(
                     beanId: instanceId.get(beanInstance),
                     entryKey: key
-            ))
+            ), false))
         }
     }
 
@@ -75,10 +79,18 @@ class CachedHolder {
     void timeout(Timer timer) {
         TimerPayload payload = timer.info as TimerPayload
         def beanInstance = idInstance.get(payload.beanId)
-        String key = payload.entryKey
         def methodCache = this.caches.get(beanInstance)
-        methodCache.remove(key)
-        logger.info("Removed cache entry for ${beanInstance}#${key})")
+        EntryKey key = payload.entryKey
+        try {
+            def newValue = key.method.invoke(beanInstance, key.arguments)
+            methodCache.put(key, newValue)
+            logger.fine("Cache entry updated -> ${beanInstance}#${key})")
+            timerService.createSingleActionTimer(TIMEOUT, new TimerConfig(payload, false))
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            methodCache.remove(key)
+            logger.info("Cache entry cannot be updated -> ${beanInstance}#${key}) -> ${e.message}")
+            logger.info("Removed cache entry for ${beanInstance}#${key})")
+        }
     }
 
     @Lock(LockType.WRITE)
@@ -92,7 +104,32 @@ class CachedHolder {
 
     class TimerPayload implements Serializable {
         public Long beanId
-        public String entryKey
+        public EntryKey entryKey
+    }
+
+    class EntryKey {
+        Method method
+        Object[] arguments
+
+        boolean equals(o) {
+            if (this.is(o)) return true
+            if (getClass() != o.class) return false
+            EntryKey entryKey = (EntryKey) o
+            String thisKey = "${method.name}(${arguments?.join(', ')})"
+            String thatKey = "${entryKey.method.name}(${entryKey.arguments?.join(', ')})"
+            return thisKey == thatKey
+        }
+
+        int hashCode() {
+            int result
+            result = method.hashCode()
+            result = 31 * result + (arguments != null ? Arrays.hashCode(arguments) : 0)
+            return result
+        }
+
+        String toString() {
+            return "${method.name}(${arguments?.join(', ')})"
+        }
     }
 
 }
