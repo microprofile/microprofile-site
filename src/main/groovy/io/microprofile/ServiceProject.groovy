@@ -39,15 +39,11 @@ class ServiceProject {
                 friendlyName: conf.friendly_name as String,
                 description: github.getRepoDescription(projectName) ?: '',
                 home: conf.home as String,
-                resources: conf.resources?.collect { resource ->
-                    def dto = new DtoProjectResource()
-                    if (String.class.isInstance(resource)) {
-                        dto.url = resource
-                    } else {
-                        dto.url = resource.url
-                        dto.title = resource.title
-                    }
-                    return dto
+                resources: conf.documentation?.collect { resource ->
+                    new DtoProjectResource(
+                            url: resource.file as String,
+                            title: resource.title as String
+                    )
                 },
                 related: conf.related
         )

@@ -25,12 +25,6 @@ angular.module('microprofileio-main', [
                 .when('/', {
                     templateUrl: 'app/templates/page_home.html'
                 })
-                .when('/page', {
-                    templateUrl: 'app/templates/page_pages.html',
-                    controller: ['$location', function ($location) {
-                        $location.path('/page/frontpage.adoc');
-                    }]
-                })
                 .when('/page/:resourceName*', {
                     templateUrl: 'app/templates/page_home.html',
                     controller: 'HomeController'
