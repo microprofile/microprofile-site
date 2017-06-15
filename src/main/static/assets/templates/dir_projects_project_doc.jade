@@ -1,12 +1,15 @@
 div
   .side-bar
-    .resources(ng-show="project.detail.info.name || (project.detail.info.resources && project.detail.info.resources.length > 0)")
+    .resources(ng-show="project.detail.info.name")
       h1 External resources
       div
         p(ng-show="project.detail.info.name")
-          a(ng-href="https://github.com/{{project.detail.info.name}}", target="_blank") Source Code
+          a(ng-href="https://github.com/{{name}}{{version ? '/tree/' + version : ''}}", target="_blank") Source Code
+    .docs(ng-show="project.detail.info.resources.length")
+      h1 Documents
+      div
         p(ng-repeat="resource in project.detail.info.resources")
-          a(ng-href="{{resource.url}}", target="_blank") {{resource.title ? resource.title : resource.url}}
+          a(ng-href="/project/{{project.detail.info.name}}/{{resource.url}}") {{resource.title ? resource.title : resource.url}}
     .related(ng-show="project.detail.info.related && project.detail.info.related.length > 0")
       h1 Related projects
       div

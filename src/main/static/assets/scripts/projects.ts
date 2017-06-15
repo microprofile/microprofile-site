@@ -8,31 +8,19 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
                 normalizeResources: function (pRoot, sRoot, originalHtml) {
                     var content = angular.element(originalHtml);
                     content.find('a.anchor').remove();
-                    content.find('[href]').each(function (index, el) {
-                        var ael = angular.element(el);
-                        var currentHref = ael.attr('href');
-                        if (s.startsWith(currentHref, '../')) {
-                            ael.attr('href', currentHref.substring('../'.length));
-                        } else if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {
-                            var images = ael.find('> img');
-                            if (images.length) {
-                                var pathRoot = '/' + pRoot;
-                                var currentHrefSplit = currentHref.split('/');
-                                var resourceNamePath = $location.url().substring(pathRoot.length).split('/');
-                                resourceNamePath.pop();
-                                var resourceName = resourceNamePath.join('/') + '/' + currentHref;
-                                var href = sRoot + resourceName;
-                                ael.attr('href', href);
-                                images.each(function (indexImg, elImg) {
-                                    var aelImg = angular.element(elImg);
-                                    aelImg.attr('src', href);
-                                });
-                            } else {
-                                if (!s.startsWith(currentHref, '#')) {
-                                    var href = pRoot + currentHref;
-                                    ael.attr('href', href);
-                                }
-                            }
+                    content.find('#user-content-toc').remove();
+                    content.find('a').each((idx, rawEl) => {
+                        let el = angular.element(rawEl);
+                        let oldHref = el.attr('href');
+                        let newHref = window.location.pathname.split('/').filter((entry) => {
+                            return entry !== '';
+                        });
+                        if (oldHref.startsWith('#')) {
+                            el.attr('href', newHref.join('/') + oldHref);
+                        } else {
+                            newHref.pop();
+                            newHref.push(oldHref);
+                            el.attr('href', newHref.join('/'));
                         }
                     });
                     return content.html();
@@ -99,7 +87,7 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
             templateUrl: 'app/templates/dir_projects_project_card_contributors.html',
             controller: ['$scope', '$timeout', function ($scope, $timeout) {
                 $scope.$watch('project', () => {
-                    if($scope.project && $scope.project.contributors) {
+                    if ($scope.project && $scope.project.contributors) {
                         $timeout(() => {
                             $scope.$apply(() => {
                                 $scope.hasMore = $scope.project.contributors.length > 6;
@@ -142,7 +130,12 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
                 projectsService.getProject($scope.projectName).then(function (response) {
                     $timeout(function () {
                         $scope.$apply(function () {
-                            $scope.project = response.data;
+                            let project = response.data;
+                            $scope.project = project;
+                            let normalizeName = (name: String) => {
+                                return name.split(':')[0];
+                            };
+                            $scope.name = project.info.friendlyName ? project.info.friendlyName : normalizeName(project.info.name);
                         });
                     });
                 });
@@ -183,10 +176,22 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
             controller: ['$scope', '$timeout', '$sce', 'microprofileioProjectsService', 'microprofileioProjectsDocService',
                 function ($scope, $timeout, $sce, projectsService, docService) {
                     $scope.project = {};
+                    let normalizeName = (name: String) => {
+                        return name.split(':')[0];
+                    };
+                    let normalizeVersion = (name: String) => {
+                        let values = name.split(':');
+                        if (values.length > 1) {
+                            return values[1];
+                        }
+                        return '';
+                    };
                     projectsService.getProject($scope.configFile).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {
                                 $scope.project.detail = response.data;
+                                $scope.name = normalizeName(response.data.info.name);
+                                $scope.version = normalizeVersion(response.data.info.name);
                             });
                         });
                     });
