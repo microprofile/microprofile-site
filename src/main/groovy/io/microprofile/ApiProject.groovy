@@ -18,7 +18,7 @@ class ApiProject {
     @GET
     Collection<String> list() {
         // listing the available specs
-        return srv.availableProjects
+        return srv.getAvailableProjects()
     }
 
     @GET
