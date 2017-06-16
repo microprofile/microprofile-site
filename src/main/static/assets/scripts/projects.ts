@@ -195,6 +195,13 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
                             });
                         });
                     });
+                    projectsService.getProjects().then(function (response) {
+                        $timeout(function () {
+                            $scope.$apply(function () {
+                                $scope.otherProjects = response.data.filter((item) => { return item !== $scope.configFile});
+                            });
+                        });
+                    });
                     projectsService.getProjectPage($scope.configFile, $scope.resource).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {

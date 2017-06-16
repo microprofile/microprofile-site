@@ -10,10 +10,10 @@ div
       div
         p(ng-repeat="resource in project.detail.info.resources")
           a(ng-href="/project/{{project.detail.info.name}}/{{resource.url}}") {{resource.title ? resource.title : resource.url}}
-    .related(ng-show="project.detail.info.related && project.detail.info.related.length > 0")
-      h1 Related projects
+    .related(ng-show="otherProjects")
+      h1 Other projects
       div
-        p(ng-repeat="related in project.detail.info.related")
+        p(ng-repeat="related in otherProjects")
           microprofileio-project-doc-related(config-file="related")
     .contributors(ng-show="project.detail.contributors && project.detail.contributors.length > 0")
       h1 Cool people that helped make this happen
