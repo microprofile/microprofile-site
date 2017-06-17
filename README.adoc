@@ -3,24 +3,18 @@
 :toc-placement: preamble
 
 
-== Live demo application
+== Live application
 
-Checkout the demo application here: http://ec2-54-209-191-237.compute-1.amazonaws.com/microprofile
-
-Hit http://ec2-54-209-191-237.compute-1.amazonaws.com/microprofile/api/cache/clear to clear up cache.
-
-Changes in this source code will automatically update the demo application.
+Checkout the demo application here: https://microprofile.io/
 
 == How to build and run the application locally?
 
 Simply run `mvn clean install tomee:run`. Your server will be available at
 http://localhost:8080/
 
-If you want to the GitHub integration to work, you will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). Set the `microprofile_github_atoken` value in `src/main/resources/base.properties`.  When you generate that token Github will present you with a list of 20+ possible permissions.  The only required permission is `read:org`.
+If you want to the GitHub integration to work, you will need a microprofile github access token, (link:https://github.com/blog/1509-personal-api-tokens[Documentation on how to do this]). Set the `microprofile_github_atoken` value in `src/main/resources/base.properties`.  When you generate that token Github will present you with a list of 20+ possible permissions.  No special permission required.
 
-Currently you can ignore the twitter integration tokens, they are not feature complete (and should probably be in a seperate code branch).
-
-If you are making changes to the https://github.com/microprofile/microprofile.io[microprofile.io] configuration repo, you can test that by having your local copy point to your forked version where the changes live.  Simply edit `src/main/resources/base.properties` and change the default `microprofile_config_root=microprofile/microprofile.io` to the individual's repo who filed the `microprofile.io` pull request.  For example `microprofile_config_root=ivannov/microprofile.io` is how you would point to https://github.com/ivannov/microprofile.io
+If you are making changes to the https://github.com/microprofile/microprofile-site-config[microprofile.io] configuration repo, you can test that by having your local copy point to your forked version where the changes live.  Simply edit `src/main/resources/base.properties` and change the default `microprofile_config_root=microprofile/microprofile.io` to the individual's repo who filed the `microprofile.io` pull request.  For example `microprofile_config_root=ivannov/microprofile.io` is how you would point to https://github.com/ivannov/microprofile.io
 
 == Node.js and Gulp
 
@@ -110,19 +104,11 @@ browsers: [
 
 When you execute `mvn frontend:karma`, a browser window will popup.
 
-== TODO OUT OF DATE - How to publish content?
+== How to publish content?
 
-Some of the content of this application is based on another Github project: link:https://github.com/microprofile/microprofile.io.config[].
-
-The files under link:https://github.com/microprofile/microprofile.io.config/tree/master/specs[] configure the projects
-listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/docs[].
-
-This file - link:https://github.com/microprofile/microprofile.io.config/blob/master/pages/microprofile.adoc[] - is the
-one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/[]. The other
-files go to the `page` route. For example, link:https://github.com/jcpevangelists/microprofile.io.config/blob/master/pages/page_a.adoc[]
-goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/microprofile/page/page_a.adoc[].
-
-Updates on link:https://github.com/microprofile/microprofile.io.config/[] are automatically reflected on the demo site.
+Some of the content of this application is based on another Github project: link:https://github.com/microprofile/microprofile-site-config[].
+In order to publish a new project, simply add a new line in link:https://github.com/microprofile/microprofile-site-config/blob/master/site.yaml[site.yaml].
+The changes will be live after 5 minutes.
 
 == Production Architecture
 
