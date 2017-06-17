@@ -5,7 +5,7 @@
 
 == Live application
 
-Checkout the demo application here: https://microprofile.io/
+Checkout the live application here: https://microprofile.io/
 
 == How to build and run the application locally?
 
