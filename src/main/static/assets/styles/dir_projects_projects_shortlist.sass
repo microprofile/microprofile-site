@@ -12,11 +12,17 @@ microprofileio-projects-shortlist
       display: flex
       flex-wrap: wrap
       justify-content: center
+      @media screen and (max-width: 600px)
+        flex-direction: column
+        align-items: stretch
+        justify-content: flex-start
   div[microprofileio-project-card]
     background-color: #ffffff
     margin: 30px
     width: 450px
     height: 150px
+    @media screen and (max-width: 600px)
+      width: auto
     border: solid $stroke 1px
     &:hover
       border-color: $app-hover-color
@@ -54,8 +60,11 @@ microprofileio-projects-shortlist
     > div
       display: flex
       align-items: center
+      flex-wrap: wrap
     img
       height: 35px
+      @media screen and (max-width: 600px)
+        height: 15px
       width: auto
       border-radius: 30px
       border: solid $stroke 1px
