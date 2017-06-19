@@ -19,10 +19,10 @@
     "gulp-concat": "2.6.1",
     "gulp-pug": "3.2.0",
     "gulp-sass": "3.1.0",
-    "gulp-sourcemaps": "2.4.0",
+    "gulp-sourcemaps": "2.4.1",
     "gulp-sync": "0.1.4",
-    "gulp-tslint": "7.0.1",
-    "gulp-typescript": "3.1.4",
+    "gulp-tslint": "7.1.0",
+    "gulp-typescript": "3.1.5",
     "gulp-uglify": "2.0.1",
     "gulp-watch": "4.3.11",
     "jasmine": "2.5.3",
@@ -35,7 +35,7 @@
     "karma-phantomjs-launcher": "1.0.2",
     "phantomjs-prebuilt": "^2.1.14",
     "tslint": "4.4.2",
-    "typescript": "2.1.5",
+    "typescript": "2.1.6",
     "underscore.string": "3.3.4"
   }
 }
