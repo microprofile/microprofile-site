@@ -35,6 +35,7 @@ pom.xml.next
 release.properties
 src/main/static/node_modules/
 src/main/static/bower_components/
+src/main/static/node/
 
 # Misc #
 *.log
