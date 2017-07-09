@@ -64,6 +64,7 @@
         $remove-image-width: 900px
         height: 700px
         overflow: hidden
+        background-color: #e5e6e8
         @media screen and (max-width: $remove-image-width)
           height: auto
           position: static
@@ -76,7 +77,6 @@
         h2, p
           text-align: left
         > div
-          background-color: #e5e6e8
           &:first-of-type
             position: absolute
             @media screen and (max-width: $remove-image-width)
@@ -121,5 +121,17 @@
               left: auto
               right: 50%
         &.white
-          > div
-            background-color: $app-bg-white
+          background-color: $app-bg-white
+      &.voting
+        p, h2
+          margin: 0
+          line-height: 55px
+        p:first-of-type
+          font-size: 1.8em
+      a
+        margin-top: 50px
+        display: inline-block
+        padding: 10px 30px
+        color: #ffffff
+        background: $app-hover-color
+        text-transform: uppercase
