@@ -1,0 +1,111 @@
+@import "variables"
+
+div[microprofileio-blog-list]
+  display: flex
+  $inner-spacing: 30px
+  > .list
+    flex-grow: 1
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    background-color: white
+    > a
+      border-top: solid 2px #efefef
+      &:first-child
+        border-top: 0
+      $card-spacing: 50px
+      padding-top: $card-spacing
+      &:first-child
+        padding-top: 0
+      margin: $card-spacing $card-spacing 0 $card-spacing
+      &:last-child
+        margin-bottom: $card-spacing
+      display: block
+      max-width: 500px
+      img
+        width: 100%
+        height: auto
+      h1
+        font-weight: 300
+        font-size: 30px
+        margin: $inner-spacing 0
+      p
+        line-height: 2
+        font-weight: 300
+  > .side
+    flex-grow: .8
+    width: 80%
+    background-color: #f7f7f7
+  div[microprofileio-blog-user]
+    display: flex
+    align-items: center
+    margin-bottom: $inner-spacing
+    > div
+      display: inline-block
+      .user-name
+        font-size: 20px
+        font-weight: 700
+      .date
+        font-size: 13px
+        color: #ababab
+        margin-top: 5px
+    img
+      border-radius: 50%
+      width: auto
+      height: 50px
+      margin-right: 20px
+
+div[microprofileio-blog-list-tags], div[microprofileio-blog-list-archive]
+  margin: 30px 30px 60px 30px
+  &:first-child
+    margin: 60px 30px 60px 30px
+  display: flex
+  flex-direction: column
+  > div
+    border-bottom: solid 1px $app-hover-color
+    margin: 20px 0
+    display: inline-block
+    width: 70px
+  h2
+    font-size: 13px
+    font-weight: 900
+    text-transform: uppercase
+    margin: 0
+    color: #444
+  li
+    font-size: 16px
+
+div[microprofileio-blog-list-tags]
+  ul
+    margin: 0
+    padding: 0
+    display: flex
+    flex-wrap: wrap
+    li
+      list-style: none
+      border: solid 1px #eaeaea
+      background-color: #ffffff
+      padding: 10px 20px
+      margin: 5px 5px 5px 0
+      color: #b5b5b5
+      &:hover
+        color: #595959
+        cursor: pointer
+
+div[microprofileio-blog-list-archive]
+  ul
+    margin: 0
+    padding: 0
+    li
+      list-style: none
+      &.selected
+        font-weight: 800
+      &:hover
+        cursor: pointer
+      div
+        border-bottom: solid 2px #eeeeee
+        margin: 20px 0 20px 0
+      &:last-child
+        div
+          border: 0

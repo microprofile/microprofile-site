@@ -9,6 +9,8 @@ import javax.ejb.LockType
 import javax.ejb.Singleton
 import javax.inject.Inject
 import java.nio.charset.StandardCharsets
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.logging.Level
 import java.util.logging.Logger
 
@@ -17,9 +19,15 @@ import java.util.logging.Logger
 class ServiceGithub {
     private Logger logger = Logger.getLogger(this.class.name)
 
+    private static final DateFormat DT_FORM = new SimpleDateFormat('yyyy-MM-dd')
+
     @Inject
     @Config(value = 'microprofile_config_root')
     private String docRoot
+
+    @Inject
+    @Config(value = 'microprofile_blog_root')
+    private String blogRoot
 
     @Inject
     private ServiceApplication application
@@ -32,7 +40,7 @@ class ServiceGithub {
 
     private def getBranch = { String projectName ->
         return projectName.split(':').with {
-            if(it.length > 1) {
+            if (it.length > 1) {
                 return it[1]
             }
             return 'master'
@@ -44,6 +52,22 @@ class ServiceGithub {
         return new Yaml().load(new String(
                 getRepoRaw(docRoot, 'site.yaml'), StandardCharsets.UTF_8.name()
         )).projects
+    }
+
+    @Cached
+    List<DtoBlogEntry> getBlogEntries() {
+        return new Yaml().load(new String(
+                getRepoRaw(blogRoot, 'config.yaml'), StandardCharsets.UTF_8.name()
+        )).blog.collect({
+            new DtoBlogEntry(
+                    url: it.url as String,
+                    title: it.title as String,
+                    extract: it.extract as String,
+                    author: it.author as String,
+                    date: DT_FORM.parse(it.date as String).time,
+                    tags: it.tags
+            )
+        })
     }
 
     @Cached

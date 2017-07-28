@@ -28,5 +28,9 @@ class ServiceBlog {
         return srv.getRepoRaw(blobProject, resource)
     }
 
+    @Cached
+    Collection<DtoBlogEntry> list() {
+        return srv.getBlogEntries()
+    }
 }
 
