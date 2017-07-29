@@ -72,13 +72,15 @@ angular.module('microprofileio-blog', [])
                         $scope.$apply(() => {
                             $scope.entries = $scope.dto.entries;
                             if ($scope.dto.archive) {
-                                $scope.entries = _.filter($scope.dto.entries, (entry) => {
+                                $scope.entries = _.filter($scope.entries, (entry) => {
                                     return moment(new Date(entry.date)).format('MMMM YYYY') === $scope.dto.archive;
                                 });
                             }
                             if ($scope.dto.tag) {
-                                $scope.entries = _.filter($scope.dto.entries, (entry) => {
-                                    return entry.date.tags && _.find(entry.date.tags, (tag) => { return tag === $scope.dto.tag }).length;
+                                $scope.entries = _.filter($scope.entries, (entry) => {
+                                    return entry.tags && _.find(entry.tags, (tag) => {
+                                        return tag === $scope.dto.tag
+                                    });
                                 });
                             }
                         });
