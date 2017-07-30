@@ -1,20 +1,39 @@
 @import "variables"
 
+
+$div-width: 500px
+$blog-entry-background-color: #ffffff
+$card-spacing: 100px
+$inner-spacing: 30px
+
+div[microprofileio-blog-entry]
+  background-color: $blog-entry-background-color
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  > div
+    max-width: $div-width
+    margin: $card-spacing
+    div.content
+      width: 100%
+      line-height: 2
+      font-weight: 300
+
 div[microprofileio-blog-list]
   display: flex
-  $inner-spacing: 30px
   > .list
     flex-grow: 1
     width: 100%
     display: flex
     flex-direction: column
     align-items: flex-end
-    background-color: white
+    background-color: $blog-entry-background-color
     > a
       border-top: solid 2px #efefef
       &:first-child
         border-top: 0
-      $card-spacing: 50px
+
       padding-top: $card-spacing
       &:first-child
         padding-top: 0
@@ -22,8 +41,8 @@ div[microprofileio-blog-list]
       &:last-child
         margin-bottom: $card-spacing
       display: block
-      max-width: 500px
-      img
+      max-width: $div-width
+      img.banner
         width: 100%
         height: auto
       h1
@@ -33,28 +52,16 @@ div[microprofileio-blog-list]
       p
         line-height: 2
         font-weight: 300
+      > div
+        span
+          color: $app-hover-color
+          text-transform: capitalize
+          font-size: 18px
+          font-weight: 500
   > .side
     flex-grow: .8
     width: 80%
     background-color: #f7f7f7
-  div[microprofileio-blog-user]
-    display: flex
-    align-items: center
-    margin-bottom: $inner-spacing
-    > div
-      display: inline-block
-      .user-name
-        font-size: 20px
-        font-weight: 700
-      .date
-        font-size: 13px
-        color: #ababab
-        margin-top: 5px
-    img
-      border-radius: 50%
-      width: auto
-      height: 50px
-      margin-right: 20px
 
 div[microprofileio-blog-list-tags], div[microprofileio-blog-list-archive]
   margin: 30px 30px 60px 30px
@@ -111,3 +118,22 @@ div[microprofileio-blog-list-archive]
       &:last-child
         div
           border: 0
+
+div[microprofileio-blog-user]
+  display: flex
+  align-items: center
+  margin-bottom: $inner-spacing
+  > div
+    display: inline-block
+    .user-name
+      font-size: 20px
+      font-weight: 700
+    .date
+      font-size: 13px
+      color: #ababab
+      margin-top: 5px
+  img
+    border-radius: 50%
+    width: auto
+    height: 50px
+    margin-right: 20px

@@ -65,7 +65,8 @@ class ServiceGithub {
                     extract: it.extract as String,
                     author: it.author as String,
                     date: DT_FORM.parse(it.date as String).time,
-                    tags: it.tags
+                    tags: it.tags,
+                    image: it.image
             )
         })
     }
@@ -129,8 +130,21 @@ class ServiceGithub {
 
     @Cached
     byte[] getRepoRaw(String projectName, String resourceName) {
-        def resourcePath = resourceName.split(':')
-        return "https://api.github.com/repos/${removeBranch projectName}/contents/${resourcePath[0]}?ref=${getBranch projectName}".toURL().getBytes([
+        def resourcePath = resourceName.split(':')[0].split('/') as List<String>
+        def resourceDir = resourcePath.subList(0, resourcePath.size() -1).join('/')
+        def dirInfo = "https://api.github.com/repos/${removeBranch projectName}/contents/${resourceDir}".toURL().getText([
+                requestProperties: [
+                        'Accept'       : 'application/vnd.github.v3+json',
+                        'Authorization': "token ${application.githubAuthToken}"
+                ]
+        ], StandardCharsets.UTF_8.name())
+        def fileInfo = new JsonSlurper().parseText(dirInfo).find({
+            it.path == resourcePath.join('/')
+        })
+        if (!fileInfo) {
+            throw new FileNotFoundException("$resourceName not found")
+        }
+        return "https://api.github.com/repos/${removeBranch projectName}/git/blobs/${fileInfo.sha}".toURL().getBytes([
                 requestProperties: [
                         'Accept'       : 'application/vnd.github.v3.raw',
                         'Authorization': "token ${application.githubAuthToken}"

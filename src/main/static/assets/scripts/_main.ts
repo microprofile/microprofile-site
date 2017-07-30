@@ -12,7 +12,9 @@ angular.module('microprofileio-main', [
     'microprofileio-action',
     'microprofileio-faq',
     'microprofileio-blog',
-    'microprofileio-presentations'
+    'microprofileio-presentations',
+    'microprofileio-text',
+    'microprofileio-system'
 ])
 
     .config([

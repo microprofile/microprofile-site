@@ -1,4 +1,4 @@
-angular.module('microprofileio-blog', [])
+angular.module('microprofileio-blog', ['microprofileio-text'])
 
     .factory('microprofileioBlogService', ['$http', ($http) => {
         let archive = null;
@@ -38,12 +38,24 @@ angular.module('microprofileio-blog', [])
                 resource: '='
             },
             templateUrl: 'app/templates/dir_blog_entry.html',
-            controller: ['$scope', '$timeout', 'microprofileioBlogService', '$sce', ($scope, $timeout, srv, $sce) => {
-                srv.getHtml($scope.resource).then((response) => $timeout(() => $scope.$apply(() => {
-                    let content = angular.element(response.data.content);
-                    content.find('a.anchor').remove();
-                    $scope.content = $sce.trustAsHtml(content.html());
-                })));
+            controller: ['$scope', '$timeout', 'microprofileioBlogService', '$sce', 'microprofileioProjectsDocService', 'microprofileioSystemService', ($scope, $timeout, srv, $sce, docService, systemSrv) => {
+                systemSrv.getInfo().then((inforesponse) => {
+                    srv.getHtml($scope.resource).then((response) => $timeout(() => $scope.$apply(() => {
+                        let content = angular.element(response.data.content);
+                        content.find('a.anchor').remove();
+                        var newHtml = docService.normalizeResources(
+                            content.html(),
+                            inforesponse.data.blogProject
+                        );
+                        $scope.content = $sce.trustAsHtml(newHtml);
+                    })));
+                    srv.listEntries().then((entries) => $timeout(() => $scope.$apply(() => {
+                        $scope.entry = _.find(entries.data, (entry) => {
+                            return entry.url === $scope.resource;
+                        });
+
+                    })));
+                });
             }]
         };
     }])
@@ -53,39 +65,51 @@ angular.module('microprofileio-blog', [])
             restrict: 'A',
             scope: {},
             templateUrl: 'app/templates/dir_blog_list.html',
-            controller: ['$scope', '$timeout', 'microprofileioBlogService', '$sce', ($scope, $timeout, srv, $sce) => {
-                $scope.dto = {
-                    entries: [],
-                    archive: null
-                };
-                srv.listEntries().then((entries) => $timeout(() => $scope.$apply(() => {
-                    $scope.dto.entries = _.sortBy(entries.data, (entry) => {
-                        return -1 * entry.date;
-                    });
-                    $scope.entries = $scope.dto.entries;
-                })));
-                $scope.normalizeUrl = (url: string) => {
-                    return `blog/${url.replace(/\.adoc$/, '')}`;
-                };
-                $scope.$watchGroup(['dto.tag', 'dto.archive', 'dto.entries'], () => {
-                    $timeout(() => {
-                        $scope.$apply(() => {
-                            $scope.entries = $scope.dto.entries;
-                            if ($scope.dto.archive) {
-                                $scope.entries = _.filter($scope.entries, (entry) => {
-                                    return moment(new Date(entry.date)).format('MMMM YYYY') === $scope.dto.archive;
-                                });
-                            }
-                            if ($scope.dto.tag) {
-                                $scope.entries = _.filter($scope.entries, (entry) => {
-                                    return entry.tags && _.find(entry.tags, (tag) => {
-                                        return tag === $scope.dto.tag
+            controller: ['$scope', '$timeout', 'microprofileioBlogService', 'microprofileioSystemService', ($scope, $timeout, srv, sysSrv) => {
+                sysSrv.getInfo().then((inforesponse) => {
+                    $scope.dto = {
+                        entries: [],
+                        archive: null
+                    };
+                    srv.listEntries().then((entries) => $timeout(() => $scope.$apply(() => {
+                        $scope.dto.entries = _.sortBy(entries.data, (entry) => {
+                            return -1 * entry.date;
+                        });
+                        $scope.entries = $scope.dto.entries;
+                    })));
+                    $scope.normalizeUrl = (url: string) => {
+                        if (url.startsWith('//') || url.startsWith('http://') || url.startsWith('https://')) {
+                            return url;
+                        }
+                        return `blog/${url.replace(/\.adoc$/, '')}`;
+                    };
+                    $scope.normalizeImageUrl = (url: string) => {
+                        if (url.startsWith('//') || url.startsWith('http://') || url.startsWith('https://')) {
+                            return url;
+                        }
+                        return '/api/project/raw/' + inforesponse.data.blogProject + '/' + url;
+                    };
+                    $scope.$watchGroup(['dto.tag', 'dto.archive', 'dto.entries'], () => {
+                        $timeout(() => {
+                            $scope.$apply(() => {
+                                $scope.entries = $scope.dto.entries;
+                                if ($scope.dto.archive) {
+                                    $scope.entries = _.filter($scope.entries, (entry) => {
+                                        return moment(new Date(entry.date)).format('MMMM YYYY') === $scope.dto.archive;
                                     });
-                                });
-                            }
+                                }
+                                if ($scope.dto.tag) {
+                                    $scope.entries = _.filter($scope.entries, (entry) => {
+                                        return entry.tags && _.find(entry.tags, (tag) => {
+                                            return tag === $scope.dto.tag
+                                        });
+                                    });
+                                }
+                            });
                         });
                     });
                 });
+
             }]
         };
     }])
@@ -158,10 +182,15 @@ angular.module('microprofileio-blog', [])
             },
             templateUrl: 'app/templates/dir_blog_user.html',
             controller: ['$scope', '$timeout', 'microprofileioContributorsService', ($scope, $timeout, contributorsService) => {
-                contributorsService.getContributor($scope.entry.author).then(function (response) {
-                    $timeout(function () {
-                        $scope.$apply(function () {
-                            $scope.contributor = response.data;
+                $scope.$watch('entry', () => {
+                    if (!$scope.entry) {
+                        return;
+                    }
+                    contributorsService.getContributor($scope.entry.author).then(function (response) {
+                        $timeout(function () {
+                            $scope.$apply(function () {
+                                $scope.contributor = response.data;
+                            });
                         });
                     });
                 });
