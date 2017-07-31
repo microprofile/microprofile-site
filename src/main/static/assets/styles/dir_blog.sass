@@ -5,7 +5,11 @@ $blog-entry-background-color: #ffffff
 $blog-sidebar-color: #f7f7f7
 $card-spacing: 100px
 $inner-spacing: 30px
-$blog-padding: 384px
+$blog-padding: 380px
+$blog-padding-smaller: 200px
+$blog-padding-smaller-2: 100px
+$blog-padding-smaller-3: 40px
+
 
 div[microprofileio-blog-entry]
   background-color: $blog-entry-background-color
@@ -15,7 +19,13 @@ div[microprofileio-blog-entry]
   align-items: center
   > div
     max-width: $div-width
-    margin: $card-spacing $blog-padding $card-spacing $blog-padding
+    margin: $card-spacing $blog-padding
+    @media screen and (max-width: 1800px)
+      margin: $card-spacing $blog-padding-smaller
+    @media screen and (max-width: 1500px)
+      margin: $card-spacing $blog-padding-smaller-2
+    @media screen and (max-width: 1300px)
+      margin: $card-spacing $blog-padding-smaller-3
     div.content
       width: 100%
       line-height: 2
@@ -23,19 +33,47 @@ div[microprofileio-blog-entry]
 
 div[microprofileio-blog-list]
   display: flex
+  @media screen and (max-width: 900px)
+    flex-direction: column
   > .list
     flex-grow: 1
     width: 100%
+    @media screen and (max-width: 1200px)
+      flex-shrink: 0
+      width: 600px
+      flex-grow: 0
+    @media screen and (max-width: 900px)
+      width: 100%
     display: flex
     flex-direction: column
     align-items: flex-end
     background-color: $blog-entry-background-color
     padding: 0 70px 0 $blog-padding
+    @media screen and (max-width: 1800px)
+      padding: 0 70px 0 $blog-padding-smaller
+    @media screen and (max-width: 1500px)
+      padding: 0 70px 0 $blog-padding-smaller-2
+    @media screen and (max-width: 1300px)
+      padding: 0 70px 0 $blog-padding-smaller-3
+    @media screen and (max-width: 900px)
+      padding: 0 $blog-padding-smaller-3
   > .side
     flex-shrink: 0
     width: 600px
+    @media screen and (max-width: 1200px)
+      flex-shrink: 1
+      width: 100%
+      flex-grow: 1
     background-color: $blog-sidebar-color
     padding: 0 ($blog-padding - 200px) 0 0
+    @media screen and (max-width: 1800px)
+      padding: 0 $blog-padding-smaller - 100px 0 0
+    @media screen and (max-width: 1500px)
+      padding: 0 $blog-padding-smaller-2 0 0
+    @media screen and (max-width: 1300px)
+      padding: 0 $blog-padding-smaller-3 0 0
+
+
 
 div[microprofileio-blog-list-entry]
   > a
