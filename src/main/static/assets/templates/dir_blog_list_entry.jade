@@ -6,5 +6,5 @@ div(ng-href="{{normalizeUrl(entry.url)}}")
     p {{entry.extract}}
     .footer
         div
-            span continue reading
+            a(ng-href="{{normalizeUrl(entry.url)}}") continue reading
         div(microprofileio-blog-list-entry-share, data-entry="entry")
