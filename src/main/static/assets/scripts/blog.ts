@@ -84,7 +84,7 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
                         return `blog/${url.replace(/\.adoc$/, '')}`;
                     };
                     $scope.normalizeImageUrl = (url: string) => {
-                        if (url.startsWith('//') || url.startsWith('http://') || url.startsWith('https://')) {
+                        if (!url || url.startsWith('//') || url.startsWith('http://') || url.startsWith('https://')) {
                             return url;
                         }
                         return '/api/project/raw/' + inforesponse.data.blogProject + '/' + url;
