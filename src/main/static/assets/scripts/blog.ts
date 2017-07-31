@@ -65,52 +65,67 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
             restrict: 'A',
             scope: {},
             templateUrl: 'app/templates/dir_blog_list.html',
-            controller: ['$scope', '$timeout', 'microprofileioBlogService', 'microprofileioSystemService', ($scope, $timeout, srv, sysSrv) => {
-                sysSrv.getInfo().then((inforesponse) => {
-                    $scope.dto = {
-                        entries: [],
-                        archive: null
-                    };
-                    srv.listEntries().then((entries) => $timeout(() => $scope.$apply(() => {
-                        $scope.dto.entries = _.sortBy(entries.data, (entry) => {
-                            return -1 * entry.date;
+            controller: ['$scope', '$timeout', 'microprofileioBlogService', ($scope, $timeout, srv) => {
+                $scope.dto = {
+                    entries: [],
+                    archive: null
+                };
+                srv.listEntries().then((entries) => $timeout(() => $scope.$apply(() => {
+                    $scope.dto.entries = _.sortBy(entries.data, (entry) => {
+                        return -1 * entry.date;
+                    });
+                    $scope.entries = $scope.dto.entries;
+                })));
+                $scope.$watchGroup(['dto.tag', 'dto.archive', 'dto.entries'], () => {
+                    $timeout(() => {
+                        $scope.$apply(() => {
+                            $scope.entries = $scope.dto.entries;
+                            if ($scope.dto.archive) {
+                                $scope.entries = _.filter($scope.entries, (entry) => {
+                                    return moment(new Date(entry.date)).format('MMMM YYYY') === $scope.dto.archive;
+                                });
+                            }
+                            if ($scope.dto.tag) {
+                                $scope.entries = _.filter($scope.entries, (entry) => {
+                                    return entry.tags && _.find(entry.tags, (tag) => {
+                                        return tag === $scope.dto.tag
+                                    });
+                                });
+                            }
                         });
-                        $scope.entries = $scope.dto.entries;
-                    })));
-                    $scope.normalizeUrl = (url: string) => {
-                        if (url.startsWith('//') || url.startsWith('http://') || url.startsWith('https://')) {
-                            return url;
-                        }
-                        return `blog/${url.replace(/\.adoc$/, '')}`;
-                    };
-                    $scope.normalizeImageUrl = (url: string) => {
+                    });
+                });
+            }]
+        };
+    }])
+
+    .directive('microprofileioBlogListEntry', ['microprofileioSystemService', (sysSrv) => {
+        return {
+            restrict: 'A',
+            scope: {
+                entry: '='
+            },
+            templateUrl: 'app/templates/dir_blog_list_entry.html',
+            controller: ['$scope', '$timeout', ($scope) => {
+                $scope.normalizeUrl = (url: string) => {
+                    if (url.startsWith('//') || url.startsWith('http://') || url.startsWith('https://')) {
+                        return url;
+                    }
+                    return `blog/${url.replace(/\.adoc$/, '')}`;
+                };
+
+            }],
+            link: (scope, el) => {
+                sysSrv.getInfo().then((inforesponse) => {
+                    let normalizeImageUrl = (url: string) => {
                         if (!url || url.startsWith('//') || url.startsWith('http://') || url.startsWith('https://')) {
                             return url;
                         }
                         return '/api/project/raw/' + inforesponse.data.blogProject + '/' + url;
                     };
-                    $scope.$watchGroup(['dto.tag', 'dto.archive', 'dto.entries'], () => {
-                        $timeout(() => {
-                            $scope.$apply(() => {
-                                $scope.entries = $scope.dto.entries;
-                                if ($scope.dto.archive) {
-                                    $scope.entries = _.filter($scope.entries, (entry) => {
-                                        return moment(new Date(entry.date)).format('MMMM YYYY') === $scope.dto.archive;
-                                    });
-                                }
-                                if ($scope.dto.tag) {
-                                    $scope.entries = _.filter($scope.entries, (entry) => {
-                                        return entry.tags && _.find(entry.tags, (tag) => {
-                                            return tag === $scope.dto.tag
-                                        });
-                                    });
-                                }
-                            });
-                        });
-                    });
+                    el.find('div.banner').attr('style', `background-image: url("${normalizeImageUrl(scope.entry.image)}")`);
                 });
-
-            }]
+            }
         };
     }])
 

@@ -1,11 +1,5 @@
 .list
-    a(ng-href="{{normalizeUrl(entry.url)}}", ng-repeat="entry in entries")
-        div(microprofileio-blog-user, data-entry="entry")
-        img(ng-show="entry.image", ng-src="{{normalizeImageUrl(entry.image)}}").banner
-        h1 {{entry.title}}
-        p {{entry.extract}}
-        div
-            span continue reading
+    div(microprofileio-blog-list-entry, data-entry="entry", ng-repeat="entry in entries")
 .side
     div(microprofileio-blog-list-tags, data-dto="dto")
     div(microprofileio-blog-list-archive, data-dto="dto")
