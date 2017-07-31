@@ -129,6 +129,27 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
         };
     }])
 
+    .directive('microprofileioBlogListEntryShare', [() => {
+        return {
+            restrict: 'A',
+            scope: {
+                entry: '='
+            },
+            templateUrl: 'app/templates/dir_blog_list_entry_share.html',
+            controller: ['$scope', '$rootScope', ($scope, $rootScope) => {
+                $scope.setFacebookShare = (entry) => {
+                    return 'http://www.facebook.com/sharer/sharer.php?u=http:'
+                        + $rootScope.baseFullPath + 'blog/' + entry.url;
+                };
+                $scope.setTwitterShare = (entry) => {
+                    return 'https://twitter.com/intent/tweet?text=Check out http:'
+                        + $rootScope.baseFullPath + 'blog/' + entry.url;
+                };
+            }],
+        };
+    }])
+
+
     .directive('microprofileioBlogListArchive', [() => {
         return {
             restrict: 'A',

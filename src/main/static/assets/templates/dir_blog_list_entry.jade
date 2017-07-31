@@ -1,7 +1,10 @@
-a(ng-href="{{normalizeUrl(entry.url)}}")
+div(ng-href="{{normalizeUrl(entry.url)}}")
     div(microprofileio-blog-user, data-entry="entry")
-    div(ng-show="entry.image").banner
-    h1 {{entry.title}}
+    .banner(ng-show="entry.image")
+    h1
+        a(ng-href="{{normalizeUrl(entry.url)}}") {{entry.title}}
     p {{entry.extract}}
-    div
-        span continue reading
+    .footer
+        div
+            span continue reading
+        div(microprofileio-blog-list-entry-share, data-entry="entry")
