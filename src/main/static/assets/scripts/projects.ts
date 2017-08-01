@@ -1,33 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('microprofileio-projects', ['microprofileio-contributors'])
-
-    .factory('microprofileioProjectsDocService', ['$location',
-        function ($location) {
-            return {
-                normalizeResources: function (pRoot, sRoot, originalHtml) {
-                    var content = angular.element(originalHtml);
-                    content.find('a.anchor').remove();
-                    content.find('#user-content-toc').remove();
-                    content.find('a').each((idx, rawEl) => {
-                        let el = angular.element(rawEl);
-                        let oldHref = el.attr('href');
-                        let newHref = window.location.pathname.split('/').filter((entry) => {
-                            return entry !== '';
-                        });
-                        if (oldHref.startsWith('#')) {
-                            el.attr('href', newHref.join('/') + oldHref);
-                        } else {
-                            newHref.pop();
-                            newHref.push(oldHref);
-                            el.attr('href', newHref.join('/'));
-                        }
-                    });
-                    return content.html();
-                }
-            };
-        }
-    ])
+angular.module('microprofileio-projects', ['microprofileio-contributors', 'microprofileio-text'])
 
     .factory('microprofileioProjectsService', [
         '$http',
@@ -206,8 +179,6 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
                         $timeout(function () {
                             $scope.$apply(function () {
                                 $scope.project.doc = $sce.trustAsHtml(docService.normalizeResources(
-                                    'project/' + $scope.configFile + '/',
-                                    'api/project/raw/' + $scope.configFile + '/',
                                     response.data.content
                                 ));
                             });
@@ -237,42 +208,6 @@ angular.module('microprofileio-projects', ['microprofileio-contributors'])
                     });
                 }
             ]
-        };
-    }])
-
-    .directive('microprofileioApplicationPage', [function () {
-        return {
-            restrict: 'E',
-            scope: {
-                resource: '='
-            },
-            templateUrl: 'app/templates/dir_application_page.html',
-            controller: ['$scope', '$timeout', '$sce', 'microprofileioProjectsService', 'microprofileioProjectsDocService', '$location',
-                function ($scope, $timeout, $sce, projectsService, docService, $location) {
-                    projectsService.getAppPage($scope.resource).then(function (response) {
-                        $timeout(function () {
-                            $scope.$apply(function () {
-                                var newHtml = docService.normalizeResources(
-                                    'page/',
-                                    'api/application/raw',
-                                    response.data
-                                );
-                                $scope.page = $sce.trustAsHtml(newHtml);
-                            });
-                        });
-                    });
-                }
-            ]
-        };
-    }])
-
-    .directive('microprofileioApplicationPageHeader', [function () {
-        return {
-            restrict: 'E',
-            scope: {
-                resource: '='
-            },
-            templateUrl: 'app/templates/dir_application_page_header.html'
         };
     }])
 

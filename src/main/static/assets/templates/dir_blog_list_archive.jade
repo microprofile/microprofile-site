@@ -1,0 +1,7 @@
+h2 archive
+div
+ul
+    li(ng-repeat="month in months", ng-click="setArchive(month)", ng-class="{selected: dto.archive === month}")
+        span {{month}}
+        div
+

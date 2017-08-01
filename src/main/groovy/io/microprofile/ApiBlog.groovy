@@ -31,4 +31,10 @@ class ApiBlog {
         return Response.ok(data).build()
     }
 
+
+    @GET
+    Collection<DtoBlogEntry> list() {
+        return srv.list()
+    }
+
 }

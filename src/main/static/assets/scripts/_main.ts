@@ -12,7 +12,9 @@ angular.module('microprofileio-main', [
     'microprofileio-action',
     'microprofileio-faq',
     'microprofileio-blog',
-    'microprofileio-presentations'
+    'microprofileio-presentations',
+    'microprofileio-text',
+    'microprofileio-system'
 ])
 
     .config([
@@ -51,7 +53,14 @@ angular.module('microprofileio-main', [
                 .when('/blog/:resourceName*', {
                     templateUrl: 'app/templates/page_blog.html',
                     controller: ['microprofileioMenuService', '$scope', '$route', (menu, $scope, $route) => {
+                        menu.setSelected('blog');
                         $scope.resource = $route.current.params['resourceName'];
+                    }]
+                })
+                .when('/blog', {
+                    templateUrl: 'app/templates/page_blog_list.html',
+                    controller: ['microprofileioMenuService', '$scope', '$timeout', (menu, $scope, $timeout) => {
+                        menu.setSelected('blog');
                     }]
                 })
                 .when('/presentations', {
