@@ -6,21 +6,7 @@ $blog-sidebar-color: #f7f7f7
 $card-spacing: 100px
 $inner-spacing: 30px
 
-div[microprofileio-blog-entry]
-  background-color: $blog-entry-background-color
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  > div
-    max-width: 1100px
-    margin: $app-body-padding
-    div.content
-      width: 100%
-      line-height: 2
-      font-weight: 300
-
-div[microprofileio-blog-list]
+div[microprofileio-blog-list], div[microprofileio-blog-entry]
   display: flex
   @media screen and (max-width: 800px)
     flex-direction: column
@@ -30,7 +16,7 @@ div[microprofileio-blog-list]
   @media screen and (max-width: 800px)
     background: $blog-entry-background-color
     padding: 0
-  > .list
+  > .list, > .entry
     max-width: 738px
     display: flex
     flex-direction: column
@@ -47,6 +33,11 @@ div[microprofileio-blog-list]
       padding-right: $app-body-padding
       margin-bottom: $app-body-padding
       max-width: 100%
+
+
+div[microprofileio-blog-entry]
+  > .entry
+    margin: $app-body-padding 0
 
 div[microprofileio-blog-list-entry]
   > div
