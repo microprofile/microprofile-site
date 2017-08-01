@@ -49,12 +49,36 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
                         );
                         $scope.content = $sce.trustAsHtml(newHtml);
                     })));
+                    $scope.dto = {
+                        entries: [],
+                        archive: null,
+                        tag: null
+                    };
                     srv.listEntries().then((entries) => $timeout(() => $scope.$apply(() => {
                         $scope.entry = _.find(entries.data, (entry) => {
                             return entry.url === $scope.resource;
                         });
-
+                        $scope.dto.entries = _.clone(entries.data);
                     })));
+                    $scope.$watchGroup(['dto.tag', 'dto.archive', 'dto.entries'], () => {
+                        $timeout(() => {
+                            $scope.$apply(() => {
+                                $scope.entries = $scope.dto.entries;
+                                if ($scope.dto.archive) {
+                                    $scope.entries = _.filter($scope.entries, (entry) => {
+                                        return moment(new Date(entry.date)).format('MMMM YYYY') === $scope.dto.archive;
+                                    });
+                                }
+                                if ($scope.dto.tag) {
+                                    $scope.entries = _.filter($scope.entries, (entry) => {
+                                        return entry.tags && _.find(entry.tags, (tag) => {
+                                            return tag === $scope.dto.tag
+                                        });
+                                    });
+                                }
+                            });
+                        });
+                    });
                 });
             }]
         };
@@ -68,7 +92,8 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
             controller: ['$scope', '$timeout', 'microprofileioBlogService', ($scope, $timeout, srv) => {
                 $scope.dto = {
                     entries: [],
-                    archive: null
+                    archive: null,
+                    tag: null
                 };
                 srv.listEntries().then((entries) => $timeout(() => $scope.$apply(() => {
                     $scope.dto.entries = _.sortBy(entries.data, (entry) => {
@@ -95,6 +120,8 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
                         });
                     });
                 });
+                $scope.dto.archive = srv.getArchive();
+                $scope.dto.tag = srv.getTag();
             }]
         };
     }])
@@ -162,10 +189,11 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
                 dto: '='
             },
             templateUrl: 'app/templates/dir_blog_list_archive.html',
-            controller: ['$scope', '$timeout', 'microprofileioBlogService', ($scope, $timeout, srv) => {
+            controller: ['$scope', '$timeout', 'microprofileioBlogService', '$location', ($scope, $timeout, srv, $location) => {
                 $scope.setArchive = (value) => {
                     srv.setArchive(value);
                     $scope.dto.archive = srv.getArchive();
+                    $location.path('/blog');
                 };
                 $scope.$watch('dto.entries', () => {
                     $timeout(function () {
@@ -191,10 +219,11 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
                 dto: '='
             },
             templateUrl: 'app/templates/dir_blog_list_tags.html',
-            controller: ['$scope', '$timeout', 'microprofileioBlogService', ($scope, $timeout, srv) => {
+            controller: ['$scope', '$timeout', 'microprofileioBlogService', '$location', ($scope, $timeout, srv, $location) => {
                 $scope.setTag = (value) => {
                     srv.setTag(value);
                     $scope.dto.tag = srv.getTag();
+                    $location.path('/blog');
                 };
                 $scope.$watch('dto.entries', () => {
                     $timeout(function () {
