@@ -2,6 +2,16 @@
 
 angular.module('microprofileio-header', [])
 
+    .directive('microprofileioApplicationPageHeader', [function () {
+        return {
+            restrict: 'E',
+            scope: {
+                resource: '='
+            },
+            templateUrl: 'app/templates/dir_application_page_header.html'
+        };
+    }])
+
     .directive('microprofileioHeader', ['$window', function ($window) {
         return {
             restrict: 'E',
