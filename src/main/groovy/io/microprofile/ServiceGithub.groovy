@@ -131,7 +131,7 @@ class ServiceGithub {
     @Cached
     byte[] getRepoRaw(String projectName, String resourceName) {
         def resourcePath = resourceName.split(':')[0].split('/') as List<String>
-        def resourceDir = resourcePath.subList(0, resourcePath.size() -1).join('/')
+        def resourceDir = resourcePath.subList(0, resourcePath.size() - 1).join('/')
         def dirInfo = "https://api.github.com/repos/${removeBranch projectName}/contents/${resourceDir}".toURL().getText([
                 requestProperties: [
                         'Accept'       : 'application/vnd.github.v3+json',
@@ -159,14 +159,22 @@ class ServiceGithub {
 
     @Cached
     DtoContributorInfo getContributor(String login) {
-        def json = new JsonSlurper().parseText(
-                "https://api.github.com/users/${login}".toURL().getText([
-                        requestProperties: [
-                                'Accept'       : 'application/vnd.github.v3+json',
-                                'Authorization': "token ${application.githubAuthToken}"
-                        ]
-                ], StandardCharsets.UTF_8.name())
-        )
+        def json
+        try {
+            json = new JsonSlurper().parseText(
+                    "https://api.github.com/users/${login}".toURL().getText([
+                            requestProperties: [
+                                    'Accept'       : 'application/vnd.github.v3+json',
+                                    'Authorization': "token ${application.githubAuthToken}"
+                            ]
+                    ], StandardCharsets.UTF_8.name())
+            )
+        } catch (IOException ignore) {
+            json = [
+                    login: login,
+                    name : login
+            ]
+        }
         return new DtoContributorInfo(
                 login: json.login as String,
                 name: json.name as String,
