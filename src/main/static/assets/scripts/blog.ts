@@ -137,13 +137,18 @@ angular.module('microprofileio-blog', ['microprofileio-text'])
             },
             templateUrl: 'app/templates/dir_blog_list_entry_share.html',
             controller: ['$scope', '$rootScope', ($scope, $rootScope) => {
+                let getUrl = (entry) => {
+                    if(entry.url.startsWith('https://') || entry.url.startsWith('http://')) {
+                        return entry.url;
+                    } else {
+                        return 'http:' + $rootScope.baseFullPath + 'blog/' + entry.url;
+                    }
+                };
                 $scope.setFacebookShare = (entry) => {
-                    return 'http://www.facebook.com/sharer/sharer.php?u=http:'
-                        + $rootScope.baseFullPath + 'blog/' + entry.url;
+                    return 'http://www.facebook.com/sharer/sharer.php?u=' + getUrl(entry);
                 };
                 $scope.setTwitterShare = (entry) => {
-                    return 'https://twitter.com/intent/tweet?text=Check out http:'
-                        + $rootScope.baseFullPath + 'blog/' + entry.url;
+                    return 'https://twitter.com/intent/tweet?text=Check out ' + getUrl(entry);
                 };
             }],
         };
