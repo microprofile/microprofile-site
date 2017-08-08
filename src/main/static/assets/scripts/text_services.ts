@@ -11,6 +11,9 @@ angular.module('microprofileio-text', [])
                     content.find('a').each((idx, rawEl) => {
                         let el = angular.element(rawEl);
                         let oldHref = el.attr('href');
+                        if (oldHref.startsWith('//') || oldHref.startsWith('http://') || oldHref.startsWith('https://')) {
+                            return;
+                        }
                         let newHref = window.location.pathname.split('/').filter((entry) => {
                             return entry !== '';
                         });
