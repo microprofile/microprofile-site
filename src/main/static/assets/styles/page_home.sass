@@ -63,11 +63,30 @@
         position: relative
         $remove-image-width: 900px
         height: 700px
-        overflow: hidden
-        background-color: #e5e6e8
         @media screen and (max-width: $remove-image-width)
           height: auto
-          position: static
+        background-color: #e5e6e8
+        display: flex
+        align-items: center
+        > div
+          flex-grow: 1
+          flex-shrink: 0
+          width: 50%
+          &:first-child
+            padding: 0 40px
+          &:last-child
+            margin: 0 40px
+            @media screen and (max-width: $remove-image-width)
+              display: none
+            > div
+              position: relative
+              overflow: hidden
+              > img
+                position: absolute
+                top: 0
+                bottom: 0
+                left: 0
+
         div.image
           height: 100%
           width: 100%
@@ -76,50 +95,18 @@
             width: auto
         h2, p
           text-align: left
-        > div
-          &:first-of-type
-            position: absolute
-            @media screen and (max-width: $remove-image-width)
-              position: static
-            top: 0
-            bottom: 0
-            left: auto
-            right: 50%
-            display: flex
-            justify-content: flex-end
-            @media screen and (max-width: $remove-image-width)
-              right: 0
-              justify-content: center
-            align-items: center
-            > div
-              padding: 80px
-              @media screen and (max-width: $remove-image-width)
-                padding: 0 80px
-              @media (max-width: 700px)
-                padding: 0 40px
-          &:last-of-type
-            position: absolute
-            @media screen and (max-width: $remove-image-width)
-              position: static
-            top: 0
-            bottom: 0
-            left: 50%
-            right: auto
-            @media screen and (max-width: $remove-image-width)
-              display: none
         &.flipped
-          div.image
-            //background-position: right center
+          flex-direction: row-reverse
           > div
-            &:first-of-type // text
-              left: 50%
-              right: auto
-              @media screen and (max-width: $remove-image-width)
-                left: 0
-                right: 0
-            &:last-of-type // image
-              left: auto
-              right: 50%
+            &:last-child
+              > div
+                position: relative
+                > img
+                  position: absolute
+                  top: 0
+                  bottom: 0
+                  right: 0
+                  left: auto
         &.white
           background-color: $app-bg-white
       &.pdf
