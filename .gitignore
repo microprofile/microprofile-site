@@ -58,3 +58,7 @@ rebel.xml
 
 # it holds sensitive data. It should not go to github.
 src/main/resources/base.properties
+
+#VS code 
+.history/
+.vscode/
