@@ -33,10 +33,19 @@
         margin: 70px 0 0.94286em 0
         line-height: 48px
         font-size: 2.1875em
+      h3
+        margin: 0px 0 0.94286em 0
+        font-size: 1.3em
+        &::after
+          content: "";
+          border-bottom: 1px solid #efc94c;
+          width: 80px;
+          display: block;
+          padding-top: 23px;
       p
         font-size: 1em
         line-height: 1.9em
-        margin: 0 0 70px 0
+        margin: 0 0 5px 0
       *
         margin: 0
         font-weight: 300
@@ -117,17 +126,20 @@
         a
           padding: 10px 20px
           font-weight: 400
-          font-size: 1.2em
+          font-size: 0.7em
           display: inline-block
-          border: solid $app-black 1px
+          
           white-space: nowrap
-          text-transform: uppercase
+          border-radius: 35px;
+          border: 1px solid $app-hover-color
+          background-color: $app-hover-color
+          color: #ffffff !important
           &:hover
-            border-color: $app-hover-color
-            background-color: $app-hover-color
-            color: #ffffff !important
+            border-color: $app-black
+            color: $app-black !important
+            background-color: transparent
         p:first-of-type
-          margin-bottom: 35px
+          margin-bottom: 5px
 
       &.voting
         padding: 50px 0
