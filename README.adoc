@@ -167,9 +167,11 @@ The deploy process creates a zip file which has the executable jar, and bundles 
 
 === Setup
 
-You should install the http://docs.aws.amazon.com/cli/latest/userguide/installing.html[amazon command line tools] using your package manager. Setup your `.aws` directory and credentials file: http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
+* You should install the http://docs.aws.amazon.com/cli/latest/userguide/installing.html[AWS CLI] and https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html[AWS EB CLI] using your package manager. 
 
-Clone the source for this project to your local drive and cd to that directory.
+* Setup the https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html[AWS Credentials] in your `.aws` directory and make sure to use the region `us-west-2`
+
+* Clone the source for this project to your local drive and cd to that directory.
 
 Run the command:
 
@@ -196,7 +198,7 @@ Before running this command, one should make sure `microprofile_github_atoken` i
 `mvn clean package tomee:exec assembly:single && eb deploy microprofile-io-env`
 
 **Note**
-If the contributors page is broken, it's likely because you did not set the `microprofile_github_atoken`.
+If the contributors page is broken, it's likely because you did not set the `microprofile_github_atoken`. Remember to flush cloudflare cache to view the website changes.
 
 === Config file descriptions
 
