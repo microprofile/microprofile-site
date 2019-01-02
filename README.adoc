@@ -189,10 +189,8 @@ The deploy process creates a zip file which has the executable jar, and bundles 
 
 === Setup
 
-* You should install the http://docs.aws.amazon.com/cli/latest/userguide/installing.html[AWS CLI] and https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html[AWS EB CLI] using your package manager.
-
+* You should install the http://docs.aws.amazon.com/cli/latest/userguide/installing.html[AWS CLI] and https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html[AWS EB CLI] using your package manager. 
 * Setup the https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html[AWS Credentials] in your `.aws` directory and make sure to use the region `us-west-2`
-
 * Clone the source for this project to your local drive and cd to that directory.
 
 Run the command:
