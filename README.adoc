@@ -7,6 +7,16 @@
 
 Checkout the live application here: https://microprofile.io/
 
+
+== Summary
+Since the middle of 2018, this project is used just to provide a REST API used by WP Engine to render the following pages:
+
+* https://microprofile.io/projects/
+* https://microprofile.io/contributors/
+
+The following diagram shows the relationship between Amazon ELB (the one hosting this project), Cloudflare and WP Engine.
+image:/architectural_diagram/image.png[]
+
 == How to build and run the application locally?
 
 Simply run `mvn clean install tomee:run`. Your server will be available at
@@ -32,7 +42,7 @@ microprofile_config_root=microprofile/microprofile-site-config
 microprofile_github_atoken=<your token here>
 ----
 
-== Node.js and Gulp
+== Node.js and Gulp (deprecated)
 
 This application heavily depends on link:https://nodejs.org/[node.js] and link:http://gulpjs.com/[gulp] to build all the
 static resources. These tools will execute tons of actions not yet available in the java world; at least not as handy
@@ -40,7 +50,7 @@ as available on node.js. The good news is that we don't need to worry about a th
 maven project. `mvn clean install tomee:run` will perform all the heavy lifting. It downloads the dependencies
 and executes node.js, gulp and the tomee server.
 
-== What about front-end development?
+== What about front-end development? (deprecated)
 
 Front-end developers don't need to restart servers. In fact, front-end developers don't like to waste a single second
 waiting for a JS change to be reflected on a web application. This is what make web development fun.
@@ -78,7 +88,7 @@ tveronezi@ubatuba:microprofile.io$ mvn frontend:gulp
 [INFO] [10:49:49] Finished 'default' after 43 ms
 ----
 
-== Unit testing
+== Unit testing (deprecated)
 
 We have two types of tests: backend and frontend. The frontend testing
 is somewhat special because it uses link:http://karma-runner.github.io/0.13/index.html[karma]. It's transparent for
@@ -120,7 +130,7 @@ browsers: [
 
 When you execute `mvn frontend:karma`, a browser window will popup.
 
-== How to publish content?
+== How to publish content? (deprecated)
 
 Some of the content of this application is based on another Github project:
 link:https://github.com/microprofile/microprofile-site-config[].
@@ -135,11 +145,11 @@ Clouldflare sits in front of our website as a CDN and proxy. By setting our NS r
 
 === Cloudflare CDN
 
+
+
 ==== DNS
-```
-[User Agent] -DNS Query-> [Cloudflare NS]
-[User Agent] <-DNS Response to closest Cloudflare server- [Cloudflare NS]
-```
+        microprofile.io → WP engine
+        api.microprofile.io → amazon ELB
 
 ==== HTTP
 ```
@@ -156,6 +166,18 @@ If non-static asset:
                         |-> [Active Instances Subnet1] -> [JVM Instance]
 ```
 
+=== WP Engine
+WP engine is the one hosting 99% of all the pages. The only pages not developed on WP engine are the ones who's
+content comes from the Amazon ELB API:
+
+* /contributors
+* /projects
+
+WP engine has the following redirection rules for the dynamic js pages described above:
+
+* /project/.+
+* /api/(.*)$
+
 == Deployment
 
 The deploy process creates a zip file which has the executable jar, and bundles several AWS config files.
@@ -168,9 +190,7 @@ The deploy process creates a zip file which has the executable jar, and bundles 
 === Setup
 
 * You should install the http://docs.aws.amazon.com/cli/latest/userguide/installing.html[AWS CLI] and https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html[AWS EB CLI] using your package manager. 
-
 * Setup the https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html[AWS Credentials] in your `.aws` directory and make sure to use the region `us-west-2`
-
 * Clone the source for this project to your local drive and cd to that directory.
 
 Run the command:
@@ -200,7 +220,7 @@ Before running this command, one should make sure `microprofile_github_atoken` i
 **Note**
 If the contributors page is broken, it's likely because you did not set the `microprofile_github_atoken`. Remember to flush cloudflare cache to view the website changes.
 
-=== Config file descriptions
+=== Config file descriptions (deprecated)
 
 `src/main/config/haproxy.cfg`
 
@@ -221,7 +241,7 @@ This directory is filtered and copied to `/` in the root of the assembled ZIP ar
 * `Procfile` tells the AWS Agent what command to run to launch your deployment. It launches the next script:
 * `kill-before-run.sh` ensures that all existing Java processes have been terminated before launching the new Java archive. This is sort of a hack, if someone has a better way to do this, it'd be much appreciated.
 
-== Creating a new html page
+== Creating a new html page (deprecated)
 
 ----
 diff --git a/src/main/static/assets/scripts/_main.ts b/src/main/static/assets/scripts/_main.ts
