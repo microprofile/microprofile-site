@@ -75,6 +75,7 @@
       </dependency>
    </dependencies>
    <build>
+      <defaultGoal>clean install tomee:run</defaultGoal>
       <pluginManagement>
          <plugins>
             <plugin>
