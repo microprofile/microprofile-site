@@ -40,6 +40,7 @@ src/main/static/node/
 # Misc #
 *.log
 *.bat
+/bin/ 
 
 # JRebel config files #
 rebel.xml
