@@ -10,6 +10,9 @@ angular.module('microprofileio-projects', ['microprofileio-contributors', 'micro
                 getProjects: function () {
                     return $http.get('api/project');
                 },
+                getProjectsHydrated: function () {
+                    return $http.get('api/projectHydrated');
+                },
                 getProject: function (configFile) {
                     if (!configFile) {
                         return {
@@ -40,7 +43,7 @@ angular.module('microprofileio-projects', ['microprofileio-contributors', 'micro
             scope: {},
             templateUrl: 'app/templates/dir_projects_projects_shortlist.html',
             controller: ['$scope', '$timeout', 'microprofileioProjectsService', function ($scope, $timeout, projectsService) {
-                projectsService.getProjects().then(function (response) {
+                projectsService.getProjectsHydrated().then(function (response) {
                     $timeout(function () {
                         $scope.$apply(function () {
                             $scope.projects = response.data;
@@ -81,13 +84,7 @@ angular.module('microprofileio-projects', ['microprofileio-contributors', 'micro
             },
             templateUrl: 'app/templates/dir_projects_project_card_contributor.html',
             controller: ['$scope', '$timeout', 'microprofileioContributorsService', function ($scope, $timeout, contributorService) {
-                contributorService.getContributor($scope.contributor.login).then(function (response) {
-                    $timeout(function () {
-                        $scope.$apply(function () {
-                            $scope.contributor = response.data;
-                        });
-                    });
-                });
+                $scope.contributor = $scope.contributor.info;
             }]
         };
     }])
@@ -96,22 +93,16 @@ angular.module('microprofileio-projects', ['microprofileio-contributors', 'micro
         return {
             restrict: 'A',
             scope: {
-                projectName: '='
+                projectData: '='
             },
             templateUrl: 'app/templates/dir_projects_project_card.html',
             controller: ['$scope', '$timeout', 'microprofileioProjectsService', function ($scope, $timeout, projectsService) {
-                projectsService.getProject($scope.projectName).then(function (response) {
-                    $timeout(function () {
-                        $scope.$apply(function () {
-                            let project = response.data;
-                            $scope.project = project;
-                            let normalizeName = (name: String) => {
-                                return name.split(':')[0];
-                            };
-                            $scope.name = project.info.friendlyName ? project.info.friendlyName : normalizeName(project.info.name);
-                        });
-                    });
-                });
+                    let project = $scope.projectData;
+                    $scope.project = project;
+                    let normalizeName = (name: String) => {
+                        return name.split(':')[0];
+                    };
+                    $scope.name = project.info.friendlyName ? project.info.friendlyName : normalizeName(project.info.name);
             }]
         };
     }])
