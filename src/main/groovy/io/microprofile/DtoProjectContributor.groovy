@@ -8,6 +8,7 @@ import groovy.transform.ToString
 class DtoProjectContributor {
     String login
     int contributions
+    DtoContributorInfo info
 
     boolean equals(o) {
         if (this.is(o)) {

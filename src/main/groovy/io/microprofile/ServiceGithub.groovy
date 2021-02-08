@@ -7,7 +7,9 @@ import org.yaml.snakeyaml.Yaml
 import javax.ejb.Lock
 import javax.ejb.LockType
 import javax.ejb.Singleton
+import javax.imageio.ImageIO
 import javax.inject.Inject
+import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -178,10 +180,28 @@ class ServiceGithub {
         return new DtoContributorInfo(
                 login: json.login as String,
                 name: json.name as String,
-                avatar: json.avatar_url as String,
+                avatar: (json.avatar_url) as String,
                 company: json.company as String,
                 location: json.location as String
         )
+    }
+
+    String encode(String avatarUrl) {
+        def data = "data:image/png;base64,";
+        def dataBuffer = new ByteArrayOutputStream();
+
+
+        try {
+            ImageIO.write(ImageIO.read(new URL(avatarUrl)), "png", dataBuffer);
+
+
+            data += Base64.encoder.encodeToString(dataBuffer.toByteArray());
+            return data
+        } catch (Exception e) {
+            Logger.anonymousLogger.log(Level.SEVERE, e.message, e);
+            return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAA6UlEQVRIx2NgGAXDDbAx5DIcZ/gMhMeBLDZyjZFmOM/wHwmeB4qQ5RpUYyBGkeGqXLDWnwwVDBJAWAFkgfi5pBt0AqyxHM4vB/NPkG7QJ7BGKThfCsz/NIAGUc1rVAtsqkU/1RIkFbPIsAXqDOkM84Dp5hE4oB8BWfOAIuqkGCHIUMlwFSPqYfAqUFaQsCFMwBT8CachMPgJqIoJnzGsDDvgir8ybGcoYHBgUGPgAUI1IKuAYRtQFCa/A6gaJ2iHKjrDEM7AjlUFO1DmNFRVO26D7oMVlBEMgBKwuvu4FfwnEQ4hg0bB0AAAZQHj53Lw8aMAAAAASUVORK5CYII="
+        }
+        return "";
     }
 
 }
