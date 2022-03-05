@@ -13,7 +13,8 @@
     "ngstorage": "~0.3.11",
     "angular-cookies": "1.6.2",
     "angular-resource": "1.6.2",
-    "lato": "0.3.0"
+    "lato": "0.3.0",
+    "github-markdown-css": "^5.1.0"
   },
   "resolutions": {
     "angular": "1.6.2"

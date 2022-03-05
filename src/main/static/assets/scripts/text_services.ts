@@ -39,7 +39,7 @@ angular.module('microprofileio-text', [])
                         oldHref = imgPath.join('/') + '/' + oldHref;
                         el.attr('src', '/api/project/raw/' + githubProject + '/' + oldHref);
                     });
-                    return content.html();
+                    return "<div class=\"markdown-body\">" + content.html() + "</div>";
                 }
             };
         }
