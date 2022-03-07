@@ -22,6 +22,7 @@ gulp.task('css-build', gulpsync.sync(['sass', 'autoprefixer', 'css-concat']));
 gulp.task('css-third-party', function () {
     return gulp.src([
         './bower_components/lato/css/lato.css',
+        './bower_components/github-markdown-css/github-markdown.css',
         './bower_components/normalize-css/normalize.css',
         './bower_components/font-awesome/css/font-awesome.min.css'
     ]).pipe(concat('_.css')).pipe(gulp.dest('../../../target/static-resources/app/third-party/styles/'));

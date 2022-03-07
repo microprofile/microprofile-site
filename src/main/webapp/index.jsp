@@ -46,6 +46,22 @@
     </script>
     <link rel="stylesheet" href="app/third-party/styles/_.css"/>
     <link rel="stylesheet" href="app/styles/_.css"/>
+    <link rel="stylesheet" href="github-markdown.css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
     <link rel="icon" href="app/images/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
