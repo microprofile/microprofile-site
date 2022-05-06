@@ -18,6 +18,6 @@ mvn verify
 ./target/contributors main .
 ....
 
-The file `gh-pages/contributors.json` will contain the contributors data.
+The file `docs/contributors.json` will contain the contributors data.
 
 
