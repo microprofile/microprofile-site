@@ -1,5 +1,9 @@
 = Microprofile Website Bot
 
+== Prerequisites
+- Java >= 11
+- Maven
+
 == Configure
 `src/main/resources/META-INF/microprofile-config.properties` is the file where you can customize:
 
