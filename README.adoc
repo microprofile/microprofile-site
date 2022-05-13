@@ -1,0 +1,27 @@
+= Microprofile Website Bot
+
+== Prerequisites
+- Java >= 11
+- Maven
+
+== Configure
+`src/main/resources/META-INF/microprofile-config.properties` is the file where you can customize:
+
+- The list of Github repositories to scan.
+- Your `MP_BOT_TOKEN` (local development only)
+- Output file containing the contributors list in json format.
+
+== Build
+....
+mvn verify
+....
+
+
+== Run
+....
+./target/contributors main .
+....
+
+The file `docs/contributors.json` will contain the contributors data.
+
+
