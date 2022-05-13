@@ -47,7 +47,7 @@ public class ContributorsProcessing {
         final ArrayList<String> repositoriesNames = new ArrayList<>(Arrays.asList(config.getValue("repositories",
                 String[].class)));
 
-        final String githubToken = config.getValue("GITHUB_TOKEN", String.class);
+        final String githubToken = config.getValue("MP_BOT_TOKEN", String.class);
         final String filePath = config.getValue("filepath", String.class);
 
         log.info("Repositories to process: " + repositoriesNames.toString());
