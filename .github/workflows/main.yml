@@ -30,7 +30,15 @@ jobs:
       env:
         MP_BOT_TOKEN: ${{ secrets.MP_BOT_TOKEN }}
 
-    - name: If changes push new json file
+    - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v9
+        id: verify-changed-files
+        with:
+          files: |
+            contributors.json
+
+    - name: Push new json file from doc folder
+      if: verify-changed-files
       run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"    
