@@ -32,11 +32,8 @@ jobs:
 
     - name: If changes push new json file
         run: |
-          git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
-          git config --global user.name "${GH_USERNAME}"     
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"     
           git add docs
           git commit -m "Updated docs/contributors.json file."
           git push
-        env:
-          GH_USERNAME: ${{ github.event.schedule.user.login }}
-        
