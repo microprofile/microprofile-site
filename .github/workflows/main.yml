@@ -38,7 +38,7 @@ jobs:
            contributors.json             
 
     - name: Push new json file from doc folder
-      if: verify-changed-files
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
       run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"    
