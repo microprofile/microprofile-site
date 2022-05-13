@@ -29,4 +29,14 @@ jobs:
       run: ./target/contributors main .
       env:
         MP_BOT_TOKEN: ${{ secrets.MP_BOT_TOKEN }}
+
+    - name: If changes push new json file
+        run: |
+          git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
+          git config --global user.name "${GH_USERNAME}"     
+          git add docs
+          git commit -m "Updated docs/contributors.json file."
+          git push
+        env:
+          GH_USERNAME: ${{ github.event.schedule.user.login }}
         
