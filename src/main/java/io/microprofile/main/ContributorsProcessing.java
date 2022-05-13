@@ -29,10 +29,7 @@ import org.kohsuke.github.PagedIterable;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -64,6 +61,10 @@ public class ContributorsProcessing {
 
         //write contributors list to a file
         List<ContributorDto> contributorDtoList = new ArrayList<>(contributorDtoHashMap.values());
+
+        //List in descending order based on the number of contributions.
+        Collections.sort(contributorDtoList, Comparator.comparing(ContributorDto::getContributions).reversed());
+
         Jsonb jsonb = new JohnzonBuilder().build();
         String myData = jsonb.toJson(contributorDtoList);
         log.info(myData);
