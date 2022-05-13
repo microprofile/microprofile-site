@@ -34,8 +34,8 @@ jobs:
     - uses: tj-actions/verify-changed-files@v9
       id: verify-changed-files
       with:
-          files: |
-                contributors.json
+       files: |
+              contributors.json
 
     - name: Push new json file from doc folder
       if: verify-changed-files
