@@ -65,3 +65,5 @@ src/main/resources/base.properties
 #VS code 
 .history/
 .vscode/
+
+!docs/**/*
