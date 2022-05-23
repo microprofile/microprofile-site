@@ -1,7 +1,6 @@
 package io.microprofile.dto;
 
 import java.util.Objects;
-import java.net.URL;
 
 public class ContributorDto {
     private String company;
@@ -13,14 +12,14 @@ public class ContributorDto {
     private String profile;
 
 
-    public ContributorDto(String company, int contributions, String location, String login, String name, String avatar, URL profile) {
+    public ContributorDto(String company, int contributions, String location, String login, String name, String avatar, String profile) {
         this.company = company;
         this.contributions = contributions;
         this.location = location;
         this.login = login;
         this.name = name;
         this.avatar = avatar;
-        this.profile = profile.toString();
+        this.profile = profile;
     }
 
 
@@ -76,8 +75,8 @@ public class ContributorDto {
         return profile;
     }
 
-    public void setProfile(URL profile) {
-        this.profile = profile.toString();
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public void increaseContributions(int newContributions) {

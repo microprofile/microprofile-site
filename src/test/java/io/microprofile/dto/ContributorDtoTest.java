@@ -32,7 +32,7 @@ public class ContributorDtoTest {
     public void testContributorJson() throws JSONException {
         try {
             URL url = new URL("http://example.com");
-            ContributorDto contributorDtoList = new ContributorDto("company", 100, "US", "microprofile", "mp", "image.png", url);
+            ContributorDto contributorDtoList = new ContributorDto("company", 100, "US", "microprofile", "mp", "image.png", url.toString());
             Jsonb jsonb = new JohnzonBuilder().build();
             String contributorJson = jsonb.toJson(contributorDtoList);
 
