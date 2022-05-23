@@ -50,8 +50,8 @@
           return {
             restrict: "E",
             template: `<div>
-                <a ng-repeat="contributor in contributors | orderBy:'contributions':true" ng-href="https://github.com/{{contributor.path}}/" target="_blank">
-                    <img ng-src="https://github.com/{{contributor.path}}.png?size=200" title="{{contributor.name}}"/>
+                <a ng-repeat="contributor in contributors | orderBy:'contributions':true" ng-href="{{contributor.profile}}" target="_blank">
+                    <img ng-src="{{contributor.avatar}}" title="{{contributor.name}}"/>
                     <div>
                         <h1>{{contributor.name ? contributor.name : contributor.login}}</h1>
                         <h2 class="company">{{contributor.company ? contributor.company : '-'}}</h2>
@@ -66,10 +66,6 @@
                 $http.get(contributorsUrl).then(function (response) {
                   if (!response?.data?.length)
                     return console.warn("No contributors fetched");
-                  // clean path for bots logins
-                  response.data.forEach((contributor) => {
-                    contributor.path = contributor.login.replace("[bot]", "");
-                  });
                   $scope.contributors = response.data;
                 });
               },
