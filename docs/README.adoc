@@ -21,7 +21,7 @@ http-server
 - Replace `https://cesarhernandezgt.github.io/mp-bot/` with path to `link:contributors.js[contributors.js]` in this html fragment (and use on contributors page)
 ```html
     <!-- part to include in page BEGIN -->
-    <div id="microprofileio-contributors-list">
+    <div id="microprofileio-contributors-div">
         <div class="page-body contributors">
         <div>
             <microprofileio-contributors-list></microprofileio-contributors-list>
