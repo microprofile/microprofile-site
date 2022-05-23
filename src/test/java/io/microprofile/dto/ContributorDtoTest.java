@@ -23,19 +23,25 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import javax.json.bind.Jsonb;
+import java.net.*;
 
 public class ContributorDtoTest {
 
 
     @Test
     public void testContributorJson() throws JSONException {
-        ContributorDto contributorDtoList = new ContributorDto("company", 100, "US", "microprofile", "mp");
-        Jsonb jsonb = new JohnzonBuilder().build();
-        String contributorJson = jsonb.toJson(contributorDtoList);
+        try {
+            URL url = new URL("http://example.com");
+            ContributorDto contributorDtoList = new ContributorDto("company", 100, "US", "microprofile", "mp", "image.png", url);
+            Jsonb jsonb = new JohnzonBuilder().build();
+            String contributorJson = jsonb.toJson(contributorDtoList);
 
-        final String expected = "{\"company\":\"company\",\"contributions\":100,\"location\":\"US\"," +
-                "\"login\":\"microprofile\",\"name\":\"mp\"}";
+            final String expected = "{\"company\":\"company\",\"contributions\":100,\"location\":\"US\"," +
+                    "\"login\":\"microprofile\",\"name\":\"mp\",\"avatar\":\"image.png\",\"profile\":\"http://example.com\"}";
 
-        JSONAssert.assertEquals(expected, contributorJson, JSONCompareMode.LENIENT);
+            JSONAssert.assertEquals(expected, contributorJson, JSONCompareMode.LENIENT);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 }
