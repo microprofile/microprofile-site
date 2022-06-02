@@ -12,6 +12,8 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+dependency-reduced-pom.xml
+
 # IDEA #
 *.iml
 .idea
@@ -40,7 +42,7 @@ src/main/static/node/
 # Misc #
 *.log
 *.bat
-/bin/ 
+/bin/
 
 # JRebel config files #
 rebel.xml
@@ -60,6 +62,8 @@ rebel.xml
 # it holds sensitive data. It should not go to github.
 src/main/resources/base.properties
 
-#VS code 
+#VS code
 .history/
 .vscode/
+
+!docs/**/*
