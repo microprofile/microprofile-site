@@ -8,14 +8,18 @@ public class ContributorDto {
     private String location;
     private String login;
     private String name;
+    private String avatar;
+    private String profile;
 
 
-    public ContributorDto(String company, int contributions, String location, String login, String name) {
+    public ContributorDto(String company, int contributions, String location, String login, String name, String avatar, String profile) {
         this.company = company;
         this.contributions = contributions;
         this.location = location;
         this.login = login;
         this.name = name;
+        this.avatar = avatar;
+        this.profile = profile;
     }
 
 
@@ -59,6 +63,22 @@ public class ContributorDto {
         this.name = name;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
     public void increaseContributions(int newContributions) {
         this.contributions = this.contributions + newContributions;
     }
@@ -66,7 +86,8 @@ public class ContributorDto {
     @Override
     public String toString() {
         return "ContributorDto{" + "company='" + company + '\'' + ", contributions=" + contributions + ", location='" +
-                location + '\'' + ", login='" + login + '\'' + ", name='" + name + '\'' + '}';
+                location + '\'' + ", login='" + login + '\'' + ", name='" + name + '\'' + ", avatar='" +
+                avatar + '\'' + ", profile='" + profile + '\'' + '}';
     }
 
     @Override
@@ -75,11 +96,11 @@ public class ContributorDto {
         if (o == null || getClass() != o.getClass()) return false;
         ContributorDto that = (ContributorDto) o;
         return Objects.equals(company, that.company) && Objects.equals(location, that.location) &&
-                login.equals(that.login) && Objects.equals(name, that.name);
+                login.equals(that.login) && Objects.equals(name, that.name) && Objects.equals(avatar, that.avatar) && Objects.equals(profile, that.profile);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(company, location, login, name);
+        return Objects.hash(company, location, login, name, avatar, profile);
     }
 }
