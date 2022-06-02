@@ -99,11 +99,7 @@ public class ContributorsProcessing {
                 } else { //New contributor to be added in the Map.
                     contributorDtoMap.put(ghContributor.getLogin(),
                             new ContributorDto(ghContributor.getCompany(), ghContributor.getContributions(),
-<<<<<<< HEAD
-                                    ghContributor.getLocation(), ghContributor.getLogin(), ghContributor.getName())
-=======
                                     ghContributor.getLocation(), ghContributor.getLogin(), ghContributor.getName(), ghContributor.getAvatarUrl(), ghContributor.getHtmlUrl().toString())
->>>>>>> boot/main
                     );
                 }
             }

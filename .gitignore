@@ -42,7 +42,7 @@ src/main/static/node/
 # Misc #
 *.log
 *.bat
-/bin/ 
+/bin/
 
 # JRebel config files #
 rebel.xml
@@ -62,11 +62,8 @@ rebel.xml
 # it holds sensitive data. It should not go to github.
 src/main/resources/base.properties
 
-#VS code 
+#VS code
 .history/
 .vscode/
-<<<<<<< HEAD
-=======
 
 !docs/**/*
->>>>>>> boot/main
