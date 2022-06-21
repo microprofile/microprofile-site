@@ -24,10 +24,8 @@ public class Main {
 
     @Command
     public static void main(String args[]) throws IOException {
-
-        ContributorsProcessing cp = new ContributorsProcessing();
-        cp.process();
-
+        new ContributorsProcessing().process();
+        new ProjectsProcessing().process();
     }
 
 
