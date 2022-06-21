@@ -178,6 +178,7 @@
                <excludes>
                   <exclude>README.adoc</exclude>
                   <exclude>docs/contributors.json</exclude>
+                  <exclude>docs/projects.json</exclude>
                   <exclude>docs/README.adoc</exclude>
                   <exclude>docs/robots.txt</exclude>
                   <exclude>.github/workflows/main.yml</exclude>
