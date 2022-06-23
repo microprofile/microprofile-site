@@ -1,0 +1,35 @@
+= MicroProfile Website preview
+
+== Run
+
+- Check that `docs/contributors.json` contains data
+- Host docs folder
+
+== Run example preview
+
+```bash
+npm install http-server -g
+cd docs
+http-server
+#then open http://localhost:8080/contributors/
+```
+
+== Use on page
+
+- Replace `https://microprofile.github.io/microprofile-site/` with path to `link:contributors.json[contributors.json]` in `link:contributors.js[contributors.js]`
+
+- Replace `https://microprofile.github.io/microprofile-site/` with path to `link:contributors.js[contributors.js]` in this html fragment (and use on contributors page)
+```html
+    <!-- part to include in page BEGIN -->
+    <div id="microprofileio-contributors-div">
+        <div class="page-body contributors">
+        <div>
+            <microprofileio-contributors-list></microprofileio-contributors-list>
+        </div>
+        </div>
+    </div>
+    <script src="https://microprofile.github.io/microprofile-site/contributors.js"></script>
+    <!-- part to include in page END -->
+```
+
+
