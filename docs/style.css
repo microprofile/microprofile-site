@@ -12,8 +12,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600&family=Lato:wght@400;700&display=swap');
 html .container-wrap {
     background-color: #f1f4f6 !important;
+  }
+  body * {
+    font-family: Lato;
+  }
+  body h3, .row .col h3 {
+    font-family: Dosis;
+  }
+  a {
+    color: #fdb71c;
+    text-decoration: none;
+    transition: color .3s;
   }
   microprofileio-contributors-list > div {
     display: -ms-flexbox;
@@ -69,6 +81,228 @@ html .container-wrap {
     margin: 0 !important;
     display: inherit;
   }
+
+  microprofileio-projects-shortlist > div {
+    padding: 40px 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+microprofileio-projects-shortlist>div>div {
+    max-width: 1100px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+microprofileio-projects-shortlist div.microprofileio-project-card {
+    background-color: #fff;
+    margin: 30px;
+    width: 450px;
+    height: 150px;
+    border: solid #ededed 1px;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card:hover {
+    border-color: #efc94c;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card>div {
+    height: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card>div>div:first-child, microprofileio-projects-shortlist div.microprofileio-project-card>div>a:first-child {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card a.project-card-body {
+    display: block;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card>div>div, microprofileio-projects-shortlist div.microprofileio-project-card>div>a {
+    padding: 10px 20px;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card a.project-card-body h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    color: #efc94c;
+    font-weight: 300;
+    font-size: 22px;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card a.project-card-body p {
+    font-size: 11px;
+    font-weight: 300;
+    color: #676a6c;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card div.project-card-footer {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+    border-top: solid #ededed 1px;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card>div>div, microprofileio-projects-shortlist div.microprofileio-project-card>div>a {
+    padding: 10px 20px;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card-contributors>div {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card-contributors>div .fa {
+    font-size: 18px;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card-contributors img:last-child {
+    margin: 0 10px 0 0;
+}
+microprofileio-projects-shortlist div.microprofileio-project-card-contributors img {
+    height: 35px !important;
+    width: auto !important;
+    border-radius: 30px;
+    border: solid #ededed 1px;
+    margin: 0 5px 0 0 !important;
+    display: flex;
+}
+
+microprofileio-project-doc>div {
+    padding: 40px;
+}
+microprofileio-projects-shortlist i {
+    color: #ededed;
+}
+microprofileio-projects-shortlist a:hover i {
+    color: #efc94c;
+    cursor: pointer;
+}
+microprofileio-project-doc>div {
+    padding: 40px 5px 5px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+microprofileio-project-doc>div>div.side-bar {
+    width: 320px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin-left: 40px;
+}
+microprofileio-project-doc>div>div.side-bar>div {
+    margin: 0 0 40px;
+}
+microprofileio-project-doc>div>div.side-bar * {
+    font-size: 15px;
+    line-height: 1.15;
+    font-weight: 100;
+}
+microprofileio-project-doc>div>div.side-bar>div.resources>div, microprofileio-project-doc>div>div.side-bar>div.related>div, microprofileio-project-doc>div>div.side-bar>div.docs>div {
+    background-color: #feffff;
+    padding: 10px;
+    margin-top: 10px;
+}
+microprofileio-project-doc>div>div.side-bar>div * {
+    margin: 0;
+    padding: 0;
+}
+microprofileio-project-doc>div>div.side-bar>div.resources>div>p, microprofileio-project-doc>div>div.side-bar>div.related>div>p, microprofileio-project-doc>div>div.side-bar>div.docs>div>p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+microprofileio-project-doc>div>div.side-bar>div a {
+    text-decoration: none;
+    color: #4078c0;
+}
+microprofileio-contributor-summary>a>img {
+    width: 35px !important;
+    height: auto !important;
+}
+microprofileio-project-doc>div>div.side-bar>div.contributors>h1 {
+    margin: 0 2px 10px;
+}
+microprofileio-project-doc>div>div.side-bar>div.contributors img {
+    margin: 2px;
+}
+microprofileio-project-doc>div>div.content {
+    background-color: #feffff;
+    padding: 40px;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    overflow: auto
+}
+
+microprofileio-project-doc>div>div.content .group:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
+microprofileio-project-doc>div>div.content * {
+    line-height: 1.5
+}
+
+microprofileio-project-doc>div>div.content a {
+    color: #efc94c
+}
+
+microprofileio-project-doc>div>div.content pre {
+    margin: 0;
+    padding: 20px;
+    background-color: #f1f4f6
+}
+
+div[ng-view] code, div[ng-view] kbd, div[ng-view] samp, div[ng-view] pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
+    color: #676a6c;
+}
+
+div[ng-view] table, div[ng-view] table td {
+    font-size: 15px;
+}
+
+div[ng-view] code, kbd, samp {
+    background: none;
+}
+microprofileio-project-doc>div>div.content h1 {
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+}
+microprofileio-project-doc>div>div.content h2 {
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+}
+microprofileio-project-doc>div>div.content h3 {
+    font-size: 1.17em !important;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+microprofileio-project-doc>div>div.content h4 {
+    font-size: 1em !important;
+    font-weight: bold;
+}
+
+microprofileio-project-doc>div>div.content h5 {
+    font-size: 0.83em !important;
+    font-weight: bold;
+}
   
   @media (max-width: 1040px) {
     microprofileio-contributors-list > div > a {

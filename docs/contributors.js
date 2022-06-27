@@ -29,7 +29,7 @@
   // to load in parallel use Promise.all(scripts.map(promiseGetScript))
   const arrayWaterfall = (array, fn) =>
     array.reduce((p, script) => p.then(() => fn(script)), Promise.resolve());
-  
+
   // check if element with id `microprofileio-contributors-div` exists
   const bootstrapEl = document.getElementById(
     "microprofileio-contributors-div"

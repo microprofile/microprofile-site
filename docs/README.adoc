@@ -3,6 +3,7 @@
 == Run
 
 - Check that `docs/contributors.json` contains data
+- Check that `docs/projects.json` contains data
 - Host docs folder
 
 == Run example preview
@@ -11,10 +12,12 @@
 npm install http-server -g
 cd docs
 http-server
-#then open http://localhost:8080/contributors/
+#then open http://localhost:8080/contributors/ or http://localhost:8080/projects/
 ```
 
 == Use on page
+
+=== Contributors
 
 - Replace `https://microprofile.github.io/microprofile-site/` with path to `link:contributors.json[contributors.json]` in `link:contributors.js[contributors.js]`
 
@@ -29,6 +32,24 @@ http-server
         </div>
     </div>
     <script src="https://microprofile.github.io/microprofile-site/contributors.js"></script>
+    <!-- part to include in page END -->
+```
+
+=== Projects
+
+- Replace `https://microprofile.github.io/microprofile-site/` with path to `link:projects.json[projects.json]` in `link:projects.js[projects.js]`
+
+- Replace `https://microprofile.github.io/microprofile-site/` with path to `link:projects.js[projects.js]` in this html fragment (and use on contributors page)
+```html
+    <!-- part to include in page BEGIN -->
+    <div id="microprofileio-projects-div">
+        <div class="page-body projects">
+            <div>
+                <microprofileio-projects-shortlist></microprofileio-projects-shortlist>
+            </div>
+        </div>
+    </div>
+    <script src="https://microprofile.github.io/microprofile-site/projects.js"></script>
     <!-- part to include in page END -->
 ```
 
