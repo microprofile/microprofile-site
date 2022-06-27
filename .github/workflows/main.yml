@@ -35,7 +35,8 @@ jobs:
       id: verify-changed-files
       with:
         files: |
-           contributors.json             
+           contributors.json
+           projects.json
 
     - name: Push new json file from doc folder
       if: steps.verify-changed-files.outputs.files_changed == 'true'
@@ -43,5 +44,5 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"    
           git add docs
-          git commit -m "Updated docs/contributors.json file."
+          git commit -m "Updated docs/ json files file."
           git push
