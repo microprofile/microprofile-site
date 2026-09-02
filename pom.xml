@@ -95,7 +95,7 @@
       <dependency>
          <groupId>org.apache.rat</groupId>
          <artifactId>apache-rat-plugin</artifactId>
-         <version>0.13</version>
+         <version>0.18</version>
       </dependency>
    </dependencies>
 
@@ -175,14 +175,14 @@
                </execution>
             </executions>
             <configuration>
-               <excludes>
+               <inputExcludes>
                   <exclude>README.adoc</exclude>
                   <exclude>docs/contributors.json</exclude>
                   <exclude>docs/projects.json</exclude>
                   <exclude>docs/README.adoc</exclude>
                   <exclude>docs/robots.txt</exclude>
                   <exclude>.github/workflows/main.yml</exclude>
-               </excludes>
+               </inputExcludes>
             </configuration>
          </plugin>
       </plugins>
