@@ -34,6 +34,7 @@ jobs:
       uses: tj-actions/verify-changed-files@a1c6acee9df209257a246f2cc6ae8cb6581c1edf # v20.0.4
       id: verify-changed-files
       with:
+        path: 'docs'
         files: |
            contributors.json
            projects.json
