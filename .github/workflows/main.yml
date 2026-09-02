@@ -21,7 +21,7 @@ jobs:
         java-version: '11'
 
     - name: Maven install
-      run: mvn help:system -U --show-version install
+      run: mvn help:system -B -U --show-version install
       env:
         MAVEN_OPTS: -Xmx2048m
         
